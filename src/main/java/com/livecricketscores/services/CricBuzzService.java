@@ -27,8 +27,8 @@ public class CricBuzzService {
     private CricUtils cricUtils;
     @Autowired
     private ObjectMapper objectMapper;
-    @Value("${url.cricbuzz}")
-    private String cricbuzzURL;
+    @Value("${host.cricbuzz}")
+    private String cricbuzzHost;
     @Value("${cricbuzz.call-api}")
     private String callCricbuzz;
     @Value("${endpoint.get-live-matches}")
@@ -40,8 +40,8 @@ public class CricBuzzService {
         Matches matches = null;
         try{
             HttpHeaders httpHeaders = cricUtils.getHeaders();
+            String cricbuzzURL = "https://" + cricbuzzHost + getLiveMatches;
             HttpEntity<String> httpEntity = new HttpEntity<>(cricbuzzURL,httpHeaders);
-            cricbuzzURL += getLiveMatches;
             if(callCricbuzz.equalsIgnoreCase("true")){
                 ResponseEntity<JsonNode> responseEntity = restTemplate.exchange(cricbuzzURL, HttpMethod.GET, httpEntity, JsonNode.class);
                 if (responseEntity.getBody() != null && responseEntity.getStatusCode().is2xxSuccessful()){

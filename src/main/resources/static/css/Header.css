@@ -1,0 +1,21 @@
+#header{
+    background-color:  cornflowerblue !important;
+/*rgb(28, 150, 232)*/
+    --bs-navbar-padding-y: 0.3rem !important;
+}
+#brandImage{
+    border-radius: 5px;
+    padding: 0px !important;
+    width: 150px;
+    height: 45px;
+    margin-left: 4px !important;
+    box-shadow: 0.5px 0.5px 1px 0.5px cornsilk;
+}
+#headerContainer {
+    margin: 0px !important;
+    padding: 0px !important;
+    padding-left: 4px !important;
+}
+.headerOptions{
+    color: white !important;
+}
