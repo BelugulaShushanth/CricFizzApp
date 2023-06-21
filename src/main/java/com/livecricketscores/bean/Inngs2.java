@@ -7,7 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Team1Score{
-    public Inngs1 inngs1;
-    public Inngs2 inngs2;
+public class Inngs2{
+    public int inningsId;
+    public int runs;
+    public int wickets;
+    public double overs;
 }
