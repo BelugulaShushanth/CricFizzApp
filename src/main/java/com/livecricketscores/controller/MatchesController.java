@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,7 +20,7 @@ public class MatchesController {
         Matches liveMatches = cricBuzzService.getMatches(event);
         ModelAndView mv = new ModelAndView();
         mv.addObject("typeMatches",liveMatches.getTypeMatches());
-        mv.setViewName("ViewLiveMatches");
+        mv.setViewName("ViewMatches");
         return mv;
     }
 }
