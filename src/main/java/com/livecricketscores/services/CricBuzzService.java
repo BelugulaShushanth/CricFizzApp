@@ -31,16 +31,16 @@ public class CricBuzzService {
     private String cricbuzzHost;
     @Value("${cricbuzz.call-api}")
     private String callCricbuzz;
-    @Value("${endpoint.get-live-matches}")
-    private String getLiveMatches;
+    @Value("${endpoint.get-matches}")
+    private String getMatches;
     @Value("${cricbuzz.sample.data.location}")
     private String sampleFileLoc;
 
-    public Matches getLiveMatches(){
+    public Matches getMatches(String event){
         Matches matches = null;
         try{
             HttpHeaders httpHeaders = cricUtils.getHeaders();
-            String cricbuzzURL = "https://" + cricbuzzHost + getLiveMatches;
+            String cricbuzzURL = "https://" + cricbuzzHost + "/" + getMatches + "/" + event;
             HttpEntity<String> httpEntity = new HttpEntity<>(cricbuzzURL,httpHeaders);
             if(callCricbuzz.equalsIgnoreCase("true")){
                 ResponseEntity<JsonNode> responseEntity = restTemplate.exchange(cricbuzzURL, HttpMethod.GET, httpEntity, JsonNode.class);

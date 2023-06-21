@@ -1,0 +1,24 @@
+.container.matches{
+    margin-top: 10px;
+    padding: 0px !important;
+}
+.accordion-item.matches{
+    padding: 0px;
+    /*width: 1500px;*/
+    /*position: relative;*/
+    /*right: 92px;*/
+}
+.card-header.matches{
+     color: white; !important;
+     background-color: #868e96 !important;
+ }
+.card-title.matches{
+    font-family: monospace;
+    font-size: 18px;
+}
+.card-body.matches{
+    text-align: left !important;
+}
+.matchesScore{
+    font-size: 14px;
+}
