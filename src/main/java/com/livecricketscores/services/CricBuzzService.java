@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.livecricketscores.bean.Matches;
 import com.livecricketscores.utils.CricUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -21,6 +23,8 @@ import java.util.stream.Collectors;
 @Service
 public class CricBuzzService {
 
+    private final Logger logger = LoggerFactory.getLogger(CricBuzzService.class);
+
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
@@ -37,10 +41,13 @@ public class CricBuzzService {
     private String sampleFileLoc;
 
     public Matches getMatches(String event){
+        logger.info("Started getMatches");
         Matches matches = null;
         try{
             HttpHeaders httpHeaders = cricUtils.getHeaders();
             String cricbuzzURL = "https://" + cricbuzzHost + "/" + getMatches + "/" + event;
+            logger.info("cricbuzzURL: {}", cricbuzzURL);
+            logger.info("callCricbuzz: {}", callCricbuzz);
             HttpEntity<String> httpEntity = new HttpEntity<>(cricbuzzURL,httpHeaders);
             if(callCricbuzz.equalsIgnoreCase("true")){
                 ResponseEntity<JsonNode> responseEntity = restTemplate.exchange(cricbuzzURL, HttpMethod.GET, httpEntity, JsonNode.class);
@@ -61,7 +68,7 @@ public class CricBuzzService {
             }
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            logger.debug("Exception in CricBuzzService:getMatches {}", e.getMessage());
         }
         return matches;
     }

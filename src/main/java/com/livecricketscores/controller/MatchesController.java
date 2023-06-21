@@ -2,6 +2,9 @@ package com.livecricketscores.controller;
 
 import com.livecricketscores.bean.Matches;
 import com.livecricketscores.services.CricBuzzService;
+import com.livecricketscores.utils.CricUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,14 +16,26 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/matches")
 public class MatchesController {
 
+    private final Logger logger = LoggerFactory.getLogger(MatchesController.class);
+
     @Autowired
     private CricBuzzService cricBuzzService;
+
+    @Autowired
+    private CricUtils cricUtils;
     @GetMapping("/getMatches/{event}")
-    public ModelAndView getLiveMatches(@PathVariable("event") String event){
-        Matches liveMatches = cricBuzzService.getMatches(event);
+    public ModelAndView getMatches(@PathVariable("event") String event){
+        logger.info("Incoming Event: {}",event);
         ModelAndView mv = new ModelAndView();
-        mv.addObject("typeMatches",liveMatches.getTypeMatches());
-        mv.setViewName("ViewMatches");
+        try {
+            Matches liveMatches = cricBuzzService.getMatches(event);
+            mv.addObject("typeMatches",liveMatches.getTypeMatches());
+            mv.setViewName("ViewMatches");
+            logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(liveMatches));
+        }
+        catch (Exception e){
+            logger.error("Exception in MatchesController:getMatches e:{}",e.getMessage());
+        }
         return mv;
     }
 }
