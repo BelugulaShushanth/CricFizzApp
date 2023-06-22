@@ -41,3 +41,17 @@
     font-family: sans-serif;
     font-size: 14px;
 }
+.showCard{
+    display: block;
+}
+.hideCard{
+    display: none;
+}
+.svgArrow{
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    top: 2px;
+    height: 18px;
+    width: 18px;
+}
