@@ -19,6 +19,12 @@
 .card-body.matches{
     text-align: left !important;
 }
-.matchesScore{
+.matchesTeamName{
     font-size: 14px;
+}
+.matchesScore{
+    color: darkmagenta;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: math;
 }

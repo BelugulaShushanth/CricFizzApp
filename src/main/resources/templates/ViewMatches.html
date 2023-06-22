@@ -33,19 +33,29 @@
                                                 <div class="card-body matches">
                                                     <h6 class="card-title matches" data-th-text="${matchData.matchInfo.team1.teamSName+' Vs '+matchData.matchInfo.team2.teamSName}">Primary card title</h6>
                                                     <p class="card-text">
-                                                        <span class="matchesScore" data-th-text="${matchData.matchInfo.team1.teamSName}"></span>
+                                                        <span class="matchesTeamName" data-th-text="${matchData.matchInfo.team1.teamSName}"></span>
                                                         <div  data-th-if="${matchData.matchScore != null && matchData.matchScore.team1Score != null
                                                                         && matchData.matchScore.team1Score.inngs1 != null}" data-th-remove="tag" >
-                                                           &nbsp;<span data-th-text="${matchData.matchScore.team1Score.inngs1.runs + '/'
+                                                           &nbsp;<span class="matchesScore" data-th-text="${matchData.matchScore.team1Score.inngs1.runs + '/'
                                                                     +matchData.matchScore.team1Score.inngs1.wickets + ' (' + matchData.matchScore.team1Score.inngs1.overs + ')'}">
                                                                     </span>
+                                                            <div data-th-if="${matchData.matchScore.team1Score.inngs2} != null" data-th-remove="tag" >
+                                                                &nbsp;&&nbsp;<span class="matchesScore" data-th-text="${matchData.matchScore.team1Score.inngs2.runs + '/'
+                                                                    +matchData.matchScore.team1Score.inngs2.wickets + ' (' + matchData.matchScore.team1Score.inngs2.overs + ')'}">
+                                                                    </span>
+                                                            </div>
                                                         </div>
-                                                        <br><span class="matchesScore" data-th-text="${matchData.matchInfo.team2.teamSName}"></span>
+                                                        <br><span class="matchesTeamName" data-th-text="${matchData.matchInfo.team2.teamSName}"></span>
                                                         <div data-th-if="${matchData.matchScore != null && matchData.matchScore.team2Score != null
                                                                         && matchData.matchScore.team2Score.inngs1 != null}" data-th-remove="tag" >
-                                                            &nbsp;<span data-th-text="${matchData.matchScore.team2Score.inngs1.runs + '/'
+                                                            &nbsp;<span class="matchesScore" data-th-text="${matchData.matchScore.team2Score.inngs1.runs + '/'
                                                                 +matchData.matchScore.team2Score.inngs1.wickets + ' (' + matchData.matchScore.team2Score.inngs1.overs + ')'}">
                                                             </span>
+                                                            <div data-th-if="${matchData.matchScore.team2Score.inngs2} != null" data-th-remove="tag" >
+                                                                &nbsp;&&nbsp;<span class="matchesScore" data-th-text="${matchData.matchScore.team2Score.inngs2.runs + '/'
+                                                                    +matchData.matchScore.team2Score.inngs2.wickets + ' (' + matchData.matchScore.team2Score.inngs2.overs + ')'}">
+                                                                    </span>
+                                                            </div>
                                                         </div>
                                                     </p>
                                                 </div>
