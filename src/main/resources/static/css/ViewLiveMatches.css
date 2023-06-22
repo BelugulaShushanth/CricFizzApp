@@ -11,10 +11,13 @@
 .card-header.matches{
      color: white; !important;
      background-color: #868e96 !important;
+     font-size: 0.9rem;
  }
 .card-title.matches{
     font-family: monospace;
     font-size: 18px;
+    padding: 0px;
+    margin: 0px;
 }
 .card-body.matches{
     text-align: left !important;
@@ -27,4 +30,14 @@
     font-weight: 500;
     font-size: 14px;
     font-family: math;
+}
+.card{
+    --bs-card-cap-padding-y: 0.2rem;
+    --bs-card-cap-padding-x: 0.4rem;
+}
+.matchStatus{
+    color: cornflowerblue;
+    font-weight: 550;
+    font-family: sans-serif;
+    font-size: 14px;
 }
