@@ -27,9 +27,8 @@
                             <div data-th-each="seriesMatch,iter2 :${typeMatch.seriesMatches}" data-th-remove="tag">
                                 <div data-th-if="${seriesMatch.seriesAdWrapper != null}" data-th-remove="tag">
                                     <div data-th-each="matchData,iter3 :${seriesMatch.seriesAdWrapper.matches}" data-th-remove="tag">
-                                        <div class="g-col-6 g-col-md-4">
-                                            <div class="card text-bg-light mb-3" style="max-width: 25rem;">
-                                                <div class="card-header matches" data-th-text="${matchData.matchInfo.seriesName}">Header</div>
+                                        <div class="g-col-6 g-col-md-4"><div class="card text-bg-light mb-3" style="max-width: 25rem; border-radius: 15px">
+                                                <div class="card-header matches" data-th-text="${matchData.matchInfo.matchDesc+' ' +matchData.matchInfo.seriesName}">Header</div>
                                                 <div class="card-body matches">
                                                     <h6 class="card-title matches" data-th-text="${matchData.matchInfo.team1.teamSName+' Vs '+matchData.matchInfo.team2.teamSName}">Primary card title</h6>
                                                     <p class="card-text">

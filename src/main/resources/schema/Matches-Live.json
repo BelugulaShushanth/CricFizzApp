@@ -1,0 +1,101 @@
+{
+	"TypeMatches": [
+		{
+			"MatchType": "Domestic",
+			"SeriesMatches": [
+				{
+					"SeriesAdWrapper": {
+						"SeriesId": 6367,
+						"SeriesName": "South Africa A tour of Sri Lanka, 2023",
+						"Matches": [
+							{
+								"MatchInfo": {
+									"MatchId": 71096,
+									"SeriesId": 6367,
+									"SeriesName": "South Africa A tour of Sri Lanka, 2023",
+									"MatchDesc": "2nd unofficial Test",
+									"MatchFormat": "TEST",
+									"StartDate": "1687147200000",
+									"EndDate": "1687431600000",
+									"State": "Stumps",
+									"Status": "Day 3: Stumps - Sri Lanka A lead by 226 runs",
+									"Team1": {
+										"TeamId": 43,
+										"TeamName": "Sri Lanka A",
+										"TeamSName": "SLA",
+										"ImageId": 172150
+									},
+									"Team2": {
+										"TeamId": 268,
+										"TeamName": "South Africa A",
+										"TeamSName": "RSAA",
+										"ImageId": 172321
+									},
+									"VenueInfo": {
+										"Id": 13,
+										"Ground": "Rangiri Dambulla International Stadium",
+										"City": "Dambulla",
+										"Timezone": "+05:30"
+									},
+									"CurrBatTeamId": 43,
+									"SeriesStartDt": "1685836800000",
+									"SeriesEndDt": "1687564800000",
+									"IsTimeAnnounced": true,
+									"StateTitle": "Stumps",
+									"TimeAnnounced": true
+								},
+								"MatchScore": {
+									"Team1Score": {
+										"Inngs1": {
+											"InningsId": 1,
+											"Runs": 290,
+											"Wickets": 10,
+											"Overs": 75.1
+										},
+										"Inngs2": {
+											"InningsId": 3,
+											"Runs": 230,
+											"Wickets": 2,
+											"Overs": 62.6
+										}
+									},
+									"Team2Score": {
+										"Inngs1": {
+											"InningsId": 2,
+											"Runs": 294,
+											"Wickets": 10,
+											"Overs": 84.3
+										},
+										"Inngs2": null
+									}
+								}
+							}
+						]
+					},
+					"AdDetail": null
+				},
+				{
+					"SeriesAdWrapper": null,
+					"AdDetail": {
+						"Name": "native_matches",
+						"Layout": "native_large",
+						"Position": 1
+					}
+				}
+			]
+		}
+	],
+	"Filters": {
+		"MatchType": [
+			"International",
+			"League",
+			"Domestic",
+			"Women"
+		]
+	},
+	"AppIndex": {
+		"SeoTitle": "Live Cricket Score - Scorecard and Match Results",
+		"WebURL": "www.cricbuzz.com/live-cricket-scores/"
+	},
+	"ResponseLastUpdated": "1687402798"
+}
