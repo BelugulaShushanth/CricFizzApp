@@ -5,9 +5,16 @@ window.onload = () => {
                         </svg>`;
     for (let i=0 ; i<matchTypesSize; i++){
         let matchCards = document.getElementsByClassName("matchCard"+i);
-        for (let j =  6; j<matchCards.length; j++ ) {
-            matchCards[j].classList.remove("showCard");
-            matchCards[j].classList.add("hideCard");
+        let moreMatchesBtn = document.getElementById("ViewMoreMatches"+i);
+        if(matchCards.length<=6){
+            moreMatchesBtn.style.display = "none";
+        }
+        else{
+            moreMatchesBtn.style.display = "";
+            for (let j =  6; j<matchCards.length; j++ ) {
+                matchCards[j].classList.remove("showCard");
+                matchCards[j].classList.add("hideCard");
+            }
         }
     }
 
