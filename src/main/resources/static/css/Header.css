@@ -19,4 +19,9 @@
 .headerOptions{
     color: white !important;
 }
-
+.activateNavBtn{
+    font-weight: 600 !important;
+}
+.deactivateNavBtn{
+    font-weight: 300 !important;
+}
