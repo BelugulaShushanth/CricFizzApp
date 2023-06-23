@@ -8,7 +8,7 @@
 </head>
 <body>
 <div data-th-fragment="cricHeader">
-    <nav class="navbar navbar-expand-lg sticky-top bg-primary" id="header" >
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary" id="header" >
         <div class="container-fluid" id="headerContainer">
             <img class="navbar-brand" id="brandImage" th:src="@{/images/cricfizz-logo.png}">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -18,13 +18,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active headerOptions" aria-current="page" href="#">Series</a>
+                        <a class="nav-link headerOptions" th:href="@{/matches/getMatches/live}">Live</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link headerOptions" th:href="@{/matches/getMatches/recent}">Recent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link headerOptions" th:href="@{/matches/getMatches/upcoming}">Upcoming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link headerOptions" href="#">Series</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link headerOptions" href="#">Teams</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link headerOptions" href="#">News</a>
                     </li>
                 </ul>
             </div>

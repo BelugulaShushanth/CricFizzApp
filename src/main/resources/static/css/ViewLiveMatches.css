@@ -1,6 +1,6 @@
 .container.matches{
     margin-top: 10px;
-    padding: 0px !important;
+    padding: 65px !important;
 }
 .accordion-item.matches{
     padding: 0px;
@@ -10,8 +10,8 @@
 }
 .card-header.matches{
      color: white; !important;
-     background-color: #868e96 !important;
-     font-size: 0.9rem;
+     background-color: cornflowerblue !important;
+     font-size: 0.8rem;
  }
 .card-title.matches{
     font-family: monospace;
@@ -36,10 +36,10 @@
     --bs-card-cap-padding-x: 0.4rem;
 }
 .matchStatus{
-    color: cornflowerblue;
+    color: mediumpurple;
     font-weight: 550;
     font-family: sans-serif;
-    font-size: 14px;
+    font-size: 13px;
 }
 .showCard{
     display: block;
