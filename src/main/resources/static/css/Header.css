@@ -6,8 +6,8 @@
 #brandImage{
     border-radius: 5px;
     padding: 0px !important;
-    width: 150px;
-    height: 45px;
+    width: 8.3rem;
+    height: 2.5rem;
     margin-left: 4px !important;
     box-shadow: 0.5px 0.5px 1px 0.5px cornsilk;
 }
@@ -18,10 +18,21 @@
 }
 .headerOptions{
     color: white !important;
+    font-size: 1rem;
 }
 .activateNavBtn{
     font-weight: 600 !important;
 }
 .deactivateNavBtn{
     font-weight: 300 !important;
+}
+
+@media screen and (min-width: 10px) and (max-width: 1000px) {
+    #brandImage{
+        width: 12rem;
+        height: 4rem;
+    }
+    .headerOptions{
+        font-size: 2rem;
+    }
 }

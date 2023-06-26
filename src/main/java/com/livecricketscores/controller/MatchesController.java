@@ -23,6 +23,21 @@ public class MatchesController {
 
     @Autowired
     private CricUtils cricUtils;
+
+    @GetMapping("")
+    public ModelAndView getLiveMatches(){
+        ModelAndView mv = new ModelAndView();
+        try {
+            Matches liveMatches = cricBuzzService.getMatches("live");
+            mv.addObject("typeMatches",liveMatches.getTypeMatches());
+            mv.setViewName("ViewMatches");
+            logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(liveMatches));
+        }
+        catch (Exception e){
+            logger.error("Exception in MatchesController:getMatches e:{}",e.getMessage());
+        }
+        return mv;
+    }
     @GetMapping("/getMatches/{event}")
     public ModelAndView getMatches(@PathVariable("event") String event){
         logger.info("Incoming Event: {}",event);
