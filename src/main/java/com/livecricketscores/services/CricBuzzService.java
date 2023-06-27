@@ -17,7 +17,11 @@ import org.springframework.web.client.RestTemplate;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
@@ -66,10 +70,38 @@ public class CricBuzzService {
                 JsonNode jsonNode = objectMapper.readTree(matchesJson.toString());
                 matches = objectMapper.treeToValue(jsonNode, Matches.class);
             }
+
+            if(event.equalsIgnoreCase("upcoming")) {
+                mapMatchStartDateinMillsToMins(matches);
+            }
         }
         catch (Exception e){
-            logger.debug("Exception in CricBuzzService:getMatches {}", e.getMessage());
+            logger.error("Exception in CricBuzzService:getMatches", e);
         }
         return matches;
+    }
+
+    private void mapMatchStartDateinMillsToMins(Matches matches) {
+
+        matches.getTypeMatches()
+                .stream()
+                .filter(typeMatch -> typeMatch != null && typeMatch.getSeriesMatches() != null)
+                .forEach(match -> match.getSeriesMatches()
+                        .stream()
+                        .filter(seriesMatch -> seriesMatch != null && seriesMatch.getSeriesAdWrapper() != null && seriesMatch.getSeriesAdWrapper().getMatches() != null)
+                        .forEach(seriesMatch -> seriesMatch.getSeriesAdWrapper().getMatches()
+                                .stream()
+                                .filter(match1 -> match1 != null && match1.getMatchInfo() != null && match1.getMatchInfo().getStartDate() != null)
+                                .map(match1 -> {
+                                    match1.getMatchInfo().setStartDate(mapMillsToMins(match1.getMatchInfo().getStartDate()));
+                                    return match1;
+                                })
+                                .forEach(match1 -> match1.getMatchInfo().getStartDate())
+                        ));
+    }
+
+    private String mapMillsToMins(String startMills) {
+        long currentMills = new Date().getTime();
+        return String.valueOf(TimeUnit.MILLISECONDS.toHours(Long.parseLong(startMills) - currentMills));
     }
 }

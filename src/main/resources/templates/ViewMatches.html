@@ -63,6 +63,9 @@
                                                             </div>
                                                         </div>
                                                         <br><span class="matchStatus" data-th-text="${matchData.matchInfo.status}"></span>
+                                                         <div data-th-if="${matchData.matchScore == null && !matchData.matchInfo.state.equalsIgnoreCase('Complete')}" data-th-remove="tag" >
+                                                                <span class="matchStartTime" data-th-text="${'Match Starts in '+matchData.matchInfo.startDate+'hrs'}"></span>
+                                                         </div>
                                                     </p>
                                                 </div>
                                             </div>

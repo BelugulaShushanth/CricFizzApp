@@ -66,6 +66,10 @@
 .matchSeriesName{
     float: right;
 }
+.matchStartTime{
+    color: darkmagenta;
+    font-family: sans-serif;
+}
 @media screen and (min-width: 10px) and (max-width: 450px){
     .card.matches{
         max-width: 20rem !important;
@@ -129,5 +133,8 @@
     }
     .card-body.matches{
         padding: 1.2rem;
+    }
+    .matchStartTime{
+      font-size: 2.2rem;
     }
 }
