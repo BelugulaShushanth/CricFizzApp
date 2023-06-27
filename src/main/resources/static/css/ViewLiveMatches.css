@@ -16,7 +16,7 @@
  }
 .card-title.matches{
     font-family: monospace;
-    font-size: 18px;
+    font-size: 1rem;
     padding: 0px;
     margin: 0px;
 }
@@ -24,12 +24,12 @@
     text-align: left !important;
 }
 .matchesTeamName{
-    font-size: 14px;
+    font-size: 1rem;
 }
 .matchesScore{
     color: darkmagenta;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-family: math;
 }
 .card{
@@ -40,7 +40,7 @@
     color: cornflowerblue;
     font-weight: 550;
     font-family: sans-serif;
-    font-size: 13px;
+    font-size: 0.8rem;
 }
 .showCard{
     display: block;
@@ -59,6 +59,12 @@
 .accordion-button.matchType{
     text-transform: uppercase;
     font-weight: 500;
+}
+.matchDesc{
+    float: left;
+}
+.matchSeriesName{
+    float: right;
 }
 @media screen and (min-width: 10px) and (max-width: 450px){
     .card.matches{
@@ -86,5 +92,42 @@
     .accordion-button.matchType{
         height: 5rem !important;
         font-size: 1.8rem;
+    }
+    .card-header.matches {
+        font-size: 2rem;
+    }
+    .card-title.matches {
+        font-size: 2.2rem;
+    }
+    .matchesTeamName {
+        font-size: 2.2rem;
+    }
+    .matchesScore{
+        color: darkslategray;
+        font-size: 2.2rem;
+        font-weight: 400;
+    }
+    .matchStatus{
+        font-size: 2.2rem;
+    }
+    .btn.btn-primary{
+        font-size: 2rem !important;
+    }
+    .svgArrow{
+        height: 2.2rem;
+        width: 2.2rem;
+    }
+    .card-title.matches{
+        display: none;
+    }
+    .card.matches{
+        height: 18rem;
+        margin-bottom: 0 !important;
+    }
+    .card-header.matches{
+        padding: 0.7rem;
+    }
+    .card-body.matches{
+        padding: 1.2rem;
     }
 }

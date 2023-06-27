@@ -29,8 +29,8 @@
 
 @media screen and (min-width: 10px) and (max-width: 1000px) {
     #brandImage{
-        width: 12rem;
-        height: 4rem;
+        width: 14rem;
+        height: 4.5rem;
     }
     .headerOptions{
         font-size: 2rem;

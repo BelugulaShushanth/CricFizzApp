@@ -9,3 +9,10 @@
     font-size: 0.8rem;
     font-family: cursive;
 }
+
+@media screen and (min-width: 10px) and (max-width: 1000px) {
+    #footer{
+        font-size: 1.2rem;
+        font-family: monospace;
+    }
+}
