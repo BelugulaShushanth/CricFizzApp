@@ -1,4 +1,4 @@
-package com.livecricketscores.bean;
+package com.livecricketscores.bean.MatchesList;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class SeriesMatch{
-    public SeriesAdWrapper seriesAdWrapper;
-    public AdDetail adDetail;
+    private SeriesAdWrapper seriesAdWrapper;
+    private AdDetail adDetail;
 }

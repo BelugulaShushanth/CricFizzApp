@@ -1,4 +1,4 @@
-package com.livecricketscores.bean;
+package com.livecricketscores.bean.MatchesList;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Match{
-    public MatchInfo matchInfo;
-    public MatchScore matchScore;
+    private MatchInfo matchInfo;
+    private MatchScore matchScore;
 }

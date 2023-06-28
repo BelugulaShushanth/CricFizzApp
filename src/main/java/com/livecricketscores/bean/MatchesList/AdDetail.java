@@ -1,4 +1,4 @@
-package com.livecricketscores.bean;
+package com.livecricketscores.bean.MatchesList;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AdDetail{
-    public String name;
-    public String layout;
-    public int position;
+    private String name;
+    private String layout;
+    private int position;
 }

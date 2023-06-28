@@ -1,4 +1,4 @@
-package com.livecricketscores.bean;
+package com.livecricketscores.bean.MatchesList;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Team1Score{
-    public Inngs1 inngs1;
-    public Inngs2 inngs2;
+    private Inngs1 inngs1;
+    private Inngs2 inngs2;
 }

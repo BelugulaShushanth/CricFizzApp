@@ -1,4 +1,4 @@
-package com.livecricketscores.bean;
+package com.livecricketscores.bean.MatchesList;
 
 import java.util.ArrayList;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 
 public class SeriesAdWrapper{
-    public int seriesId;
-    public String seriesName;
-    public ArrayList<Match> matches;
+    private int seriesId;
+    private String seriesName;
+    private ArrayList<Match> matches;
 }

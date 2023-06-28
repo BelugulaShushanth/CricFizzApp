@@ -1,4 +1,4 @@
-package com.livecricketscores.bean;
+package com.livecricketscores.bean.MatchesList;
 
 import java.util.ArrayList;
 import lombok.Getter;
@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class TypeMatch{
-    public String matchType;
-    public ArrayList<SeriesMatch> seriesMatches;
+    private String matchType;
+    private ArrayList<SeriesMatch> seriesMatches;
 }

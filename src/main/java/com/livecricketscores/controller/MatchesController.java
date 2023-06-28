@@ -1,6 +1,6 @@
 package com.livecricketscores.controller;
 
-import com.livecricketscores.bean.Matches;
+import com.livecricketscores.bean.MatchesList.Matches;
 import com.livecricketscores.services.CricBuzzService;
 import com.livecricketscores.utils.CricUtils;
 import org.slf4j.Logger;
