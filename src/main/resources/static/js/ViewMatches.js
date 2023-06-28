@@ -14,9 +14,10 @@ window.onload = () => {
         btnMoreMatches(matchTypesSize,6);
     }
 
+    addRoutingToMatchScoreCard()
+
 
 }
-
 function defaultNoOfMatches(matchTypesSize,defaultSize){
     for (let i=0 ; i<matchTypesSize; i++){
         let matchCards = document.getElementsByClassName("matchCard"+i);
@@ -172,5 +173,27 @@ function adjustNoOfCards() {
                 matchesCards[i].classList.add("g-col-12")
             }
         }
+    }
+}
+
+function addRoutingToMatchScoreCard(){
+    let matchCards = document.getElementsByClassName("matchCards");
+    let matchIds = document.getElementsByClassName("matchId");
+    let currentUrl = window.location.href;
+    const currentEndpoint = currentUrl.split("/")[5];
+    if(currentEndpoint === "live") {
+        currentUrl = currentUrl.replace("/getMatches/live", "/getMatchScoreCard");
+    }
+    else if(currentEndpoint === "recent") {
+        currentUrl = currentUrl.replace("/getMatches/recent", "/getMatchScoreCard");
+    }
+    else if(currentEndpoint === "upcoming") {
+        currentUrl = currentUrl.replace("/getMatches/upcoming", "/getMatchScoreCard");
+    }
+    for (let i=0; i<matchCards.length; i++){
+        matchCards[i].addEventListener('click', () => {
+            console.log("clicked: "+matchIds[i].innerText);
+            window.location.href=currentUrl+"/"+matchIds[i].innerText;
+        })
     }
 }

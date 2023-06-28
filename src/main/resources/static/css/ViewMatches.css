@@ -70,6 +70,13 @@
     color: darkmagenta;
     font-family: sans-serif;
 }
+
+.card.matchCards:hover{
+    cursor: pointer;
+}
+
+
+/*Responsive UI*/
 @media screen and (min-width: 10px) and (max-width: 450px){
     .card.matches{
         max-width: 20rem !important;

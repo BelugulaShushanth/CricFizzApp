@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=1000; user-scalable=0;">
+    <meta charset="UTF-8" name="viewport" content="width=1000,user-scalable=0">
     <title>LiveCricketScores</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <link th:href="@{/css/Header.css}" type="text/css" rel="stylesheet"/>
     <link th:href="@{/css/Footer.css}" type="text/css" rel="stylesheet"/>
-    <link th:href="@{/css/ViewLiveMatches.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/ViewMatches.css}" type="text/css" rel="stylesheet">
 </head>
 <body>
 <div data-th-insert="~{fragments/Header :: cricHeader}"></div>
@@ -30,10 +30,11 @@
                                 <div data-th-if="${seriesMatch.seriesAdWrapper != null}" data-th-remove="tag">
                                     <div data-th-each="matchData,iter3 :${seriesMatch.seriesAdWrapper.matches}" data-th-remove="tag">
                                         <div class="g-col-6 g-col-md-4 matchesCards showCard" data-th-classappend="matchCard+${iter1.index}" >
-                                            <div class="card matches text-bg-light mb-3" style="max-width: 25rem; border-radius: 15px">
+                                            <div class="card matchCards text-bg-light mb-3" style="max-width: 25rem; border-radius: 15px">
                                                 <div class="card-header matches cardHeaderClass">
                                                     <span class="matchDesc" data-th-text="${matchData.matchInfo.matchDesc}"></span>
                                                     <span  class="matchSeriesName" data-th-text="${matchData.matchInfo.seriesName}"></span>
+                                                    <span  class="matchId" data-th-text="${matchData.matchInfo.matchId}" style="display: none;"></span>
                                                 </div>
                                                 <div class="card-body matches">
                                                     <h6 class="card-title matches" data-th-text="${matchData.matchInfo.team1.teamSName+' Vs '+matchData.matchInfo.team2.teamSName}">Primary card title</h6>

@@ -56,16 +56,18 @@ public class MatchesController {
     }
 
     @GetMapping("/getMatchScoreCard/{matchId}")
-    public MatchScoreCard getMatchScoreCard(@PathVariable("matchId") String matchId){
+    public ModelAndView getMatchScoreCard(@PathVariable("matchId") String matchId){
         logger.info("Incoming MatchId: {}",matchId);
-        MatchScoreCard matchesScoreCard = null;
+        ModelAndView mv = new ModelAndView();
         try {
-            matchesScoreCard = cricBuzzService.getMatchesScoreCard(matchId);
-            logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(matchesScoreCard));
+            MatchScoreCard matchScoreCard = cricBuzzService.getMatchesScoreCard(matchId);
+            mv.addObject("matchScoreCard", matchScoreCard);
+            mv.setViewName("ViewMatchScoreCard");
+            logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(matchScoreCard));
         }
         catch (Exception e){
             logger.error("Exception in MatchesController:getMatches e:{}",e.getMessage());
         }
-        return matchesScoreCard;
+        return mv;
     }
 }
