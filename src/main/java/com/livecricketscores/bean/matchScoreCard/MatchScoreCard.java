@@ -9,7 +9,7 @@ import java.util.ArrayList;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MatchScoreCardRoot {
+public class MatchScoreCard {
     private ArrayList<ScoreCard> scoreCard;
     private MatchHeader matchHeader;
     private boolean isMatchComplete;

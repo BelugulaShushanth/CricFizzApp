@@ -1,5 +1,6 @@
 package com.livecricketscores.controller;
 
+import com.livecricketscores.bean.matchScoreCard.MatchScoreCard;
 import com.livecricketscores.bean.matchesList.Matches;
 import com.livecricketscores.services.CricBuzzService;
 import com.livecricketscores.utils.CricUtils;
@@ -52,5 +53,19 @@ public class MatchesController {
             logger.error("Exception in MatchesController:getMatches e:{}",e.getMessage());
         }
         return mv;
+    }
+
+    @GetMapping("/getMatchScoreCard/{matchId}")
+    public MatchScoreCard getMatchScoreCard(@PathVariable("matchId") String matchId){
+        logger.info("Incoming MatchId: {}",matchId);
+        MatchScoreCard matchesScoreCard = null;
+        try {
+            matchesScoreCard = cricBuzzService.getMatchesScoreCard(matchId);
+            logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(matchesScoreCard));
+        }
+        catch (Exception e){
+            logger.error("Exception in MatchesController:getMatches e:{}",e.getMessage());
+        }
+        return matchesScoreCard;
     }
 }
