@@ -1,4 +1,4 @@
-package com.livecricketscores.bean.MatchesList;
+package com.livecricketscores.bean.matchesList;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

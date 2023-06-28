@@ -2,7 +2,7 @@ package com.livecricketscores.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.livecricketscores.bean.MatchesList.Matches;
+import com.livecricketscores.bean.matchesList.Matches;
 import com.livecricketscores.utils.CricUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
