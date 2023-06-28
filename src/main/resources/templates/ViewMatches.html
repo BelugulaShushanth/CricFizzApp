@@ -30,7 +30,7 @@
                                 <div data-th-if="${seriesMatch.seriesAdWrapper != null}" data-th-remove="tag">
                                     <div data-th-each="matchData,iter3 :${seriesMatch.seriesAdWrapper.matches}" data-th-remove="tag">
                                         <div class="g-col-6 g-col-md-4 matchesCards showCard" data-th-classappend="matchCard+${iter1.index}" >
-                                            <div class="card matchCards text-bg-light mb-3" style="max-width: 25rem; border-radius: 15px">
+                                            <div class="card matches matchCards text-bg-light mb-3" style="max-width: 25rem; border-radius: 15px">
                                                 <div class="card-header matches cardHeaderClass">
                                                     <span class="matchDesc" data-th-text="${matchData.matchInfo.matchDesc}"></span>
                                                     <span  class="matchSeriesName" data-th-text="${matchData.matchInfo.seriesName}"></span>

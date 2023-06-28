@@ -71,7 +71,7 @@
     font-family: sans-serif;
 }
 
-.card.matchCards:hover{
+.card.matches.matchCards:hover{
     cursor: pointer;
 }
 
