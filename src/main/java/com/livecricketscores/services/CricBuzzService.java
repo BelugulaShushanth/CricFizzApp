@@ -15,11 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class CricBuzzService {
 
@@ -37,8 +32,8 @@ public class CricBuzzService {
     private String callCricbuzz;
     @Value("${endpoint.get-matches}")
     private String getMatches;
-    @Value("${cricbuzz.sample.data.location}")
-    private String sampleFileLoc;
+    @Value("${cricbuzz.sample.matchesList.data.location}")
+    private String matchesFileLoc;
 
     public Matches getMatches(String event){
         logger.info("Started getMatches");
@@ -57,14 +52,7 @@ public class CricBuzzService {
                 }
             }
             else{
-                StringBuilder matchesJson = new StringBuilder();
-                List<String> list = Files.lines(Paths.get(sampleFileLoc))
-                        .collect(Collectors.toList());
-                for (String s : list){
-                    matchesJson.append(s);
-                }
-                JsonNode jsonNode = objectMapper.readTree(matchesJson.toString());
-                matches = objectMapper.treeToValue(jsonNode, Matches.class);
+                matches = objectMapper.treeToValue(objectMapper.readTree(cricUtils.readJsonFile(matchesFileLoc)), Matches.class);
             }
 
             if(event.equalsIgnoreCase("upcoming")) {

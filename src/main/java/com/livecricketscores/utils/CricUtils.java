@@ -5,17 +5,26 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.livecricketscores.bean.matchesList.Matches;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @Service
 public class CricUtils {
+
+    private final Logger logger = LoggerFactory.getLogger(CricUtils.class);
 
     @Value("${host.cricbuzz}")
     private String cricbuzzHost;
@@ -61,5 +70,19 @@ public class CricUtils {
     private String mapMillsToMins(String startMills) {
         long currentMills = new Date().getTime();
         return String.valueOf(TimeUnit.MILLISECONDS.toHours(Long.parseLong(startMills) - currentMills));
+    }
+
+    public String readJsonFile(String jsonFileLoc){
+        StringBuilder jsonString = new StringBuilder();
+        try {
+            List<String> list = Files.lines(Paths.get(jsonFileLoc))
+                    .collect(Collectors.toList());
+            for (String s : list){
+                jsonString.append(s);
+            }
+        } catch (IOException e) {
+            logger.error("Exception in CricUtils:readJsonFile", e);
+        }
+        return jsonString.toString();
     }
 }
