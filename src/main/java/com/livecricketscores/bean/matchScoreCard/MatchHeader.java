@@ -16,7 +16,7 @@ public class MatchHeader{
     private String matchType;
     private boolean complete;
     private boolean domestic;
-    private long matchStartTimestamp;
+    private String matchStartTimestamp;
     private long matchCompleteTimestamp;
     private boolean dayNight;
     private int year;

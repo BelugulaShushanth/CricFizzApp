@@ -55,13 +55,14 @@ public class MatchesController {
         return mv;
     }
 
-    @GetMapping("/getMatchScoreCard/{matchId}")
-    public ModelAndView getMatchScoreCard(@PathVariable("matchId") String matchId){
+    @GetMapping("/getMatchScoreCard/{matchId}/{matchVenue}")
+    public ModelAndView getMatchScoreCard(@PathVariable("matchId") String matchId, @PathVariable("matchVenue") String matchVenue){
         logger.info("Incoming MatchId: {}",matchId);
         ModelAndView mv = new ModelAndView();
         try {
             MatchScoreCard matchScoreCard = cricBuzzService.getMatchesScoreCard(matchId);
             mv.addObject("matchScoreCard", matchScoreCard);
+            mv.addObject("matchVenue",matchVenue);
             mv.setViewName("ViewMatchScoreCard");
             logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(matchScoreCard));
         }

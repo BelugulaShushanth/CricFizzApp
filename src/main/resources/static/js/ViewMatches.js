@@ -179,6 +179,7 @@ function adjustNoOfCards() {
 function addRoutingToMatchScoreCard(){
     let matchCards = document.getElementsByClassName("matchCards");
     let matchIds = document.getElementsByClassName("matchId");
+    let matchVenue = document.getElementsByClassName("matchVenue");
     let currentUrl = window.location.href;
     const currentEndpoint = currentUrl.split("/")[5];
     if(currentEndpoint === "live") {
@@ -193,7 +194,7 @@ function addRoutingToMatchScoreCard(){
     for (let i=0; i<matchCards.length; i++){
         matchCards[i].addEventListener('click', () => {
             console.log("clicked: "+matchIds[i].innerText);
-            window.location.href=currentUrl+"/"+matchIds[i].innerText;
+            window.location.href=currentUrl+"/"+matchIds[i].innerText+"/"+matchVenue[i].innerText;
         })
     }
 }

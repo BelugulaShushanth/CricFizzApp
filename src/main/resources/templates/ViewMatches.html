@@ -35,6 +35,8 @@
                                                     <span class="matchDesc" data-th-text="${matchData.matchInfo.matchDesc}"></span>
                                                     <span  class="matchSeriesName" data-th-text="${matchData.matchInfo.seriesName}"></span>
                                                     <span  class="matchId" data-th-text="${matchData.matchInfo.matchId}" style="display: none;"></span>
+                                                    <span  class="matchVenue" data-th-text="${matchData.matchInfo.venueInfo.ground+', '+matchData.matchInfo.venueInfo.city}"
+                                                           style="display: none;"></span>
                                                 </div>
                                                 <div class="card-body matches">
                                                     <h6 class="card-title matches" data-th-text="${matchData.matchInfo.team1.teamSName+' Vs '+matchData.matchInfo.team2.teamSName}">Primary card title</h6>
@@ -65,7 +67,7 @@
                                                         </div>
                                                         <br><span class="matchStatus" data-th-text="${matchData.matchInfo.status}"></span>
                                                          <div data-th-if="${matchData.matchScore == null && !matchData.matchInfo.state.equalsIgnoreCase('Complete')}" data-th-remove="tag" >
-                                                                <span class="matchStartTime" data-th-text="${'Match Starts in '+matchData.matchInfo.startDate+'hrs'}"></span>
+                                                                <span class="matchStartTime" data-th-text="${'Starts on '+matchData.matchInfo.startDate}"></span>
                                                          </div>
                                                     </p>
                                                 </div>

@@ -1,0 +1,21 @@
+.container.matchScoreCard{
+    margin-top: 60px;
+    max-width: 120% !important;
+}
+.card{
+    --bs-card-cap-padding-y: 0.2rem;
+    --bs-card-cap-padding-x: 0.4rem;
+}
+.matchSingleTitle{
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: sans-serif;
+}
+.matchSingleDetail{
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.matchSingleDetail.data{
+    font-weight: 500;
+    color: darkgray;
+}

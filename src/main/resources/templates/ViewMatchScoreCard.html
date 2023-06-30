@@ -8,10 +8,25 @@
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <link th:href="@{/css/Header.css}" type="text/css" rel="stylesheet"/>
     <link th:href="@{/css/Footer.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/ViewMatchScoreCard.css}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 <div data-th-insert="~{fragments/Header :: cricHeader}"></div>
-
+<div class="container matchScoreCard">
+    <div class="card">
+        <div class="card-body">
+           <span class="matchSingleTitle" data-th-text="${matchScoreCard.matchHeader.team1.name + '  Vs  ' + matchScoreCard.matchHeader.team2.name
+           +', '+matchScoreCard.matchHeader.matchDescription + '  -  ' + matchScoreCard.matchHeader.state }"></span>
+            <br>
+            <span class="matchSingleDetail">Series: </span>
+            <span class="matchSingleDetail data" data-th-text="${'  '+matchScoreCard.matchHeader.seriesDesc}"></span>&nbsp;
+            <span class="matchSingleDetail">Venue: </span>
+            <span class="matchSingleDetail data" data-th-text="${'  '+matchVenue}"></span>&nbsp;
+            <span class="matchSingleDetail">Date & Time: </span>
+            <span class="matchSingleDetail data" data-th-text="${'  '+matchScoreCard.matchHeader.matchStartTimestamp}"></span>
+        </div>
+    </div>
+</div>
 <div data-th-insert="~{fragments/Footer :: cricFooter}"></div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>

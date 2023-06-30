@@ -97,6 +97,7 @@ public class CricBuzzService {
             else{
                 matcheScoreCard = cricUtils.objectMapper().treeToValue(cricUtils.objectMapper().readTree(cricUtils.readJsonFile(matchScoreCardLoc)), MatchScoreCard.class);
             }
+            cricUtils.mapMatchStartDateinMillsToDate(matcheScoreCard);
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatches", e);
