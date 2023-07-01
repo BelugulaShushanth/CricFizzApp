@@ -31,4 +31,5 @@ public class Miniscore{
     private int remRunsToWin;
     private int responseLastUpdated;
     private String event;
+    private long oversRem;
 }

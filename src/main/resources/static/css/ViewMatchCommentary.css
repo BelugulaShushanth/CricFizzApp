@@ -1,0 +1,36 @@
+.row.rowHeader{
+    background-color: lightgray;
+    margin-top: 5px;
+}
+.container.text-left{
+    padding: 2px;
+    margin: 4px;
+    margin-left: 8px;
+}
+.col-8.scores{
+    padding-right: 1rem;
+}
+.col-4.keystats{
+   padding-left: 2rem;
+}
+span.key {
+    color: darkslategray;
+    font-weight: 600;
+}
+span.value {
+    color: gray;
+    font-family: serif;
+    font-weight: 400;
+}
+.bName{
+    color: #0d6efd;
+    font-weight: 500;
+}
+.rowHeader.bowler{
+    margin-top: 5px;
+}
+.recentOvsStats.value{
+    color: gray;
+    font-family: math;
+    font-weight: 600;
+}
