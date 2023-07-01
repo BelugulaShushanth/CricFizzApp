@@ -25,6 +25,52 @@
             <span class="matchSingleDetail">Date & Time: </span>
             <span class="matchSingleDetail data" data-th-text="${'  '+matchScoreCard.matchHeader.matchStartTimestamp}"></span>
         </div>
+        <div class="matchNav">
+            <nav>
+                <div class="nav nav-underline" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-commentary-tab" data-bs-toggle="tab" data-bs-target="#nav-commentary" type="button" role="tab" aria-controls="nav-commentary" aria-selected="true">Commentary</button>
+                    <button class="nav-link" id="nav-scorecard-tab" data-bs-toggle="tab" data-bs-target="#nav-scorecard" type="button" role="tab" aria-controls="nav-scorecard" aria-selected="false">Scorecard</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-commentary" role="tabpanel" aria-labelledby="nav-commentary-tab" tabindex="0">
+                    <p class="card-text">
+                    <h6 class="card-title matches" data-th-text="${matchScoreCard.matchHeader.team1.name+' Vs '+matchScoreCard.matchHeader.team2.name}">card title</h6>
+                        <span class="matchesTeamName" data-th-text="${matchScoreCard.matchHeader.matchTeamInfo.get(0).battingTeamShortName+'   '}"></span>
+                    <div  data-th-if="${matchScoreCard.scoreCard != null && !matchScoreCard.scoreCard.isEmpty() }" data-th-remove="tag" >
+                        &nbsp;<span class="matchesScore" data-th-text="${matchScoreCard.scoreCard.get(0).scoreDetails.runs + '/'
+                                                                    +matchScoreCard.scoreCard.get(0).scoreDetails.wickets + ' (' + matchScoreCard.scoreCard.get(0).scoreDetails.overs + ')'}">
+                                                                    </span>
+                        <div data-th-if="${matchScoreCard.scoreCard.size() > 2}" data-th-remove="tag" >
+                            &nbsp;<span class="matchesScore" data-th-text="${'&    '+matchScoreCard.scoreCard.get(2).scoreDetails.runs + '/'
+                                                                    +matchScoreCard.scoreCard.get(2).scoreDetails.wickets + ' (' + matchScoreCard.scoreCard.get(2).scoreDetails.overs + ')'}">
+                                                                    </span>
+                        </div>
+                    </div>
+                    <br><span class="matchesTeamName" data-th-text="${matchScoreCard.matchHeader.matchTeamInfo.get(0).bowlingTeamShortName+'   '}"></span>
+                    <div data-th-if="${matchScoreCard.scoreCard != null && !matchScoreCard.scoreCard.isEmpty()
+                                                                        && matchScoreCard.scoreCard.size() > 1}" data-th-remove="tag" >
+                        &nbsp;<span class="matchesScore" data-th-text="${matchScoreCard.scoreCard.get(1).scoreDetails.runs + '/'
+                                                                    +matchScoreCard.scoreCard.get(1).scoreDetails.wickets + ' (' + matchScoreCard.scoreCard.get(1).scoreDetails.overs + ')'}">
+                                                            </span>
+                        <div data-th-if="${matchScoreCard.scoreCard.size() > 3}" data-th-remove="tag" >
+                            &nbsp;<span class="matchesScore" data-th-text="${'&    '+matchScoreCard.scoreCard.get(3).scoreDetails.runs + '/'
+                                                                    +matchScoreCard.scoreCard.get(3).scoreDetails.wickets + ' (' + matchScoreCard.scoreCard.get(3).scoreDetails.overs + ')'}">
+                                                                    </span>
+                        </div>
+                    </div>
+                    <br><span class="matchStatus" data-th-text="${matchScoreCard.status}"></span>
+                    <div data-th-if="${matchScoreCard.scoreCard == null && matchScoreCard.isMatchComplete == false && matchScoreCard.matchHeader.complete == false}" data-th-remove="tag" >
+                        <span class="matchStartTime" data-th-text="${'Starts on '+matchScoreCard.matchHeader.matchStartTimestamp}"></span>
+                    </div><br>
+                    <span class="currentRr" data-th-text="${'CRR:  '+matchScoreCard.scoreCard.get(matchScoreCard.scoreCard.size()-1).scoreDetails.runRate}"></span>
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="nav-scorecard" role="tabpanel" aria-labelledby="nav-scorecard-tab" tabindex="0">
+                    scorecard
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div data-th-insert="~{fragments/Footer :: cricFooter}"></div>
