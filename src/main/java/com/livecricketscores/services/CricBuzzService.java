@@ -2,6 +2,7 @@ package com.livecricketscores.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.livecricketscores.bean.matchLeanBack.MatchLeanBack;
 import com.livecricketscores.bean.matchScoreCard.MatchScoreCard;
 import com.livecricketscores.bean.matchesList.Matches;
 import com.livecricketscores.utils.CricUtils;
@@ -42,18 +43,27 @@ public class CricBuzzService {
     @Value("${cricbuzz.sample.matchesList.data.location}")
     private String matchesFileLoc;
 
+    @Value("${endpoint.get-match}")
+    private String matchEndpoint;
+
     @Value("${endpoint.get-match-scorecard}")
     private String matchScoreCardEndpoint;
 
     @Value("${cricbuzz.sample.matchesScoreCard.data.location}")
     private String matchScoreCardLoc;
 
+    @Value("${endpoint.get-match-leanback}")
+    private String matchLeanBackEndpoint;
+
+    @Value("${cricbuzz.sample.matchesLeanBack.data.location}")
+    private String matchLeanBackLocation;
+
     public Matches getMatches(String event){
         logger.info("Started getMatches");
         Matches matches = null;
         try{
             HttpHeaders httpHeaders = cricUtils.getHeaders();
-            String cricbuzzURL = "https://" + cricbuzzHost + "/" + matchesEndpont + "/" + event;
+            String cricbuzzURL = "https://" + cricbuzzHost + matchesEndpont + event;
             logger.info("cricbuzzURL: {}", cricbuzzURL);
             logger.info("callCricbuzz: {}", callCricbuzz);
             HttpEntity<String> httpEntity = new HttpEntity<>(cricbuzzURL,httpHeaders);
@@ -83,7 +93,7 @@ public class CricBuzzService {
         MatchScoreCard matcheScoreCard = null;
         try{
             HttpHeaders httpHeaders = cricUtils.getHeaders();
-            String cricbuzzURL = "https://" + cricbuzzHost + "/" + matchScoreCardEndpoint + "/" + matchId + "/hscard";
+            String cricbuzzURL = "https://" + cricbuzzHost + matchEndpoint + matchId + matchScoreCardEndpoint;
             logger.info("cricbuzzURL: {}", cricbuzzURL);
             logger.info("callCricbuzz: {}", callCricbuzz);
             HttpEntity<String> httpEntity = new HttpEntity<>(cricbuzzURL,httpHeaders);
@@ -103,6 +113,34 @@ public class CricBuzzService {
             logger.error("Exception in CricBuzzService:getMatches", e);
         }
         return matcheScoreCard;
+    }
+
+    public MatchLeanBack getMatchLeanBack(String matchId){
+        logger.info("Started getMatchLeanBack");
+        MatchLeanBack matchLeanBack = null;
+        try{
+            HttpHeaders httpHeaders = cricUtils.getHeaders();
+            String cricbuzzURL = "https://" + cricbuzzHost + matchEndpoint + matchId + matchLeanBackEndpoint;
+            logger.info("cricbuzzURL: {}", cricbuzzURL);
+            logger.info("callCricbuzz: {}", callCricbuzz);
+            HttpEntity<String> httpEntity = new HttpEntity<>(cricbuzzURL,httpHeaders);
+            if(callCricbuzz.equalsIgnoreCase("true")){
+                ResponseEntity<JsonNode> responseEntity = restTemplate.exchange(cricbuzzURL, HttpMethod.GET, httpEntity, JsonNode.class);
+                if (responseEntity.getBody() != null && responseEntity.getStatusCode().is2xxSuccessful()){
+                    JsonNode jsonNode = responseEntity.getBody();
+                    matchLeanBack = objectMapper.treeToValue(jsonNode, MatchLeanBack.class);
+                }
+            }
+            else{
+                matchLeanBack = cricUtils.objectMapper().treeToValue(cricUtils.objectMapper().readTree(cricUtils.readJsonFile(matchLeanBackLocation)), MatchLeanBack.class);
+            }
+            cricUtils.mapMatchStartDateinMillsToDate(matchLeanBack);
+            cricUtils.sortInnings(matchLeanBack);
+        }
+        catch (Exception e){
+            logger.error("Exception in CricBuzzService:getMatches", e);
+        }
+        return matchLeanBack;
     }
 
 

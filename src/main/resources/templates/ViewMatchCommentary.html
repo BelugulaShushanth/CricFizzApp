@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=1000,user-scalable=0">
+  <title>LiveCricketScores</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <link th:href="@{/css/Header.css}" type="text/css" rel="stylesheet"/>
+  <link th:href="@{/css/Footer.css}" type="text/css" rel="stylesheet"/>
+  <link th:href="@{/css/ViewMatchScoreCard.css}" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div data-th-insert="~{fragments/Header :: cricHeader}"></div>
+<div class="container matchScoreCard">
+  <div class="card">
+    <div class="card-body">
+           <span class="matchSingleTitle" data-th-text="${matchLeanBack.matchHeader.team1.name + '  Vs  ' + matchLeanBack.matchHeader.team2.name
+           +', '+matchLeanBack.matchHeader.matchDescription + '  -  ' + matchLeanBack.matchHeader.state }"></span>
+      <br>
+      <span class="matchSingleDetail">Series: </span>
+      <span class="matchSingleDetail data" data-th-text="${'  '+matchLeanBack.matchHeader.seriesDesc}"></span>&nbsp;
+      <span class="matchSingleDetail">Venue: </span>
+      <span class="matchSingleDetail data" data-th-text="${'  '+matchVenue}"></span>&nbsp;
+      <span class="matchSingleDetail">Date & Time: </span>
+      <span class="matchSingleDetail data" data-th-text="${'  '+matchLeanBack.matchHeader.matchStartTimestamp}"></span>
+    </div>
+    <div class="matchNav">
+      <div class="nav nav-underline" id="nav-tab" role="tablist">
+        <a class="nav-link active">Commentary</a>
+        <a data-th-href="${'/matches/getMatchScoreCard/'+matchLeanBack.getMatchHeader().getMatchId()+'/'+matchVenue}" class="nav-link" >Scorecard</a>
+      </div>
+      <div class="tab-pane fade show active" id="nav-commentary" role="tabpanel" aria-labelledby="nav-commentary-tab" tabindex="0">
+        <p class="card-text">
+        <h6 class="card-title matches" data-th-text="${matchLeanBack.matchHeader.team1.name+' Vs '+matchLeanBack.matchHeader.team2.name}">card title</h6>
+        <span class="matchesTeamName" data-th-text="${matchLeanBack.matchHeader.matchTeamInfo.get(0).battingTeamShortName+'   '}"></span>
+        <div  data-th-if="${matchLeanBack.miniscore != null && matchLeanBack.miniscore.matchScoreDetails!=null
+          && !matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.isEmpty() }" data-th-remove="tag" >
+          &nbsp;<span class="matchesScore" data-th-text="${matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(0).score + '/'
+                                                                    +matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(0).wickets + ' (' + matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(0).overs + ')'}">
+                                                                    </span>
+          <div data-th-if="${matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.size() > 2}" data-th-remove="tag" >
+            &nbsp;<span class="matchesScore" data-th-text="${'&    '+matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(2).score + '/'
+                                                                    +matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(2).wickets + ' (' + matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(2).overs + ')'}">
+                                                                    </span>
+          </div>
+        </div>
+        <br><span class="matchesTeamName" data-th-text="${matchLeanBack.matchHeader.matchTeamInfo.get(0).bowlingTeamShortName+'   '}"></span>
+        <div data-th-if="${matchLeanBack.miniscore != null && matchLeanBack.miniscore.matchScoreDetails!=null
+                            && !matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.isEmpty()
+                            && matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.size() > 1}" data-th-remove="tag" >
+          &nbsp;<span class="matchesScore" data-th-text="${matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(1).score + '/'
+                                                                    +matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(1).wickets + ' (' + matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(1).overs + ')'}">
+                                                            </span>
+          <div data-th-if="${matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.size() > 3}" data-th-remove="tag" >
+            &nbsp;<span class="matchesScore" data-th-text="${'&    '+matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(3).score + '/'
+                                                                    +matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(3).wickets + ' (' + matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(3).overs + ')'}">
+                                                                    </span>
+          </div>
+        </div>
+        <br><span class="matchStatus" data-th-text="${matchLeanBack.miniscore.matchScoreDetails.customStatus}"></span>
+        <div data-th-if="${matchLeanBack.miniscore == null && matchLeanBack.matchHeader.complete == false}" data-th-remove="tag" >
+          <span class="matchStartTime" data-th-text="${'Starts on '+matchLeanBack.matchHeader.matchStartTimestamp}"></span>
+        </div><br>
+        <span class="currentRr" data-th-text="${'CRR:  '+matchLeanBack.miniscore.currentRunRate}"></span>
+        <div class="container text-center">
+          <div class="row rowHeader">
+            <div class="col">Batter</div>
+            <div class="col">R</div>
+            <div class="col">B</div>
+            <div class="col">4S</div>
+            <div class="col">6S</div>
+            <div class="col">SR</div>
+          </div>
+          <div class="row rowData">
+            <div class="col">Batter</div>
+            <div class="col">R</div>
+            <div class="col">B</div>
+            <div class="col">4S</div>
+            <div class="col">6S</div>
+            <div class="col">SR</div>
+          </div>
+        </div>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div data-th-insert="~{fragments/Footer :: cricFooter}"></div>
+<script th:src="@{/js/ViewMatchScoreCard.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>

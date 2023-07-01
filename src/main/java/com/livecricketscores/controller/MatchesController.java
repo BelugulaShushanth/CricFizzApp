@@ -1,5 +1,6 @@
 package com.livecricketscores.controller;
 
+import com.livecricketscores.bean.matchLeanBack.MatchLeanBack;
 import com.livecricketscores.bean.matchScoreCard.MatchScoreCard;
 import com.livecricketscores.bean.matchesList.Matches;
 import com.livecricketscores.services.CricBuzzService;
@@ -55,6 +56,23 @@ public class MatchesController {
         return mv;
     }
 
+    @GetMapping("/getMatch/{matchId}/{matchVenue}")
+    public ModelAndView getMatch(@PathVariable("matchId") String matchId, @PathVariable("matchVenue") String matchVenue){
+        logger.info("Incoming MatchId: {}",matchId);
+        ModelAndView mv = new ModelAndView();
+        try {
+            MatchLeanBack matchLeanBack = cricBuzzService.getMatchLeanBack(matchId);
+            mv.addObject("matchLeanBack", matchLeanBack);
+            mv.addObject("matchVenue",matchVenue);
+            mv.setViewName("ViewMatchCommentary");
+            logger.info("MatchLeanBack Data: {}", cricUtils.objectMapper().writeValueAsString(matchLeanBack));
+        }
+        catch (Exception e){
+            logger.error("Exception in MatchesController:getMatch e:{}",e.getMessage());
+        }
+        return mv;
+    }
+
     @GetMapping("/getMatchScoreCard/{matchId}/{matchVenue}")
     public ModelAndView getMatchScoreCard(@PathVariable("matchId") String matchId, @PathVariable("matchVenue") String matchVenue){
         logger.info("Incoming MatchId: {}",matchId);
@@ -64,10 +82,10 @@ public class MatchesController {
             mv.addObject("matchScoreCard", matchScoreCard);
             mv.addObject("matchVenue",matchVenue);
             mv.setViewName("ViewMatchScoreCard");
-            logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(matchScoreCard));
+            logger.info("MatchScoreCard Data: {}", cricUtils.objectMapper().writeValueAsString(matchScoreCard));
         }
         catch (Exception e){
-            logger.error("Exception in MatchesController:getMatches e:{}",e.getMessage());
+            logger.error("Exception in MatchesController:getMatchScoreCard e:{}",e.getMessage());
         }
         return mv;
     }

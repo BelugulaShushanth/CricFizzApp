@@ -1,0 +1,219 @@
+{
+	"Miniscore": {
+		"InningsId": 3,
+		"BatsmanStriker": {
+			"BatBalls": 142,
+			"BatDots": 115,
+			"BatFours": 11,
+			"BatId": 6635,
+			"BatName": "Usman Khawaja",
+			"BatMins": 231,
+			"BatRuns": 63,
+			"BatSixes": 0,
+			"BatStrikeRate": 44
+		},
+		"BatsmanNonStriker": {
+			"BatBalls": 37,
+			"BatDots": 29,
+			"BatFours": 5,
+			"BatId": 2250,
+			"BatName": "Steven Smith",
+			"BatMins": 42,
+			"BatRuns": 23,
+			"BatSixes": 0,
+			"BatStrikeRate": 62.16
+		},
+		"BatTeam": {
+			"TeamId": 4,
+			"TeamScore": 153,
+			"TeamWkts": 2
+		},
+		"BowlerStriker": {
+			"BowlId": 9531,
+			"BowlName": "Ollie Robinson",
+			"BowlMaidens": 5,
+			"BowlNoballs": 0,
+			"BowlOvs": 12.0,
+			"BowlRuns": 24,
+			"BowlWides": 0,
+			"BowlWkts": 0,
+			"BowlEcon": 2.0
+		},
+		"BowlerNonStriker": {
+			"BowlId": 65,
+			"BowlName": "James Anderson",
+			"BowlMaidens": 4,
+			"BowlNoballs": 0,
+			"BowlOvs": 17,
+			"BowlRuns": 57,
+			"BowlWides": 0,
+			"BowlWkts": 1,
+			"BowlEcon": 3.35
+		},
+		"Overs": 50.6,
+		"RecentOvsStats": "...  | 1 0 0 0 0 0  | 0 4 0 4 4 0",
+		"PartnerShip": {
+			"Balls": 65,
+			"Runs": 30
+		},
+		"CurrentRunRate": 3.0,
+		"RequiredRunRate": 0,
+		"LastWicket": "Marnus Labuschagne  c Harry Brook b Anderson 30(51)  - 123/2 in 40.1 ov.",
+		"MatchScoreDetails": {
+			"MatchId": 53352,
+			"InningsScoreList": [
+				{
+					"InningsId": 1,
+					"BatTeamId": 4,
+					"BatTeamName": "AUS",
+					"Score": 416,
+					"Wickets": 10,
+					"Overs": 100.4,
+					"BallNbr": 604,
+					"Declared": false,
+					"FollowOn": false
+				},
+				{
+					"InningsId": 2,
+					"BatTeamId": 9,
+					"BatTeamName": "ENG",
+					"Score": 325,
+					"Wickets": 10,
+					"Overs": 76.2,
+					"BallNbr": 458,
+					"Declared": false,
+					"FollowOn": false
+				},
+				{
+					"InningsId": 3,
+					"BatTeamId": 4,
+					"BatTeamName": "AUS",
+					"Score": 153,
+					"Wickets": 2,
+					"Overs": 50.6,
+					"BallNbr": 306,
+					"Declared": false,
+					"FollowOn": false
+				}
+			],
+			"TossResults": {
+				"TossWinnerId": 9,
+				"TossWinnerName": "England",
+				"Decision": "Bowling"
+			},
+			"MatchTeamInfo": [
+				{
+					"BattingTeamId": 4,
+					"BattingTeamShortName": "AUS",
+					"BowlingTeamId": 9,
+					"BowlingTeamShortName": "ENG"
+				},
+				{
+					"BattingTeamId": 9,
+					"BattingTeamShortName": "ENG",
+					"BowlingTeamId": 4,
+					"BowlingTeamShortName": "AUS"
+				},
+				{
+					"BattingTeamId": 4,
+					"BattingTeamShortName": "AUS",
+					"BowlingTeamId": 9,
+					"BowlingTeamShortName": "ENG"
+				}
+			],
+			"MatchFormat": "TEST",
+			"State": "In Progress",
+			"CustomStatus": "Day 4: 1st Session - Australia lead by 244 runs",
+			"HighlightedTeamId": 4,
+			"MatchNotCovered": false
+		},
+		"LatestPerformance": [],
+		"PpData": {},
+		"MatchUdrs": {
+			"MatchId": 53352,
+			"InningsId": 3,
+			"Timestamp": 1688134624922,
+			"Team1Id": 9,
+			"Team1Remaining": 2,
+			"Team1Successful": 0,
+			"Team1Unsuccessful": 1,
+			"Team2Id": 4,
+			"Team2Remaining": 2,
+			"Team2Successful": 1,
+			"Team2Unsuccessful": 1
+		},
+		"OverSummaryList": [],
+		"LastWicketScore": 30,
+		"RemRunsToWin": 0,
+		"ResponseLastUpdated": 1688207227,
+		"Event": "NONE"
+	},
+	"MatchHeader": {
+		"MatchId": 53352,
+		"MatchDescription": "2nd Test",
+		"MatchFormat": "TEST",
+		"MatchType": "International",
+		"Complete": false,
+		"Domestic": false,
+		"MatchStartTimestamp": "28 June 2023 at 3:30PM IST",
+		"MatchCompleteTimestamp": 1688317200000,
+		"DayNight": false,
+		"Year": 2023,
+		"DayNumber": 4,
+		"State": "Delay",
+		"Status": "Day 4: 1st Session",
+		"TossResults": {
+			"TossWinnerId": 9,
+			"TossWinnerName": "England",
+			"Decision": "Bowling"
+		},
+		"Result": {
+			"WinningTeam": "",
+			"WinByRuns": false,
+			"WinByInnings": false
+		},
+		"RevisedTarget": {
+			"Reason": ""
+		},
+		"PlayersOfTheMatch": [],
+		"PlayersOfTheSeries": [],
+		"MatchTeamInfo": [
+			{
+				"BattingTeamId": 4,
+				"BattingTeamShortName": "AUS",
+				"BowlingTeamId": 9,
+				"BowlingTeamShortName": "ENG"
+			},
+			{
+				"BattingTeamId": 9,
+				"BattingTeamShortName": "ENG",
+				"BowlingTeamId": 4,
+				"BowlingTeamShortName": "AUS"
+			},
+			{
+				"BattingTeamId": 4,
+				"BattingTeamShortName": "AUS",
+				"BowlingTeamId": 9,
+				"BowlingTeamShortName": "ENG"
+			}
+		],
+		"Team1": {
+			"Id": 9,
+			"Name": "England",
+			"PlayerDetails": [],
+			"ShortName": "ENG"
+		},
+		"Team2": {
+			"Id": 4,
+			"Name": "Australia",
+			"PlayerDetails": [],
+			"ShortName": "AUS"
+		},
+		"SeriesDesc": "The Ashes, 2023",
+		"SeriesId": 4777,
+		"SeriesName": "The Ashes, 2023",
+		"AlertType": "auto",
+		"LivestreamEnabled": false,
+		"MatchNotCovered": false
+	}
+}

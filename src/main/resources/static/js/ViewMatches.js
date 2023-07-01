@@ -183,14 +183,18 @@ function addRoutingToMatchScoreCard(){
     let currentUrl = window.location.href;
     const currentEndpoint = currentUrl.split("/")[5];
     if(currentEndpoint === "live") {
-        currentUrl = currentUrl.replace("/getMatches/live", "/getMatchScoreCard");
+        currentUrl = currentUrl.replace("/getMatches/live", "/getMatch");
     }
     else if(currentEndpoint === "recent") {
-        currentUrl = currentUrl.replace("/getMatches/recent", "/getMatchScoreCard");
+        currentUrl = currentUrl.replace("/getMatches/recent", "/getMatch");
     }
     else if(currentEndpoint === "upcoming") {
-        currentUrl = currentUrl.replace("/getMatches/upcoming", "/getMatchScoreCard");
+        currentUrl = currentUrl.replace("/getMatches/upcoming", "/getMatch");
     }
+    else{
+        currentUrl += "/getMatch";
+    }
+
     for (let i=0; i<matchCards.length; i++){
         matchCards[i].addEventListener('click', () => {
             console.log("clicked: "+matchIds[i].innerText);
@@ -198,3 +202,4 @@ function addRoutingToMatchScoreCard(){
         })
     }
 }
+

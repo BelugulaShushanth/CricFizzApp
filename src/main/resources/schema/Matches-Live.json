@@ -1,70 +1,69 @@
 {
 	"TypeMatches": [
 		{
-			"MatchType": "Domestic",
+			"MatchType": "International",
 			"SeriesMatches": [
 				{
 					"SeriesAdWrapper": {
-						"SeriesId": 6367,
-						"SeriesName": "South Africa A tour of Sri Lanka, 2023",
+						"SeriesId": 4777,
+						"SeriesName": "The Ashes, 2023",
 						"Matches": [
 							{
 								"MatchInfo": {
-									"MatchId": 71096,
-									"SeriesId": 6367,
-									"SeriesName": "South Africa A tour of Sri Lanka, 2023",
-									"MatchDesc": "2nd unofficial Test",
+									"MatchId": 53352,
+									"SeriesId": 4777,
+									"SeriesName": "The Ashes, 2023",
+									"MatchDesc": "2nd Test",
 									"MatchFormat": "TEST",
-									"StartDate": "1687147200000",
-									"EndDate": "1687431600000",
-									"State": "Stumps",
-									"Status": "Day 3: Stumps - Sri Lanka A lead by 226 runs",
+									"StartDate": "1687946400000",
+									"EndDate": "1688317200000",
+									"State": "In Progress",
+									"Status": "Day 4: 1st Session - Australia lead by 268 runs",
 									"Team1": {
-										"TeamId": 43,
-										"TeamName": "Sri Lanka A",
-										"TeamSName": "SLA",
-										"ImageId": 172150
+										"TeamId": 4,
+										"TeamName": "Australia",
+										"TeamSName": "AUS",
+										"ImageId": 172117
 									},
 									"Team2": {
-										"TeamId": 268,
-										"TeamName": "South Africa A",
-										"TeamSName": "RSAA",
-										"ImageId": 172321
+										"TeamId": 9,
+										"TeamName": "England",
+										"TeamSName": "ENG",
+										"ImageId": 172123
 									},
 									"VenueInfo": {
-										"Id": 13,
-										"Ground": "Rangiri Dambulla International Stadium",
-										"City": "Dambulla",
-										"Timezone": "+05:30"
+										"Id": 19,
+										"Ground": "Lord's",
+										"City": "London",
+										"Timezone": "+01:00"
 									},
-									"CurrBatTeamId": 43,
-									"SeriesStartDt": "1685836800000",
-									"SeriesEndDt": "1687564800000",
-									"IsTimeAnnounced": true,
-									"StateTitle": "Stumps",
-									"TimeAnnounced": true
+									"CurrBatTeamId": 4,
+									"SeriesStartDt": "1686873600000",
+									"SeriesEndDt": "1690934400000",
+									"StateTitle": "In Progress",
+									"TimeAnnounced": false
 								},
 								"MatchScore": {
 									"Team1Score": {
 										"Inngs1": {
 											"InningsId": 1,
-											"Runs": 290,
+											"Runs": 416,
 											"Wickets": 10,
-											"Overs": 75.1
+											"Overs": 100.4
 										},
 										"Inngs2": {
 											"InningsId": 3,
-											"Runs": 230,
+											"Runs": 177,
 											"Wickets": 2,
-											"Overs": 62.6
+											"Overs": 59.1
 										}
 									},
 									"Team2Score": {
 										"Inngs1": {
 											"InningsId": 2,
-											"Runs": 294,
+											"Runs": 325,
 											"Wickets": 10,
-											"Overs": 84.3
+											"Overs": 76.2
 										},
 										"Inngs2": null
 									}
@@ -81,6 +80,344 @@
 						"Layout": "native_large",
 						"Position": 1
 					}
+				},
+				{
+					"SeriesAdWrapper": {
+						"SeriesId": 6437,
+						"SeriesName": "ICC Cricket World Cup Qualifiers 2023",
+						"Matches": [
+							{
+								"MatchInfo": {
+									"MatchId": 71754,
+									"SeriesId": 6437,
+									"SeriesName": "ICC Cricket World Cup Qualifiers 2023",
+									"MatchDesc": "Super Sixes, Match 3",
+									"MatchFormat": "ODI",
+									"StartDate": "1688194800000",
+									"EndDate": "1688223600000",
+									"State": "In Progress",
+									"Status": "Scotland need 165 runs",
+									"Team1": {
+										"TeamId": 10,
+										"TeamName": "West Indies",
+										"TeamSName": "WI",
+										"ImageId": 172124
+									},
+									"Team2": {
+										"TeamId": 23,
+										"TeamName": "Scotland",
+										"TeamSName": "SCO",
+										"ImageId": 172137
+									},
+									"VenueInfo": {
+										"Id": 69,
+										"Ground": "Harare Sports Club",
+										"City": "Harare",
+										"Timezone": "+02:00"
+									},
+									"CurrBatTeamId": 23,
+									"SeriesStartDt": "1687046400000",
+									"SeriesEndDt": "1689033600000",
+									"StateTitle": "In Progress",
+									"TimeAnnounced": false
+								},
+								"MatchScore": {
+									"Team1Score": {
+										"Inngs1": {
+											"InningsId": 1,
+											"Runs": 181,
+											"Wickets": 10,
+											"Overs": 43.5
+										},
+										"Inngs2": null
+									},
+									"Team2Score": {
+										"Inngs1": {
+											"InningsId": 2,
+											"Runs": 17,
+											"Wickets": 1,
+											"Overs": 4.5
+										},
+										"Inngs2": null
+									}
+								}
+							}
+						]
+					},
+					"AdDetail": null
+				},
+				{
+					"SeriesAdWrapper": {
+						"SeriesId": 6669,
+						"SeriesName": "Austria v Germany in Netherlands, 2023",
+						"Matches": [
+							{
+								"MatchInfo": {
+									"MatchId": 73736,
+									"SeriesId": 6669,
+									"SeriesName": "Austria v Germany in Netherlands, 2023",
+									"MatchDesc": "2nd T20I",
+									"MatchFormat": "T20",
+									"StartDate": "1688117400000",
+									"EndDate": "1688130000000",
+									"State": "Complete",
+									"Status": "Germany won by 8 wkts",
+									"Team1": {
+										"TeamId": 532,
+										"TeamName": "Austria",
+										"TeamSName": "AUT",
+										"ImageId": 172583
+									},
+									"Team2": {
+										"TeamId": 77,
+										"TeamName": "Germany",
+										"TeamSName": "GER",
+										"ImageId": 172171
+									},
+									"VenueInfo": {
+										"Id": 284,
+										"Ground": "Sportpark Het Schootsveld",
+										"City": "Deventer ",
+										"Timezone": "+02:00"
+									},
+									"CurrBatTeamId": 77,
+									"SeriesStartDt": "1687996800000",
+									"SeriesEndDt": "1688256000000",
+									"StateTitle": "GER Won",
+									"TimeAnnounced": false
+								},
+								"MatchScore": {
+									"Team1Score": {
+										"Inngs1": {
+											"InningsId": 1,
+											"Runs": 121,
+											"Wickets": 8,
+											"Overs": 20.0
+										},
+										"Inngs2": null
+									},
+									"Team2Score": {
+										"Inngs1": {
+											"InningsId": 2,
+											"Runs": 123,
+											"Wickets": 2,
+											"Overs": 15.1
+										},
+										"Inngs2": null
+									}
+								}
+							}
+						]
+					},
+					"AdDetail": null
+				}
+			]
+		},
+		{
+			"MatchType": "League",
+			"SeriesMatches": [
+				{
+					"SeriesAdWrapper": {
+						"SeriesId": 6158,
+						"SeriesName": "Tamil Nadu Premier League 2023",
+						"Matches": [
+							{
+								"MatchInfo": {
+									"MatchId": 68962,
+									"SeriesId": 6158,
+									"SeriesName": "Tamil Nadu Premier League 2023",
+									"MatchDesc": "22nd Match",
+									"MatchFormat": "T20",
+									"StartDate": "1688204700000",
+									"EndDate": "1688217300000",
+									"State": "In Progress",
+									"Status": "IDream Tiruppur Tamizhans opt to bowl",
+									"Team1": {
+										"TeamId": 867,
+										"TeamName": "Salem Spartans",
+										"TeamSName": "SLST",
+										"ImageId": 206918
+									},
+									"Team2": {
+										"TeamId": 861,
+										"TeamName": "IDream Tiruppur Tamizhans",
+										"TeamSName": "ITT",
+										"ImageId": 206916
+									},
+									"VenueInfo": {
+										"Id": 436,
+										"Ground": "Indian Cement Company Ground",
+										"City": "Tirunelveli",
+										"Timezone": "+05:30"
+									},
+									"CurrBatTeamId": 867,
+									"SeriesStartDt": "1686528000000",
+									"SeriesEndDt": "1689292800000",
+									"StateTitle": "In Progress",
+									"TimeAnnounced": false
+								},
+								"MatchScore": {
+									"Team1Score": {
+										"Inngs1": {
+											"InningsId": 1,
+											"Runs": 118,
+											"Wickets": 7,
+											"Overs": 17.3
+										},
+										"Inngs2": null
+									},
+									"Team2Score": null
+								}
+							}
+						]
+					},
+					"AdDetail": null
+				}
+			]
+		},
+		{
+			"MatchType": "Domestic",
+			"SeriesMatches": [
+				{
+					"SeriesAdWrapper": {
+						"SeriesId": 6641,
+						"SeriesName": "Duleep Trophy 2023",
+						"Matches": [
+							{
+								"MatchInfo": {
+									"MatchId": 73425,
+									"SeriesId": 6641,
+									"SeriesName": "Duleep Trophy 2023",
+									"MatchDesc": "1st Quarter-Final",
+									"MatchFormat": "TEST",
+									"StartDate": "1687924800000",
+									"EndDate": "1688209200000",
+									"State": "Complete",
+									"Status": "Central Zone won by 170 runs",
+									"Team1": {
+										"TeamId": 237,
+										"TeamName": "Central Zone",
+										"TeamSName": "CZONE",
+										"ImageId": 172290
+									},
+									"Team2": {
+										"TeamId": 235,
+										"TeamName": "East Zone",
+										"TeamSName": "EZONE",
+										"ImageId": 172288
+									},
+									"VenueInfo": {
+										"Id": 448,
+										"Ground": "KSCA Cricket Ground",
+										"City": "Alur",
+										"Timezone": "+05:30"
+									},
+									"CurrBatTeamId": 237,
+									"SeriesStartDt": "1687910400000",
+									"SeriesEndDt": "1689638400000",
+									"StateTitle": "CZONE Won",
+									"TimeAnnounced": false
+								},
+								"MatchScore": {
+									"Team1Score": {
+										"Inngs1": {
+											"InningsId": 1,
+											"Runs": 182,
+											"Wickets": 10,
+											"Overs": 71.4
+										},
+										"Inngs2": {
+											"InningsId": 3,
+											"Runs": 239,
+											"Wickets": 10,
+											"Overs": 87.5
+										}
+									},
+									"Team2Score": {
+										"Inngs1": {
+											"InningsId": 2,
+											"Runs": 122,
+											"Wickets": 10,
+											"Overs": 42.2
+										},
+										"Inngs2": {
+											"InningsId": 4,
+											"Runs": 129,
+											"Wickets": 10,
+											"Overs": 29.4
+										}
+									}
+								}
+							},
+							{
+								"MatchInfo": {
+									"MatchId": 73428,
+									"SeriesId": 6641,
+									"SeriesName": "Duleep Trophy 2023",
+									"MatchDesc": "2nd Quarter-Final",
+									"MatchFormat": "TEST",
+									"StartDate": "1687924800000",
+									"EndDate": "1688209200000",
+									"State": "Complete",
+									"Status": "North Zone won by 511 runs",
+									"Team1": {
+										"TeamId": 233,
+										"TeamName": "North Zone",
+										"TeamSName": "NZONE",
+										"ImageId": 172286
+									},
+									"Team2": {
+										"TeamId": 1146,
+										"TeamName": "North East Zone",
+										"TeamSName": "NEZONE",
+										"ImageId": 242496
+									},
+									"VenueInfo": {
+										"Id": 27,
+										"Ground": "M.Chinnaswamy Stadium",
+										"City": "Bengaluru",
+										"Timezone": "+05:30"
+									},
+									"CurrBatTeamId": 233,
+									"SeriesStartDt": "1687910400000",
+									"SeriesEndDt": "1689638400000",
+									"StateTitle": "NZONE Won",
+									"TimeAnnounced": false
+								},
+								"MatchScore": {
+									"Team1Score": {
+										"Inngs1": {
+											"InningsId": 1,
+											"Runs": 540,
+											"Wickets": 8,
+											"Overs": 136.0
+										},
+										"Inngs2": {
+											"InningsId": 3,
+											"Runs": 259,
+											"Wickets": 6,
+											"Overs": 55.1
+										}
+									},
+									"Team2Score": {
+										"Inngs1": {
+											"InningsId": 2,
+											"Runs": 134,
+											"Wickets": 10,
+											"Overs": 39.2
+										},
+										"Inngs2": {
+											"InningsId": 4,
+											"Runs": 154,
+											"Wickets": 10,
+											"Overs": 47.5
+										}
+									}
+								}
+							}
+						]
+					},
+					"AdDetail": null
 				}
 			]
 		}
@@ -97,5 +434,5 @@
 		"SeoTitle": "Live Cricket Score - Scorecard and Match Results",
 		"WebURL": "www.cricbuzz.com/live-cricket-scores/"
 	},
-	"ResponseLastUpdated": "1687402798"
+	"ResponseLastUpdated": "1688209413"
 }

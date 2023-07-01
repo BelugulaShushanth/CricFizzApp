@@ -1,6 +1,8 @@
 package com.livecricketscores.utils;
 
 import com.fasterxml.jackson.databind.*;
+import com.livecricketscores.bean.matchLeanBack.InningsScoreList;
+import com.livecricketscores.bean.matchLeanBack.MatchLeanBack;
 import com.livecricketscores.bean.matchScoreCard.MatchScoreCard;
 import com.livecricketscores.bean.matchesList.Matches;
 import org.slf4j.Logger;
@@ -79,6 +81,9 @@ public class CricUtils {
     public void mapMatchStartDateinMillsToDate(MatchScoreCard matchScoreCard){
         matchScoreCard.getMatchHeader().setMatchStartTimestamp(mapMillsToDateTime(matchScoreCard.getMatchHeader().getMatchStartTimestamp()));
     }
+    public void mapMatchStartDateinMillsToDate(MatchLeanBack matchLeanBack){
+        matchLeanBack.getMatchHeader().setMatchStartTimestamp(mapMillsToDateTime(matchLeanBack.getMatchHeader().getMatchStartTimestamp()));
+    }
 
     private String mapMillsToDateTime(String matchStartTimestamp) {
         String dateTime = null;
@@ -101,5 +106,13 @@ public class CricUtils {
             logger.error("Exception in CricUtils:readJsonFile", e);
         }
         return jsonString.toString();
+    }
+
+    public void sortInnings(MatchLeanBack matchLeanBack) {
+        List<InningsScoreList> inningsScoreLists = matchLeanBack.getMiniscore().getMatchScoreDetails().getInningsScoreList()
+                .stream()
+                .sorted((i1, i2) -> i1.compare(i1, i2))
+                .collect(Collectors.toList());
+        matchLeanBack.getMiniscore().getMatchScoreDetails().setInningsScoreList((ArrayList<InningsScoreList>) inningsScoreLists);
     }
 }

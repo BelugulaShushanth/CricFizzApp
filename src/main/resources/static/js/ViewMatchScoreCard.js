@@ -1,5 +1,6 @@
 window.onload = () => {
     activateDeactivateNavBtns();
+    //addRoutingToMatchScoreCard();
 }
 function activateDeactivateNavBtns(){
     let live = document.getElementById("live");
@@ -14,3 +15,7 @@ function activateDeactivateNavBtns(){
     upcoming.classList.remove("activateNavBtn");
     upcoming.classList.add("deactivateNavBtn");
 }
+// function addRoutingTo(){
+//     let currentUrl = window.location.href;
+//
+// }
