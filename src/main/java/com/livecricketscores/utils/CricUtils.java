@@ -142,4 +142,12 @@ public class CricUtils {
                 }).collect(Collectors.toList());
         matchScoreCard.setScoreCard((ArrayList<ScoreCard>) scoreCardList);
     }
+
+    public void sortMatchScoreCard(MatchScoreCard matchScoreCard) {
+        List<ScoreCard> scoreCardList = matchScoreCard.getScoreCard()
+                .stream()
+                .sorted((sc1, sc2) -> sc1.compare(sc1, sc2))
+                .collect(Collectors.toList());
+        matchScoreCard.setScoreCard((ArrayList<ScoreCard>) scoreCardList);
+    }
 }

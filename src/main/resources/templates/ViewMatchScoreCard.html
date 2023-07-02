@@ -19,12 +19,12 @@
            +', '+matchScoreCard.matchHeader.matchDescription + '  -  ' + matchScoreCard.matchHeader.state }"></div>
         <div class="card-body">
             <span class="matchStatus mobile" style="display: none;" data-th-text="${matchScoreCard.status}"></span>
-            <span class="matchSingleDetail">Series: </span>
-            <span class="matchSingleDetail data" data-th-text="${'  '+matchScoreCard.matchHeader.seriesDesc}"></span>&nbsp;
-            <span class="matchSingleDetail">Venue: </span>
-            <span class="matchSingleDetail data" data-th-text="${'  '+matchVenue}"></span>&nbsp;
-            <span class="matchSingleDetail">Date & Time: </span>
-            <span class="matchSingleDetail data" data-th-text="${'  '+matchScoreCard.matchHeader.matchStartTimestamp}"></span>
+            <span class="matchSingleDetail">Series:</span>
+            <span class="matchSingleDetail data" data-th-text="${matchScoreCard.matchHeader.seriesDesc}"></span>&nbsp;
+            <span class="matchSingleDetail">Venue:</span>
+            <span class="matchSingleDetail data" data-th-text="${matchVenue}"></span>&nbsp;
+            <span class="matchSingleDetail">Date & Time:</span>
+            <span class="matchSingleDetail data" data-th-text="${matchScoreCard.matchHeader.matchStartTimestamp}"></span>
         <div class="matchNav">
             <div class="nav nav-underline" id="nav-tab" role="tablist">
                 <a data-th-href="${'/matches/getMatch/'+matchScoreCard.getMatchHeader().getMatchId()+'/'+matchVenue}" class="nav-link">Commentary</a>
@@ -63,137 +63,217 @@
                 <span class="currentRr" data-th-text="${'CRR:  '+matchScoreCard.scoreCard.get(matchScoreCard.scoreCard.size()-1).scoreDetails.runRate}"></span>
                 <div data-th-each="scoreCard,iter1 : ${matchScoreCard.scoreCard}">
                     <div class="card text-bg-light mb-3" style="max-width: 60%;">
-                        <div class="card-header inningsDetail" data-th-text="${scoreCard.batTeamDetails.batTeamShortName}">Header</div>
+                        <div class="card-header inningsDetail" >
+                            <span data-th-text="${scoreCard.batTeamDetails.batTeamShortName}"></span>
+                            <span style="float: right" data-th-text="${scoreCard.scoreDetails.runs+'/'+scoreCard.scoreDetails.wickets
+                                                +' ('+scoreCard.scoreDetails.overs+')'}"></span>
+                        </div>
                         <div class="card-body">
                             <div class="container text-left inningsScoreDetail">
-                                <div class="row card-header">
-                                    <div class="col-3">Batter</div>
-                                    <div class="col-4"></div>
-                                    <div class="col">R</div>
-                                    <div class="col">B</div>
-                                    <div class="col">4S</div>
-                                    <div class="col">6S</div>
-                                    <div class="col">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.outDesc.isEmpty()
+                                <div data-th-if="${scoreCard.batTeamDetails != null && scoreCard.batTeamDetails.batsmenData != null}">
+                                    <div class="row card-header">
+                                        <div class="col-3">Batter</div>
+                                        <div class="col-4"></div>
+                                        <div class="col">R</div>
+                                        <div class="col">B</div>
+                                        <div class="col">4S</div>
+                                        <div class="col">6S</div>
+                                        <div class="col">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_1 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_1.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.strikeRate}">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.outDesc.isEmpty()
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.strikeRate}">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_2 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_2.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.strikeRate}">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.outDesc.isEmpty()
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.strikeRate}">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_3 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_3.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.strikeRate}">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.outDesc.isEmpty()
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_3.strikeRate}">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_4 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_4.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.strikeRate}">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.outDesc.isEmpty()
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_4.strikeRate}">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_5 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_5.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.strikeRate}">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.outDesc.isEmpty()
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_5.strikeRate}">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_6 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_6.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.strikeRate}">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.outDesc.isEmpty()
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.strikeRate}">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_7 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_7.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.strikeRate}">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.outDesc.isEmpty()
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.strikeRate}">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_8 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_8.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.strikeRate}">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.outDesc.isEmpty()
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.strikeRate}">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_9 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_9.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.strikeRate}">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.outDesc.isEmpty()
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.strikeRate}">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_10 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_10.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.strikeRate}">SR</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.batName}">Batter</div>
-                                    <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.outDesc.isEmpty()
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_10.strikeRate}">SR</div>
+                                    </div>
+                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_11 != null}">
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.batName}">Batter</div>
+                                        <div class="col-4" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_11.outDesc}"></div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.runs}">R</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.balls}">B</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.fours}">4S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.sixes}">6S</div>
-                                    <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.strikeRate}">SR</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.balls}">B</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.fours}">4S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.sixes}">6S</div>
+                                        <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.strikeRate}">SR</div>
+                                    </div>
                                 </div>
+
+                                <br>
+                                <div data-th-if="${scoreCard.bowlTeamDetails != null && scoreCard.bowlTeamDetails.bowlersData != null}" data-th-remove="tag">
+                                    <div class="row card-header rowHeader bowler">
+                                        <div class="col-4">Bowler</div>
+                                        <div class="col">O</div>
+                                        <div class="col">M</div>
+                                        <div class="col">R</div>
+                                        <div class="col">W</div>
+                                        <div class="col">NB</div>
+                                        <div class="col">WD</div>
+                                        <div class="col">ECO</div>
+                                    </div>
+                                    <div class="row rowData bowler" data-th-if="${scoreCard.bowlTeamDetails.bowlersData.bowl_1 != null }">
+                                        <div class="col-4 bName" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_1.bowlName}">Bowler</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_1.overs}">O</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_1.maidens}">M</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_1.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_1.wickets}">W</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_1.no_balls}">NB</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_1.wides}">WD</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_1.economy}">ECO</div>
+                                    </div>
+                                    <div class="row rowData bowler" data-th-if="${scoreCard.bowlTeamDetails.bowlersData.bowl_2 != null }">
+                                        <div class="col-4 bName" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_2.bowlName}">Bowler</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_2.overs}">O</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_2.maidens}">M</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_2.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_2.wickets}">W</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_2.no_balls}">NB</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_2.wides}">WD</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_2.economy}">ECO</div>
+                                    </div>
+                                    <div class="row rowData bowler" data-th-if="${scoreCard.bowlTeamDetails.bowlersData.bowl_3 != null }">
+                                        <div class="col-4 bName" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_3.bowlName}">Bowler</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_3.overs}">O</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_3.maidens}">M</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_3.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_3.wickets}">W</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_3.no_balls}">NB</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_3.wides}">WD</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_3.economy}">ECO</div>
+                                    </div>
+                                    <div class="row rowData bowler" data-th-if="${scoreCard.bowlTeamDetails.bowlersData.bowl_4 != null }">
+                                        <div class="col-4 bName" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_4.bowlName}">Bowler</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_4.overs}">O</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_4.maidens}">M</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_4.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_4.wickets}">W</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_4.no_balls}">NB</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_4.wides}">WD</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_4.economy}">ECO</div>
+                                    </div>
+                                    <div class="row rowData bowler" data-th-if="${scoreCard.bowlTeamDetails.bowlersData.bowl_5 != null }">
+                                        <div class="col-4 bName" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_5.bowlName}">Bowler</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_5.overs}">O</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_5.maidens}">M</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_5.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_5.wickets}">W</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_5.no_balls}">NB</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_5.wides}">WD</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_5.economy}">ECO</div>
+                                    </div>
+                                    <div class="row rowData bowler" data-th-if="${scoreCard.bowlTeamDetails.bowlersData.bowl_6 != null }">
+                                        <div class="col-4 bName" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_6.bowlName}">Bowler</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_6.overs}">O</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_6.maidens}">M</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_6.runs}">R</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_6.wickets}">W</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_6.no_balls}">NB</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_6.wides}">WD</div>
+                                        <div class="col" data-th-text="${scoreCard.bowlTeamDetails.bowlersData.bowl_6.economy}">ECO</div>
+                                    </div>
+                                </div>
+
                             </div>
-<!--                            <h5 class="card-title">Light card title</h5>-->
-<!--                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
                         </div>
                     </div>
                 </div>
                 </p>
             </div>
-
+            <br>
+            <br>
         </div>
         </div>
     </div>

@@ -108,6 +108,7 @@ public class CricBuzzService {
                 matchScoreCard = cricUtils.objectMapper().treeToValue(cricUtils.objectMapper().readTree(cricUtils.readJsonFile(matchScoreCardLoc)), MatchScoreCard.class);
             }
             cricUtils.mapMatchStartDateinMillsToDate(matchScoreCard);
+            cricUtils.sortMatchScoreCard(matchScoreCard);
             cricUtils.mapInningsIdWithTeamName(matchScoreCard);
         }
         catch (Exception e){
