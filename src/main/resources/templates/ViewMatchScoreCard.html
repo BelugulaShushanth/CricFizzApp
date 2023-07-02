@@ -18,7 +18,7 @@
         <div class="matchSingleTitle card-header" data-th-text="${matchScoreCard.matchHeader.team1.name + '  Vs  ' + matchScoreCard.matchHeader.team2.name
            +', '+matchScoreCard.matchHeader.matchDescription + '  -  ' + matchScoreCard.matchHeader.state }"></div>
         <div class="card-body">
-            <span class="matchStatus mobile" data-th-text="${matchScoreCard.status}"></span>
+            <span class="matchStatus mobile" style="display: none;" data-th-text="${matchScoreCard.status}"></span>
             <span class="matchSingleDetail">Series: </span>
             <span class="matchSingleDetail data" data-th-text="${'  '+matchScoreCard.matchHeader.seriesDesc}"></span>&nbsp;
             <span class="matchSingleDetail">Venue: </span>
