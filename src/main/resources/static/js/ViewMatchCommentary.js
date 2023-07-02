@@ -1,6 +1,12 @@
 window.onload = () => {
     activateDeactivateNavBtns();
     adjustCards();
+
+    let dateTime = document.getElementById("dateTime");
+    let width = screen.width;
+    if(width<1000){
+        dateTime.outerHTML = '<br>' + dateTime.outerHTML;
+    }
 }
 function activateDeactivateNavBtns(){
     let live = document.getElementById("live");

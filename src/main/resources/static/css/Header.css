@@ -1,7 +1,8 @@
 #header{
-    background-color:  cornflowerblue !important;
+    background-color:  dodgerblue !important;
 /*rgb(28, 150, 232)*/
     --bs-navbar-padding-y: 0.3rem !important;
+    color: white !important;
 }
 #brandImage{
     border-radius: 5px;

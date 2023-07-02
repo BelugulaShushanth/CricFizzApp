@@ -15,17 +15,16 @@
 <div data-th-insert="~{fragments/Header :: cricHeader}"></div>
 <div class="container matchScoreCard">
     <div class="card">
+        <div class="matchSingleTitle card-header" data-th-text="${matchScoreCard.matchHeader.team1.name + '  Vs  ' + matchScoreCard.matchHeader.team2.name
+           +', '+matchScoreCard.matchHeader.matchDescription + '  -  ' + matchScoreCard.matchHeader.state }"></div>
         <div class="card-body">
-           <span class="matchSingleTitle" data-th-text="${matchScoreCard.matchHeader.team1.name + '  Vs  ' + matchScoreCard.matchHeader.team2.name
-           +', '+matchScoreCard.matchHeader.matchDescription + '  -  ' + matchScoreCard.matchHeader.state }"></span>
-            <br>
+            <span class="matchStatus mobile" data-th-text="${matchScoreCard.status}"></span>
             <span class="matchSingleDetail">Series: </span>
             <span class="matchSingleDetail data" data-th-text="${'  '+matchScoreCard.matchHeader.seriesDesc}"></span>&nbsp;
             <span class="matchSingleDetail">Venue: </span>
             <span class="matchSingleDetail data" data-th-text="${'  '+matchVenue}"></span>&nbsp;
             <span class="matchSingleDetail">Date & Time: </span>
             <span class="matchSingleDetail data" data-th-text="${'  '+matchScoreCard.matchHeader.matchStartTimestamp}"></span>
-        </div>
         <div class="matchNav">
             <div class="nav nav-underline" id="nav-tab" role="tablist">
                 <a data-th-href="${'/matches/getMatch/'+matchScoreCard.getMatchHeader().getMatchId()+'/'+matchVenue}" class="nav-link">Commentary</a>
@@ -57,7 +56,7 @@
                                                                     </span>
                     </div>
                 </div>
-                <br><span class="matchStatus" data-th-text="${matchScoreCard.status}"></span>
+                <br><span class="matchStatus pc" data-th-text="${matchScoreCard.status}"></span>
                 <div data-th-if="${matchScoreCard.scoreCard == null && matchScoreCard.isMatchComplete == false && matchScoreCard.matchHeader.complete == false}" data-th-remove="tag" >
                     <span class="matchStartTime" data-th-text="${'Starts on '+matchScoreCard.matchHeader.matchStartTimestamp}"></span>
                 </div><br>
@@ -65,6 +64,7 @@
                 </p>
             </div>
 
+        </div>
         </div>
     </div>
 </div>

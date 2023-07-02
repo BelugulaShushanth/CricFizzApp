@@ -6,6 +6,9 @@
     --bs-card-cap-padding-y: 0.2rem;
     --bs-card-cap-padding-x: 0.4rem;
 }
+.card-body{
+    padding: 0 !important;
+}
 .matchSingleTitle{
     font-size: 1.1rem;
     font-weight: 500;
@@ -14,6 +17,7 @@
 .matchSingleDetail{
     font-weight: 500;
     font-size: 0.9rem;
+    padding: 10px;
 }
 .matchSingleDetail.data{
     font-weight: 500;
@@ -33,7 +37,7 @@
     margin-top: 0px !important;
 }
 .nav-link.active{
-    color: #335a7b !important;
+    color: dodgerblue !important;
     font-weight: 700;
 }
 .card-title.matches{
@@ -53,8 +57,7 @@
     --bs-card-cap-padding-x: 0.4rem;
 }
 .matchStatus{
-    color: forestgreen;
-    font-weight: 550;
+    color: #d0021b;
     font-family: sans-serif;
     font-size: 0.8rem;
 }
@@ -65,6 +68,10 @@
     color: darkgray;
     font-weight: 700;
     font-size: 0.9rem;
+}
+.matchSingleTitle.card-header{
+    color: white;
+    background-color: dodgerblue;
 }
 @media screen and (min-width: 10px) and (max-width: 1000px) {
     .container.matchScoreCard{
@@ -99,5 +106,15 @@
     }
     .currentRr{
         font-size: 2.2rem;
+    }
+    .matchSingleDetail{
+        display: none;
+    }
+    .matchStatus.mobile{
+        display: block !important;
+        padding: 5px 5px 0px 5px;
+    }
+    .matchStatus.pc{
+        display: none;
     }
 }
