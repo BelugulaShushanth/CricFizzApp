@@ -1,5 +1,5 @@
 .row.rowHeader{
-    background-color: lightgray;
+    /*background-color: lightgray;*/
     margin-top: 5px;
 }
 .container.text-left{
@@ -33,4 +33,26 @@ span.value {
     color: gray;
     font-family: math;
     font-weight: 600;
+}
+@media screen and (min-width: 10px) and (max-width: 1000px) {
+    .col-8.scores{
+       padding: 0 !important;
+    }
+    .col-4.keystats{
+        padding: 0 !important;
+        margin-top: 2rem;
+    }
+    .row.rowHeader{
+         font-size: 1.6rem;
+     }
+    .row.rowData{
+        font-size: 2rem;
+    }
+    .row.leanBack{
+        margin-left: 0.2rem;
+        margin-right: 1rem;
+    }
+    .recentOvsStats{
+        font-size: 2.2rem;
+    }
 }

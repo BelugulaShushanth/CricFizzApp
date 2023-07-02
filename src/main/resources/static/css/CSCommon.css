@@ -26,13 +26,15 @@
     color: black !important;
 }
 .nav-link{
-    color: black;
+    color: gray;
+    font-weight: 500;
     font-size: 1.1rem !important;
     padding-top: 0px !important;
     margin-top: 0px !important;
 }
 .nav-link.active{
-    color: cornflowerblue !important;
+    color: #335a7b !important;
+    font-weight: 700;
 }
 .card-title.matches{
     font-family: sans-serif;
@@ -51,13 +53,51 @@
     --bs-card-cap-padding-x: 0.4rem;
 }
 .matchStatus{
-    color: cornflowerblue;
+    color: forestgreen;
     font-weight: 550;
     font-family: sans-serif;
     font-size: 0.8rem;
 }
 .currentRr{
+    font-size: 0.9rem;
+}
+.currentRr.value{
     color: darkgray;
     font-weight: 700;
     font-size: 0.9rem;
+}
+@media screen and (min-width: 10px) and (max-width: 1000px) {
+    .container.matchScoreCard{
+        margin-top: 6rem;
+    }
+    .matchSingleTitle{
+        font-size: 2.2rem;
+    }
+    .matchSingleDetail{
+        font-size: 1.8rem !important;
+    }
+    .card-title.matches{
+        display: none;
+        font-size: 2.2rem !important;
+    }
+    .headerOptions{
+        font-size: 2.2rem !important;
+    }
+    .nav-link{
+        font-size: 2.2rem !important;
+    }
+    .matchesTeamName{
+        font-size: 2.2rem;
+    }
+    .matchesScore{
+        color: darkslategray;
+        font-size: 2.2rem;
+        font-weight: 400;
+    }
+    .matchStatus{
+        font-size: 2.2rem;
+    }
+    .currentRr{
+        font-size: 2.2rem;
+    }
 }

@@ -63,12 +63,13 @@
         <div data-th-if="${matchLeanBack.miniscore == null && matchLeanBack.matchHeader.complete == false}" data-th-remove="tag" >
           <span class="matchStartTime" data-th-text="${'Starts on '+matchLeanBack.matchHeader.matchStartTimestamp}"></span>
         </div><br>
-        <span class="currentRr" data-th-text="${'CRR:  '+matchLeanBack.miniscore.currentRunRate}"></span>
+        <span class="currentRr key">CRR:  </span>
+        <span class="currentRr" data-th-text="${'  '+matchLeanBack.miniscore.currentRunRate}"></span>
         <div class="container text-left">
-          <div class="row">
+          <div class="row leanBack">
             <div class="col-8 scores">
-              <div class="row rowHeader batter">
-                <div class="col-3">Batter</div>
+              <div class="row card-header rowHeader batter">
+                <div class="col-4">Batter</div>
                 <div class="col">R</div>
                 <div class="col">B</div>
                 <div class="col">4S</div>
@@ -76,7 +77,7 @@
                 <div class="col">SR</div>
               </div>
               <div class="row rowData batter">
-                <div class="col-3 bName" data-th-text="${matchLeanBack.miniscore.batsmanStriker.batName}+'*'">Batter</div>
+                <div class="col-4 bName" data-th-text="${matchLeanBack.miniscore.batsmanStriker.batName}+'*'">Batter</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.batsmanStriker.batRuns}">R</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.batsmanStriker.batBalls}">B</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.batsmanStriker.batFours}">4S</div>
@@ -84,15 +85,15 @@
                 <div class="col" data-th-text="${matchLeanBack.miniscore.batsmanStriker.batStrikeRate}">SR</div>
               </div>
               <div class="row rowData batter">
-                <div class="col-3 bName" data-th-text="${matchLeanBack.miniscore.batsmanNonStriker.batName}">Batter</div>
+                <div class="col-4 bName" data-th-text="${matchLeanBack.miniscore.batsmanNonStriker.batName}">Batter</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.batsmanNonStriker.batRuns}">R</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.batsmanNonStriker.batBalls}">B</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.batsmanNonStriker.batFours}">4S</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.batsmanNonStriker.batSixes}">6S</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.batsmanNonStriker.batStrikeRate}">SR</div>
               </div>
-              <div class="row rowHeader bowler">
-                <div class="col-3">Bowler</div>
+              <div class="row card-header rowHeader bowler">
+                <div class="col-4">Bowler</div>
                 <div class="col">O</div>
                 <div class="col">M</div>
                 <div class="col">R</div>
@@ -100,7 +101,7 @@
                 <div class="col">ECO</div>
               </div>
               <div class="row rowData bowler">
-                <div class="col-3 bName" data-th-text="${matchLeanBack.miniscore.bowlerStriker.bowlName}+'*'">Batter</div>
+                <div class="col-4 bName" data-th-text="${matchLeanBack.miniscore.bowlerStriker.bowlName}+'*'">Batter</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.bowlerStriker.bowlOvs}">R</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.bowlerStriker.bowlMaidens}">B</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.bowlerStriker.bowlRuns}">4S</div>
@@ -108,7 +109,7 @@
                 <div class="col" data-th-text="${matchLeanBack.miniscore.bowlerStriker.bowlEcon}">SR</div>
               </div>
               <div class="row rowData bowler">
-                <div class="col-3 bName" data-th-text="${matchLeanBack.miniscore.bowlerNonStriker.bowlName}">Batter</div>
+                <div class="col-4 bName" data-th-text="${matchLeanBack.miniscore.bowlerNonStriker.bowlName}">Batter</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.bowlerNonStriker.bowlOvs}">R</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.bowlerNonStriker.bowlMaidens}">B</div>
                 <div class="col" data-th-text="${matchLeanBack.miniscore.bowlerNonStriker.bowlRuns}">4S</div>
@@ -117,7 +118,7 @@
               </div>
             </div>
             <div class="col-4 keystats">
-              <div class="row rowHeader">
+              <div class="row card-header rowHeader">
                 <div class="col">Key Stats</div>
               </div>
               <div class="row rowData">
