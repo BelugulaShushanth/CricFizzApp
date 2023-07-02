@@ -90,7 +90,7 @@ public class CricBuzzService {
 
     public MatchScoreCard getMatchesScoreCard(String matchId){
         logger.info("Started getMatchesScoreCard");
-        MatchScoreCard matcheScoreCard = null;
+        MatchScoreCard matchScoreCard = null;
         try{
             HttpHeaders httpHeaders = cricUtils.getHeaders();
             String cricbuzzURL = "https://" + cricbuzzHost + matchEndpoint + matchId + matchScoreCardEndpoint;
@@ -101,18 +101,19 @@ public class CricBuzzService {
                 ResponseEntity<JsonNode> responseEntity = restTemplate.exchange(cricbuzzURL, HttpMethod.GET, httpEntity, JsonNode.class);
                 if (responseEntity.getBody() != null && responseEntity.getStatusCode().is2xxSuccessful()){
                     JsonNode jsonNode = responseEntity.getBody();
-                    matcheScoreCard = objectMapper.treeToValue(jsonNode, MatchScoreCard.class);
+                    matchScoreCard = objectMapper.treeToValue(jsonNode, MatchScoreCard.class);
                 }
             }
             else{
-                matcheScoreCard = cricUtils.objectMapper().treeToValue(cricUtils.objectMapper().readTree(cricUtils.readJsonFile(matchScoreCardLoc)), MatchScoreCard.class);
+                matchScoreCard = cricUtils.objectMapper().treeToValue(cricUtils.objectMapper().readTree(cricUtils.readJsonFile(matchScoreCardLoc)), MatchScoreCard.class);
             }
-            cricUtils.mapMatchStartDateinMillsToDate(matcheScoreCard);
+            cricUtils.mapMatchStartDateinMillsToDate(matchScoreCard);
+            cricUtils.mapInningsIdWithTeamName(matchScoreCard);
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatches", e);
         }
-        return matcheScoreCard;
+        return matchScoreCard;
     }
 
     public MatchLeanBack getMatchLeanBack(String matchId){

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.*;
 import com.livecricketscores.bean.matchLeanBack.InningsScoreList;
 import com.livecricketscores.bean.matchLeanBack.MatchLeanBack;
 import com.livecricketscores.bean.matchScoreCard.MatchScoreCard;
+import com.livecricketscores.bean.matchScoreCard.ScoreCard;
+import com.livecricketscores.bean.matchScoreCard.batsmen.BatTeamDetails;
 import com.livecricketscores.bean.matchesList.Matches;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -114,5 +116,30 @@ public class CricUtils {
                 .sorted((i1, i2) -> i1.compare(i1, i2))
                 .collect(Collectors.toList());
         matchLeanBack.getMiniscore().getMatchScoreDetails().setInningsScoreList((ArrayList<InningsScoreList>) inningsScoreLists);
+    }
+
+    public void mapInningsIdWithTeamName(MatchScoreCard matchScoreCard) {
+        List<ScoreCard> scoreCardList = matchScoreCard.getScoreCard()
+                .stream()
+                .map(scoreCard -> {
+                    int inningsId = scoreCard.getInningsId();
+                    BatTeamDetails batTeamDetails = scoreCard.getBatTeamDetails();
+                    switch (inningsId) {
+                        case 1:
+                            batTeamDetails.setBatTeamShortName(batTeamDetails.getBatTeamName() + " " + inningsId + "st Innings");
+                            break;
+                        case 2:
+                            batTeamDetails.setBatTeamShortName(batTeamDetails.getBatTeamName() + " " + inningsId + "nd Innings");
+                            break;
+                        case 3:
+                            batTeamDetails.setBatTeamShortName(batTeamDetails.getBatTeamName() + " " + inningsId + "rd Innings");
+                            break;
+                        case 4:
+                            batTeamDetails.setBatTeamShortName(batTeamDetails.getBatTeamName() + " " + inningsId + "th Innings");
+                            break;
+                    }
+                    return scoreCard;
+                }).collect(Collectors.toList());
+        matchScoreCard.setScoreCard((ArrayList<ScoreCard>) scoreCardList);
     }
 }
