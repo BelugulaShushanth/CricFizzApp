@@ -7,6 +7,15 @@ window.onload = () => {
     if(width<1000){
         dateTime.outerHTML = '<br>' + dateTime.outerHTML;
     }
+
+    // let commText = document.getElementsByClassName("commText");
+    // for (let i=0; i<commText.length; i++){
+    //     if(true){
+    //         console.log(commText[i].);
+    //         commText[i].innerText = commText[i].innerText.replace("\n","<br>");
+    //         console.log(commText[i]);
+    //     }
+    // }
 }
 function activateDeactivateNavBtns(){
     let live = document.getElementById("live");

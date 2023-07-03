@@ -1,5 +1,6 @@
 package com.livecricketscores.controller;
 
+import com.livecricketscores.bean.commentary.MatchCommentary;
 import com.livecricketscores.bean.matchLeanBack.MatchLeanBack;
 import com.livecricketscores.bean.matchScoreCard.MatchScoreCard;
 import com.livecricketscores.bean.matchesList.Matches;
@@ -74,10 +75,13 @@ public class MatchesController {
         ModelAndView mv = new ModelAndView();
         try {
             MatchLeanBack matchLeanBack = cricBuzzService.getMatchLeanBack(matchId);
+            MatchCommentary matchCommentary = cricBuzzService.getMatchCommentary(matchId);
             mv.addObject("matchLeanBack", matchLeanBack);
             mv.addObject("matchVenue",matchVenue);
+            mv.addObject("matchCommentary",matchCommentary);
             mv.setViewName("ViewMatchCommentary");
             logger.info("MatchLeanBack Data: {}", cricUtils.objectMapper().writeValueAsString(matchLeanBack));
+            logger.info("MatchCommentary Data: {}", cricUtils.objectMapper().writeValueAsString(matchCommentary));
         }
         catch (Exception e){
             logger.error("Exception in MatchesController:getMatch e:{}",e.getMessage());

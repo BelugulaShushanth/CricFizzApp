@@ -149,12 +149,19 @@
           <span class="recentOvsStats key">Recent:</span>
           <span class="recentOvsStats value" data-th-text="${'    '+matchLeanBack.miniscore.recentOvsStats}"></span>
         </div>
+        <div class="container commentary">
+          <div class="row" data-th-each="comment,iterC :${matchCommentary.commentaryList}">
+            <div class="col">
+              <p class="commText" data-th-utext="${comment.commText}"></p>
+            </div>
+          </div>
+        </div>
         </p>
       </div>
     </div>
     </div>
   </div>
-</div>
+</div><br><br>
 <div data-th-insert="~{fragments/Footer :: cricFooter}"></div>
 <script th:src="@{/js/ViewMatchCommentary.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

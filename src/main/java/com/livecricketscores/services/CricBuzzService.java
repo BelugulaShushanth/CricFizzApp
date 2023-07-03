@@ -2,6 +2,7 @@ package com.livecricketscores.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.livecricketscores.bean.commentary.MatchCommentary;
 import com.livecricketscores.bean.matchLeanBack.MatchLeanBack;
 import com.livecricketscores.bean.matchScoreCard.MatchScoreCard;
 import com.livecricketscores.bean.matchesList.Matches;
@@ -57,6 +58,12 @@ public class CricBuzzService {
 
     @Value("${cricbuzz.sample.matchesLeanBack.data.location}")
     private String matchLeanBackLocation;
+
+    @Value("${endpoint.get-match-commentary}")
+    private String matchCommentaryEndpoint;
+
+    @Value("${cricbuzz.sample.matchCommentary.data.location}")
+    private String matchCommentaryLocation;
 
     public Matches getMatches(String event){
         logger.info("Started getMatches");
@@ -143,6 +150,33 @@ public class CricBuzzService {
             logger.error("Exception in CricBuzzService:getMatches", e);
         }
         return matchLeanBack;
+    }
+
+    public MatchCommentary getMatchCommentary(String matchId){
+        logger.info("Started getMatchCommentary");
+        MatchCommentary matchCommentary = null;
+        try{
+            HttpHeaders httpHeaders = cricUtils.getHeaders();
+            String cricbuzzURL = "https://" + cricbuzzHost + matchEndpoint + matchId + matchCommentaryEndpoint;
+            logger.info("cricbuzzURL: {}", cricbuzzURL);
+            logger.info("callCricbuzz: {}", callCricbuzz);
+            HttpEntity<String> httpEntity = new HttpEntity<>(cricbuzzURL,httpHeaders);
+            if(callCricbuzz.equalsIgnoreCase("true")){
+                ResponseEntity<JsonNode> responseEntity = restTemplate.exchange(cricbuzzURL, HttpMethod.GET, httpEntity, JsonNode.class);
+                if (responseEntity.getBody() != null && responseEntity.getStatusCode().is2xxSuccessful()){
+                    JsonNode jsonNode = responseEntity.getBody();
+                    matchCommentary = objectMapper.treeToValue(jsonNode, MatchCommentary.class);
+                }
+            }
+            else{
+                matchCommentary = cricUtils.objectMapper().treeToValue(cricUtils.objectMapper().readTree(cricUtils.readJsonFile(matchCommentaryLocation)), MatchCommentary.class);
+            }
+            cricUtils.modifyCommentryData(matchCommentary);
+        }
+        catch (Exception e){
+            logger.error("Exception in CricBuzzService:getMatches", e);
+        }
+        return matchCommentary;
     }
 
 

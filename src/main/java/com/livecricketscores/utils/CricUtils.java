@@ -1,6 +1,7 @@
 package com.livecricketscores.utils;
 
 import com.fasterxml.jackson.databind.*;
+import com.livecricketscores.bean.commentary.*;
 import com.livecricketscores.bean.matchLeanBack.InningsScoreList;
 import com.livecricketscores.bean.matchLeanBack.MatchLeanBack;
 import com.livecricketscores.bean.matchScoreCard.MatchScoreCard;
@@ -149,5 +150,53 @@ public class CricUtils {
                 .sorted((sc1, sc2) -> sc1.compare(sc1, sc2))
                 .collect(Collectors.toList());
         matchScoreCard.setScoreCard((ArrayList<ScoreCard>) scoreCardList);
+    }
+
+    public void modifyCommentryData(MatchCommentary matchCommentary) {
+        List<CommentaryList> commentaryLists = matchCommentary.getCommentaryList()
+                .stream()
+                .map(this::mapCommFormat)
+                .collect(Collectors.toList());
+        matchCommentary.setCommentaryList((ArrayList<CommentaryList>) commentaryLists);
+    }
+
+    private CommentaryList mapCommFormat(CommentaryList comm) {
+        CommentaryFormats commentaryFormats = comm.getCommentaryFormats();
+        Bold bold = commentaryFormats.getBold();
+        Italic italic = commentaryFormats.getItalic();
+        if(bold != null && bold.getFormatId() != null && bold.getFormatValue() != null) {
+            for (int i = 0; i < bold.getFormatId().size(); i++) {
+                String formatId = bold.getFormatId().get(i);
+                String formatValue = bold.getFormatValue().get(i);
+                if (comm.getCommText().contains(formatId)) {
+                    String replaced = comm.getCommText().replace(formatId, "<b>" + formatValue + "</b>");
+                    comm.setCommText(replaced);
+                }
+            }
+        }
+        if(italic != null && italic.getFormatId() != null && italic.getFormatValue() != null) {
+            for (int i = 0; i < italic.getFormatId().size(); i++) {
+                String formatId = italic.getFormatId().get(i);
+                String formatValue = italic.getFormatValue().get(i);
+                if (comm.getCommText().contains(formatId)) {
+                    String replaced = comm.getCommText().replace(formatId, "<i>" + formatValue + "</i>");
+                    comm.setCommText(replaced);
+                }
+            }
+        }
+        if(comm.getCommText().contains("\\n \\n")){
+            comm.setCommText(comm.getCommText().replace("\\n \\n","\\n"));
+        }
+        if(comm.getCommText().contains("\\n \\n-")){
+            comm.setCommText(comm.getCommText().replace("\\n \\n-","\\n-"));
+        }
+        if(comm.getCommText().contains("\\n")){
+            comm.setCommText(comm.getCommText().replace("\\n","<br>"));
+        }
+        if(comm.getCommText().contains("\\n-")){
+            comm.setCommText(comm.getCommText().replace("\\n-","<br>-"));
+        }
+
+        return comm;
     }
 }
