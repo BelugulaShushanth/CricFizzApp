@@ -1,13 +1,21 @@
 window.onload = () => {
     activateDeactivateNavBtns();
 
-    let dateTime = document.getElementById("dateTime");
     let width = screen.width;
-    let scoreCardId =  document.getElementById('scoreCardId');
-    if(width<1000){
-        dateTime.outerHTML = '<br>' + dateTime.outerHTML;
-        scoreCardId.classList.remove("scoreCardPc")
-        scoreCardId.classList.add("scoreCardMobile");
+    let scoreCardDef =  document.getElementsByClassName('scoreCardDef');
+    if(width<1000) {
+
+        for (let i = 0; i < scoreCardDef.length; i++) {
+            scoreCardDef[i].classList.remove("scoreCardPc");
+            scoreCardDef[i].classList.add("scoreCardMobile");
+        }
+
+        let outdesc = document.getElementsByClassName("outdesc");
+        for (let i=0; i<outdesc.length; i++){
+            outdesc[i].classList.remove("col-4");
+            outdesc[i].classList.add("col-3")
+        }
+
     }
 }
 function activateDeactivateNavBtns(){

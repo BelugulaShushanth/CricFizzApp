@@ -17,8 +17,17 @@
 .scoreCardMobile{
     max-width: 100% !important;
 }
+.outdesc{
+    color: gray;
+}
 @media screen and (min-width: 10px) and (max-width: 1000px) {
-    #scoreCardId{
-        font-size: 2rem;
+    .scoreCardDef{
+        font-size: 1.6rem;
+    }
+    .card-header.inningsDetail{
+        font-size: 2rem !important;
+    }
+    .outdesc{
+        font-size: 1.2rem;
     }
 }
