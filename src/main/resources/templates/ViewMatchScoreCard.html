@@ -62,7 +62,7 @@
                 </div><br>
                 <span class="currentRr" data-th-text="${'CRR:  '+matchScoreCard.scoreCard.get(matchScoreCard.scoreCard.size()-1).scoreDetails.runRate}"></span>
                 <div data-th-each="scoreCard,iter1 : ${matchScoreCard.scoreCard}">
-                    <div class="card text-bg-light mb-3" style="max-width: 60%;">
+                    <div class="card text-bg-light mb-3 scoreCardPc" id="scoreCardId">
                         <div class="card-header inningsDetail" >
                             <span data-th-text="${scoreCard.batTeamDetails.batTeamShortName}"></span>
                             <span style="float: right" data-th-text="${scoreCard.scoreDetails.runs+'/'+scoreCard.scoreDetails.wickets
@@ -189,6 +189,21 @@
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.fours}">4S</div>
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.sixes}">6S</div>
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_11.strikeRate}">SR</div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-3" >Extras</div>
+                                        <div class="col-4" ></div>
+                                        <div class="col-5" data-th-text="${scoreCard.extrasData.total
+                                                                    +' (b '+scoreCard.extrasData.byes
+                                                                     +', lb '+scoreCard.extrasData.legByes
+                                                                     +', w '+scoreCard.extrasData.wides
+                                                                     +', nb '+scoreCard.extrasData.noBalls
+                                                                     +', p '+scoreCard.extrasData.penalty
+                                                                     +')'
+                                                                     }">
+
+                                        </div>
                                     </div>
                                 </div>
 

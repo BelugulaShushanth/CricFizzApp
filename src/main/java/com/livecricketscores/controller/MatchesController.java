@@ -31,8 +31,14 @@ public class MatchesController {
         ModelAndView mv = new ModelAndView();
         try {
             Matches liveMatches = cricBuzzService.getMatches("live");
-            mv.addObject("typeMatches",liveMatches.getTypeMatches());
-            mv.setViewName("ViewMatches");
+            if(liveMatches != null) {
+                mv.addObject("typeMatches", liveMatches.getTypeMatches());
+                mv.setViewName("ViewMatches");
+            }
+            else{
+                mv.addObject("matchStatus", "No Live Matches Found");
+                mv.setViewName("NoMatches");
+            }
             logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(liveMatches));
         }
         catch (Exception e){
@@ -46,8 +52,14 @@ public class MatchesController {
         ModelAndView mv = new ModelAndView();
         try {
             Matches liveMatches = cricBuzzService.getMatches(event);
-            mv.addObject("typeMatches",liveMatches.getTypeMatches());
-            mv.setViewName("ViewMatches");
+            if(liveMatches != null) {
+                mv.addObject("typeMatches", liveMatches.getTypeMatches());
+                mv.setViewName("ViewMatches");
+            }
+            else{
+                mv.addObject("matchStatus", "No "+event+" Matches Found");
+                mv.setViewName("NoMatches");
+            }
             logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(liveMatches));
         }
         catch (Exception e){

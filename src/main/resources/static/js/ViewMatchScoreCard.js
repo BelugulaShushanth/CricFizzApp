@@ -3,8 +3,11 @@ window.onload = () => {
 
     let dateTime = document.getElementById("dateTime");
     let width = screen.width;
+    let scoreCardId =  document.getElementById('scoreCardId');
     if(width<1000){
         dateTime.outerHTML = '<br>' + dateTime.outerHTML;
+        scoreCardId.classList.remove("scoreCardPc")
+        scoreCardId.classList.add("scoreCardMobile");
     }
 }
 function activateDeactivateNavBtns(){
