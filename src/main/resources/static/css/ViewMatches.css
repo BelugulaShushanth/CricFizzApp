@@ -74,6 +74,9 @@
 .card.matches.matchCards:hover{
     cursor: pointer;
 }
+.card.matches {
+    max-width: 50rem !important;
+}
 
 
 /*Responsive UI*/
@@ -97,6 +100,9 @@
 }
 
 @media screen and (min-width: 10px) and (max-width: 1000px) {
+    .card.matches {
+        height: 20rem !important;
+    }
     .container.matches{
         margin-top: 35px;
     }
