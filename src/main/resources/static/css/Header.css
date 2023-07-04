@@ -27,6 +27,13 @@
 .deactivateNavBtn{
     font-weight: 300 !important;
 }
+.headerOptions.btn-primary{
+    float: right;
+    position: relative;
+    display: block;
+    margin-right: 5px;
+    font-weight: bolder;
+}
 
 @media screen and (min-width: 10px) and (max-width: 1000px) {
     #brandImage{
