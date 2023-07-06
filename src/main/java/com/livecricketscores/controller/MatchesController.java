@@ -98,6 +98,7 @@ public class MatchesController {
             mv.addObject("matchScoreCard", matchScoreCard);
             mv.addObject("matchVenue",matchVenue);
             mv.setViewName("ViewMatchScoreCard");
+            logger.info("MatchScoreCard: {}",matchScoreCard);
             logger.info("MatchScoreCard Data: {}", cricUtils.objectMapper().writeValueAsString(matchScoreCard));
         }
         catch (Exception e){

@@ -30,7 +30,7 @@
                                 <div data-th-if="${seriesMatch.seriesAdWrapper != null}" data-th-remove="tag">
                                     <div data-th-each="matchData,iter3 :${seriesMatch.seriesAdWrapper.matches}" data-th-remove="tag">
                                         <div class="g-col-6 g-col-md-4 matchesCards showCard" data-th-classappend="matchCard+${iter1.index}" >
-                                            <div class="card matches matchCards text-bg-light mb-3" style="max-width: 25rem; border-radius: 15px">
+                                            <div class="card matches text-bg-light mb-3" style="max-width: 25rem; border-radius: 15px">
                                                 <div class="card-header matches cardHeaderClass">
                                                     <span class="matchDesc" data-th-text="${matchData.matchInfo.matchDesc}"></span>
                                                     <span  class="matchSeriesName" data-th-text="${matchData.matchInfo.seriesName}"></span>
@@ -39,6 +39,7 @@
                                                            style="display: none;"></span>
                                                 </div>
                                                 <div class="card-body matches">
+                                                    <div class="matchCards">
                                                     <h6 class="card-title matches" data-th-text="${matchData.matchInfo.team1.teamSName+' Vs '+matchData.matchInfo.team2.teamSName}">Primary card title</h6>
                                                     <p class="card-text">
                                                         <span class="matchesTeamName" data-th-text="${matchData.matchInfo.team1.teamSName+'   '}"></span>
@@ -70,13 +71,15 @@
                                                                 <span class="matchStartTime" data-th-text="${'Starts on '+matchData.matchInfo.startDate}"></span>
                                                          </div>
                                                     <br>
-                                                    <button type="button" class="btn btn-primary btn-sm" fdprocessedid="3lvite">
+
+                                                    </p>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary btn-sm getAlerts" fdprocessedid="3lvite">
                                                         Get Alert
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
                                                             <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"></path>
                                                         </svg>
                                                     </button>
-                                                    </p>
                                                 </div>
                                             </div>
                                         </div>

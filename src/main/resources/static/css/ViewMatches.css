@@ -71,11 +71,17 @@
     font-family: sans-serif;
 }
 
-.card.matches.matchCards:hover{
+.matchCards:hover{
     cursor: pointer;
 }
 .card.matches {
     max-width: 50rem !important;
+}
+.btn.getAlerts{
+    float: right;
+}
+.btn.getAlerts:hover{
+    cursor: pointer;
 }
 
 

@@ -81,7 +81,11 @@
                                         <div class="col">SR</div>
                                     </div>
                                     <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_1 != null}">
-                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.batName}">Batter</div>
+                                        <div class="col-3 bName">
+                                            <span data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.batName}"></span>
+                                            <span data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_1.isCaptain}">(c)</span>
+                                            <span data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_1.isKeeper}">(WK)</span>
+                                        </div>
                                         <div class="col-4 outdesc" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_1.outDesc}"></div>
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.runs}">R</div>
@@ -91,7 +95,11 @@
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_1.strikeRate}">SR</div>
                                     </div>
                                     <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_2 != null}">
-                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.batName}">Batter</div>
+                                        <div class="col-3 bName" >
+                                            <span data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.batName}"></span>
+                                            <span data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_2.isCaptain}">(c)</span>
+                                            <span data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_2.isKeeper}">(WK)</span>
+                                        </div>
                                         <div class="col-4 outdesc" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_2.outDesc}"></div>
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_2.runs}">R</div>
@@ -141,7 +149,11 @@
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_6.strikeRate}">SR</div>
                                     </div>
                                     <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_7 != null}">
-                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.batName}">Batter</div>
+                                        <div class="col-3 bName">
+                                            <span data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.batName}"></span>
+                                            <span data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_7.isCaptain}">(c)</span>
+                                            <span data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_7.isKeeper}">(WK)</span>
+                                        </div>
                                         <div class="col-4 outdesc" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_7.outDesc}"></div>
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_7.runs}">R</div>
@@ -160,8 +172,12 @@
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.sixes}">6S</div>
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_8.strikeRate}">SR</div>
                                     </div>
-                                    <div class="row" data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_9 != null}">
-                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.batName}">Batter</div>
+                                    <div class="row" >
+                                        <div class="col-3 bName" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.batName}">
+                                            <span data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.batName}"></span>
+                                            <span data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.isCaptain()}">(c)</span>
+                                            <span data-th-if="${scoreCard.batTeamDetails.batsmenData.bat_9.isKeeper()}">(WK)</span>
+                                        </div>
                                         <div class="col-4 outdesc" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.outDesc.isEmpty()
                                                         ? '' : scoreCard.batTeamDetails.batsmenData.bat_9.outDesc}"></div>
                                         <div class="col" data-th-text="${scoreCard.batTeamDetails.batsmenData.bat_9.runs}">R</div>
