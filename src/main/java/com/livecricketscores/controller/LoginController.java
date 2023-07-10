@@ -13,7 +13,6 @@ public class LoginController {
 
     @GetMapping("/loggedInUser")
     public ModelAndView authenticatedUser(@AuthenticationPrincipal OAuth2User principal){
-//        System.out.println(principal.);
         ModelAndView mv = new ModelAndView();
         mv.addObject("userName",principal.getAttributes().get("name"));
         mv.setViewName("ViewSubscription");
