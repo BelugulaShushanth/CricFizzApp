@@ -9,7 +9,7 @@
   <link th:href="@{/css/Header.css}" type="text/css" rel="stylesheet"/>
   <link th:href="@{/css/Footer.css}" type="text/css" rel="stylesheet"/>
   
-  <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+<!--  <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">-->
   
   <link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
   
@@ -75,7 +75,7 @@
 
         <div class="container-login100-form-btn m-t-17">
           <button class="login100-form-btn">
-            Sign In
+            Log In
           </button>
         </div>
 
@@ -84,7 +84,7 @@
 							Not a member?
 						</span>
 
-          <a href="#" class="txt2 bo1">
+          <a th:href="@{/verifyAccount}" class="txt2 bo1" style="border-bottom: 0 !important;" >
             Sign up now
           </a>
         </div>
@@ -103,7 +103,7 @@
 <script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
 
 <script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>-->
 
 <script th:src="@{/vendor/select2/select2.min.js}"></script>
 
