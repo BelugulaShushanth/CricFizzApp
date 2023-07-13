@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @Controller
 public class CreateAccountController {
@@ -45,13 +46,9 @@ public class CreateAccountController {
         model.addAttribute("mail",otpBean);
         if(userRepository.findById(otpBean.getMailId()).isEmpty()) {
             if (otpBean.getOtp() == null) {
-                OTPBean sendOTPResponse = otpClient.sendOTP(otpBean.getMailId());
-                if (!sendOTPResponse.getMailStatus().getHttpStatus().is2xxSuccessful()) {
-                    model.addAttribute("isMailValid", false);
-                } else {
+                CompletableFuture<OTPBean> sendOTPResponse = otpClient.sendOTP(otpBean.getMailId());
                     model.addAttribute("isOTPInput", true);
                     httpSession.setAttribute("sendOTPResponse", sendOTPResponse);
-                }
             } else {
                 OTPBean sendOTPResponse = (OTPBean) httpSession.getAttribute("sendOTPResponse");
                 Map<String, String> otpVerifyDetails = new HashMap<>();
