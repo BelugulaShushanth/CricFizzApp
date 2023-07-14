@@ -27,6 +27,7 @@
   
   <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/VLCCommon.css}">
   
 
 </head>
@@ -48,12 +49,12 @@
         </a>
 
         <br>
-        <h4 style="text-align: center;width: 100%;">OR</h4>
+        <h4 style="text-align: center;width: 100%;" class="or">OR</h4>
         <br>
         <div th:if="${param.error}" data-th-remove="tag">
           <div class="alert alert-warning d-flex align-items-center" role="alert" style="width: 100% !important; margin-top: 4px;">
             <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-            <div>
+            <div style="margin: auto;">
               Invalid username or password
             </div>
           </div>

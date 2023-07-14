@@ -1,0 +1,71 @@
+@media screen and (min-width: 10px) and (max-width: 1000px) {
+
+    .container-login100 {
+        min-height: 70vh !important;
+    }
+
+    .wrap-login100 {
+        width: 100%;
+    }
+
+    .login100-form-title {
+        font-size: 4rem;
+    }
+
+    .btn-google img {
+        width: 3.5rem;
+    }
+
+    .btn-google.m-b-20{
+        font-size: 3rem;
+        margin-top: 3rem;
+        padding: 3rem;
+    }
+
+    h4.or{
+        font-size: 2rem;
+        margin-top: 3rem;
+    }
+
+    .txt1 {
+        font-size: 3rem;
+    }
+
+    .txt2 {
+        font-size: 1.5rem;
+    }
+
+    .input100 {
+        font-size: 2.8rem;
+        padding: 3rem;
+    }
+
+    .login100-form-btn{
+        font-size: 3rem;
+        padding: 2.5rem;
+    }
+    .p-t-31 {
+        margin-top: 3rem;
+    }
+    .alert{
+        margin-top: 1rem;
+        font-size: 2rem;
+    }
+    .alert a{
+        font-size: 2.5rem;
+    }
+    .mailVerified{
+        font-size: 2.5rem;
+    }
+    .showPassword{
+        font-size: 2.5rem;
+    }
+    #showPassword {
+        width: 30px;
+        height: 30px;
+    }
+    #pwdMismatch{
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+}

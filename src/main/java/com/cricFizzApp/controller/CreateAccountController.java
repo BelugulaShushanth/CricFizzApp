@@ -4,7 +4,7 @@ import com.cricFizzApp.bean.otp.OTPBean;
 import com.cricFizzApp.bean.otp.Status;
 import com.cricFizzApp.bean.user.User;
 import com.cricFizzApp.repository.UserRepository;
-import com.cricFizzApp.services.OTPClient;
+import com.cricFizzApp.clients.OTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;

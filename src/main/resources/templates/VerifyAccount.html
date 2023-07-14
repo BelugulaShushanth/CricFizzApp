@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/VerifyAccount.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/VLCCommon.css}">
 
 
 </head>
@@ -46,7 +47,7 @@
                 <div th:if="${isMailValid} == false" data-th-remove="tag">
                     <div class="alert alert-warning d-flex align-items-center" role="alert">
                         <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-                        <div>
+                        <div style="margin: auto">
                             Unable to send email
                         </div>
                     </div>
@@ -55,7 +56,7 @@
                 <div th:if="${isOTPValid} == false" data-th-remove="tag">
                     <div class="alert alert-warning d-flex align-items-center" role="alert" style="width: 100% !important;">
                         <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-                        <div>
+                        <div style="margin: auto">
                             Invalid OTP
                         </div>
                     </div>

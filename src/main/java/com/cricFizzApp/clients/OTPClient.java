@@ -1,4 +1,4 @@
-package com.cricFizzApp.services;
+package com.cricFizzApp.clients;
 
 import com.cricFizzApp.bean.otp.OTPBean;
 import com.cricFizzApp.bean.otp.Status;
