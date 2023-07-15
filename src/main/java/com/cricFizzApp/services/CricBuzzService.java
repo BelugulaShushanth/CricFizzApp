@@ -122,7 +122,6 @@ public class CricBuzzService {
                 cricUtils.sortMatchScoreCard(matchScoreCard);
                 cricUtils.mapInningsIdWithTeamName(matchScoreCard);
             }
-            matchScoreCard=null;
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatches", e);
@@ -153,7 +152,6 @@ public class CricBuzzService {
                 cricUtils.mapMatchStartDateinMillsToDate(matchLeanBack);
                 cricUtils.sortInnings(matchLeanBack);
             }
-            matchLeanBack=null;
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatches", e);
@@ -183,7 +181,6 @@ public class CricBuzzService {
             if(matchCommentary != null) {
                 cricUtils.modifyCommentryData(matchCommentary);
             }
-            matchCommentary = null;
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatches", e);
