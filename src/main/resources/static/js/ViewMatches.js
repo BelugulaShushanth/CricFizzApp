@@ -195,11 +195,13 @@ function addRoutingToMatchScoreCard(){
         currentUrl += "/getMatch";
     }
 
-    for (let i=0; i<matchCards.length; i++){
-        matchCards[i].addEventListener('click', () => {
-            console.log("clicked: "+matchIds[i].innerText);
-            window.location.href=currentUrl+"/"+matchIds[i].innerText+"/"+matchVenue[i].innerText;
-        })
+    if(currentEndpoint !== "upcoming") {
+        for (let i = 0; i < matchCards.length; i++) {
+            matchCards[i].addEventListener('click', () => {
+                console.log("clicked: " + matchIds[i].innerText);
+                window.location.href = currentUrl + "/" + matchIds[i].innerText + "/" + matchVenue[i].innerText;
+            })
+        }
     }
 }
 

@@ -18,7 +18,10 @@
     <div class="matchSingleTitle card-header" data-th-text="${matchLeanBack.matchHeader.team1.name + '  Vs  ' + matchLeanBack.matchHeader.team2.name
            +', '+matchLeanBack.matchHeader.matchDescription + '  -  ' + matchLeanBack.matchHeader.state }"></div>
     <div class="card-body">
-      <span class="matchStatus mobile" style="display: none;" data-th-text="${matchLeanBack.miniscore.matchScoreDetails.customStatus}"></span>
+      <div data-th-if="${matchLeanBack != null && matchLeanBack.getMiniscore() != null
+            && matchLeanBack.getMiniscore().getMatchScoreDetails() != null}" data-th-remove="tag">
+        <span class="matchStatus mobile" style="display: none;" data-th-text="${matchLeanBack.miniscore.matchScoreDetails.customStatus}"></span>
+      </div>
       <span class="matchSingleDetail">Series: </span>
       <span class="matchSingleDetail data" data-th-text="${'  '+matchLeanBack.matchHeader.seriesDesc}"></span>&nbsp;
       <span class="matchSingleDetail">Venue: </span>
@@ -32,6 +35,8 @@
       </div>
       <div class="tab-pane fade show active" id="nav-commentary" role="tabpanel" aria-labelledby="nav-commentary-tab" tabindex="0">
         <p class="card-text">
+        <div data-th-if="${matchLeanBack != null && matchLeanBack.getMiniscore() != null
+                            && matchLeanBack.getMiniscore().getMatchScoreDetails() != null}" data-th-remove="tag">
         <h6 class="card-title matches" data-th-text="${matchLeanBack.matchHeader.team1.name+' Vs '+matchLeanBack.matchHeader.team2.name}">card title</h6>
         <span class="matchesTeamName" data-th-text="${matchLeanBack.matchHeader.matchTeamInfo.get(0).battingTeamShortName+'   '}"></span>
         <div  data-th-if="${matchLeanBack.miniscore != null && matchLeanBack.miniscore.matchScoreDetails!=null
@@ -149,10 +154,19 @@
           <span class="recentOvsStats key">Recent:</span>
           <span class="recentOvsStats value" data-th-text="${'    '+matchLeanBack.miniscore.recentOvsStats}"></span>
         </div>
-        <div class="container commentary">
+      </div>
+        <div class="container commentary" data-th-if="${matchCommentary != null && !matchCommentary.getCommentaryList().isEmpty()}">
           <div class="row" data-th-each="comment,iterC :${matchCommentary.commentaryList}">
             <div class="col">
               <p class="commText" data-th-utext="${comment.commText}"></p>
+            </div>
+          </div>
+        </div>
+        <div class="container" data-th-if="${matchCommentary == null}">
+          <div class="alert alert-success d-flex align-items-center" role="alert" style="width: 100% !important;">
+            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div style="margin: auto;">
+              Match is yet to start
             </div>
           </div>
         </div>

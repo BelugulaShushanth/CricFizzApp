@@ -18,7 +18,9 @@
         <div class="matchSingleTitle card-header" data-th-text="${matchScoreCard.matchHeader.team1.name + '  Vs  ' + matchScoreCard.matchHeader.team2.name
            +', '+matchScoreCard.matchHeader.matchDescription + '  -  ' + matchScoreCard.matchHeader.state }"></div>
         <div class="card-body">
-            <span class="matchStatus mobile" style="display: none;" data-th-text="${matchScoreCard.status}"></span>
+            <div data-th-if="${matchScoreCard != null && matchScoreCard.scoreCard != null && !matchScoreCard.scoreCard.isEmpty()}">
+                <span class="matchStatus mobile" style="display: none;" data-th-text="${matchScoreCard.status}"></span>
+            </div>
             <span class="matchSingleDetail">Series:</span>
             <span class="matchSingleDetail data" data-th-text="${matchScoreCard.matchHeader.seriesDesc}"></span>&nbsp;
             <span class="matchSingleDetail">Venue:</span>
@@ -30,7 +32,7 @@
                 <a data-th-href="${'/matches/getMatch/'+matchScoreCard.getMatchHeader().getMatchId()+'/'+matchVenue}" class="nav-link">Commentary</a>
                 <a  class="nav-link active" >Scorecard</a>
             </div>
-            <div>
+            <div data-th-if="${matchScoreCard != null && matchScoreCard.scoreCard != null && !matchScoreCard.scoreCard.isEmpty()}">
                 <p class="card-text">
                 <h6 class="card-title matches" data-th-text="${matchScoreCard.matchHeader.team1.name+' Vs '+matchScoreCard.matchHeader.team2.name}">card title</h6>
                 <span class="matchesTeamName" data-th-text="${matchScoreCard.matchHeader.matchTeamInfo.get(0).battingTeamShortName+'   '}"></span>
@@ -302,6 +304,14 @@
                     </div>
                 </div>
                 </p>
+            </div>
+            <div class="container" style="margin-top: 1.1rem;" data-th-if="${matchScoreCard == null || matchScoreCard.getScoreCard() == null}">
+                <div class="alert alert-success d-flex align-items-center" role="alert" style="width: 100% !important;">
+                    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                    <div style="margin: auto;">
+                        Match is yet to start
+                    </div>
+                </div>
             </div>
             <br>
             <br>

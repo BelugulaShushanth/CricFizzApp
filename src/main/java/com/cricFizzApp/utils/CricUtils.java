@@ -1,5 +1,9 @@
 package com.cricFizzApp.utils;
 
+import com.cricFizzApp.bean.matchLeanBack.MatchHeader;
+import com.cricFizzApp.bean.matchLeanBack.Team1;
+import com.cricFizzApp.bean.matchLeanBack.Team2;
+import com.cricFizzApp.bean.matchesList.Match;
 import com.fasterxml.jackson.databind.*;
 import com.cricFizzApp.bean.commentary.*;
 import com.cricFizzApp.bean.matchLeanBack.InningsScoreList;
@@ -196,5 +200,71 @@ public class CricUtils {
         }
 
         return comm;
+    }
+
+    public MatchLeanBack mapMatchLeanBack(MatchLeanBack matchLeanBack, Matches matches,int matchId) {
+        MatchLeanBack matchLeanBack1 = new MatchLeanBack();
+        matches.getTypeMatches().stream()
+                .filter(matchType -> matchType != null && matchType.getSeriesMatches() != null && !matchType.getSeriesMatches().isEmpty())
+                .forEach(matchType -> matchType.getSeriesMatches()
+                                .stream()
+                                .filter(matchSeries -> matchSeries != null && matchSeries.getSeriesAdWrapper() != null
+                                                        && matchSeries.getSeriesAdWrapper().getMatches() != null)
+                                .forEach(matchSeries -> matchSeries.getSeriesAdWrapper().getMatches()
+                                        .stream()
+                                        .filter(match -> match.getMatchInfo().getMatchId() == matchId)
+                                        .forEach(match -> mapMatchLeanBack2(matchLeanBack1,match))
+                                ));
+        return matchLeanBack1;
+    }
+
+    private void mapMatchLeanBack2(MatchLeanBack matchLeanBack1, Match match) {
+        MatchHeader matchHeader = new MatchHeader();
+        matchHeader.setMatchId(match.getMatchInfo().getMatchId());
+        Team1 team1 = new Team1();
+        team1.setName(match.getMatchInfo().getTeam1().getTeamName());
+        matchHeader.setTeam1(team1);
+        Team2 team2 = new Team2();
+        team2.setName(match.getMatchInfo().getTeam2().getTeamName());
+        matchHeader.setTeam2(team2);
+        matchHeader.setMatchDescription(match.getMatchInfo().getMatchDesc());
+        matchHeader.setState(match.getMatchInfo().getState());
+        matchHeader.setSeriesDesc(match.getMatchInfo().getSeriesName());
+        matchHeader.setMatchStartTimestamp(mapMillsToDateTime(match.getMatchInfo().getStartDate()));
+        matchLeanBack1.setMatchHeader(matchHeader);
+
+    }
+
+    public MatchScoreCard mapMatchScoreCard(Matches matches,int matchId) {
+        MatchScoreCard matchScoreCard = new MatchScoreCard();
+        matches.getTypeMatches().stream()
+                .filter(matchType -> matchType != null && matchType.getSeriesMatches() != null && !matchType.getSeriesMatches().isEmpty())
+                .forEach(matchType -> matchType.getSeriesMatches()
+                        .stream()
+                        .filter(matchSeries -> matchSeries != null && matchSeries.getSeriesAdWrapper() != null
+                                && matchSeries.getSeriesAdWrapper().getMatches() != null)
+                        .forEach(matchSeries -> matchSeries.getSeriesAdWrapper().getMatches()
+                                .stream()
+                                .filter(match -> match.getMatchInfo().getMatchId() == matchId)
+                                .forEach(match -> mapMatchScoreCard2(matchScoreCard,match))
+                        ));
+        return matchScoreCard;
+    }
+
+    private void mapMatchScoreCard2(MatchScoreCard matchScoreCard, Match match) {
+        com.cricFizzApp.bean.matchScoreCard.MatchHeader matchHeader = new com.cricFizzApp.bean.matchScoreCard.MatchHeader();
+        matchHeader.setMatchId(match.getMatchInfo().getMatchId());
+        com.cricFizzApp.bean.matchScoreCard.Team1 team1 = new com.cricFizzApp.bean.matchScoreCard.Team1();
+        team1.setName(match.getMatchInfo().getTeam1().getTeamName());
+        matchHeader.setTeam1(team1);
+        com.cricFizzApp.bean.matchScoreCard.Team2 team2 = new com.cricFizzApp.bean.matchScoreCard.Team2();
+        team2.setName(match.getMatchInfo().getTeam2().getTeamName());
+        matchHeader.setTeam2(team2);
+        matchHeader.setMatchDescription(match.getMatchInfo().getMatchDesc());
+        matchHeader.setState(match.getMatchInfo().getState());
+        matchHeader.setSeriesDesc(match.getMatchInfo().getSeriesName());
+        matchHeader.setMatchStartTimestamp(mapMillsToDateTime(match.getMatchInfo().getStartDate()));
+        matchScoreCard.setMatchHeader(matchHeader);
+
     }
 }

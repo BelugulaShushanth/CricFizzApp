@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/matches")
 public class MatchesController {
@@ -28,12 +30,16 @@ public class MatchesController {
     private CricUtils cricUtils;
 
     @GetMapping("")
-    public ModelAndView getLiveMatches(){
+    public ModelAndView getLiveMatches(HttpSession httpSession){
         ModelAndView mv = new ModelAndView();
         try {
             Matches liveMatches = cricBuzzService.getMatches("live");
             if(liveMatches != null) {
                 mv.addObject("typeMatches", liveMatches.getTypeMatches());
+                if (httpSession.getAttribute("typeMatches") != null){
+                    httpSession.removeAttribute("typeMatches");
+                }
+                httpSession.setAttribute("typeMatches",liveMatches);
                 mv.setViewName("ViewMatches");
             }
             else{
@@ -48,13 +54,17 @@ public class MatchesController {
         return mv;
     }
     @GetMapping("/getMatches/{event}")
-    public ModelAndView getMatches(@PathVariable("event") String event){
+    public ModelAndView getMatches(@PathVariable("event") String event,HttpSession httpSession){
         logger.info("Incoming Event: {}",event);
         ModelAndView mv = new ModelAndView();
         try {
             Matches liveMatches = cricBuzzService.getMatches(event);
             if(liveMatches != null) {
                 mv.addObject("typeMatches", liveMatches.getTypeMatches());
+                if (httpSession.getAttribute("typeMatches") != null){
+                    httpSession.removeAttribute("typeMatches");
+                }
+                httpSession.setAttribute("typeMatches",liveMatches);
                 mv.setViewName("ViewMatches");
             }
             else{
@@ -70,12 +80,17 @@ public class MatchesController {
     }
 
     @GetMapping("/getMatch/{matchId}/{matchVenue}")
-    public ModelAndView getMatch(@PathVariable("matchId") String matchId, @PathVariable("matchVenue") String matchVenue){
+    public ModelAndView getMatch(@PathVariable("matchId") String matchId, @PathVariable("matchVenue") String matchVenue
+            ,HttpSession httpSession){
         logger.info("Incoming MatchId: {}",matchId);
         ModelAndView mv = new ModelAndView();
         try {
             MatchLeanBack matchLeanBack = cricBuzzService.getMatchLeanBack(matchId);
             MatchCommentary matchCommentary = cricBuzzService.getMatchCommentary(matchId);
+            if(matchLeanBack == null){
+                Matches matches = (Matches) httpSession.getAttribute("typeMatches");
+                matchLeanBack = cricUtils.mapMatchLeanBack(matchLeanBack,matches,Integer.parseInt(matchId));
+            }
             mv.addObject("matchLeanBack", matchLeanBack);
             mv.addObject("matchVenue",matchVenue);
             mv.addObject("matchCommentary",matchCommentary);
@@ -90,11 +105,17 @@ public class MatchesController {
     }
 
     @GetMapping("/getMatchScoreCard/{matchId}/{matchVenue}")
-    public ModelAndView getMatchScoreCard(@PathVariable("matchId") String matchId, @PathVariable("matchVenue") String matchVenue){
+    public ModelAndView getMatchScoreCard(@PathVariable("matchId") String matchId,
+                                          @PathVariable("matchVenue") String matchVenue,
+                                          HttpSession httpSession){
         logger.info("Incoming MatchId: {}",matchId);
         ModelAndView mv = new ModelAndView();
         try {
             MatchScoreCard matchScoreCard = cricBuzzService.getMatchesScoreCard(matchId);
+            if(matchScoreCard == null){
+                Matches matches = (Matches) httpSession.getAttribute("typeMatches");
+                matchScoreCard = cricUtils.mapMatchScoreCard(matches,Integer.parseInt(matchId));
+            }
             mv.addObject("matchScoreCard", matchScoreCard);
             mv.addObject("matchVenue",matchVenue);
             mv.setViewName("ViewMatchScoreCard");

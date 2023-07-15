@@ -90,6 +90,9 @@ public class CricBuzzService {
             }
         }
         catch (Exception e){
+            if(e.getMessage().contains("429")){
+                System.out.println("Limit Exceeded");
+            }
             logger.error("Exception in CricBuzzService:getMatches", e);
         }
         return matches;
@@ -114,9 +117,12 @@ public class CricBuzzService {
             else{
                 matchScoreCard = cricUtils.objectMapper().treeToValue(cricUtils.objectMapper().readTree(cricUtils.readJsonFile(matchScoreCardLoc)), MatchScoreCard.class);
             }
-            cricUtils.mapMatchStartDateinMillsToDate(matchScoreCard);
-            cricUtils.sortMatchScoreCard(matchScoreCard);
-            cricUtils.mapInningsIdWithTeamName(matchScoreCard);
+            if(matchScoreCard != null) {
+                cricUtils.mapMatchStartDateinMillsToDate(matchScoreCard);
+                cricUtils.sortMatchScoreCard(matchScoreCard);
+                cricUtils.mapInningsIdWithTeamName(matchScoreCard);
+            }
+            matchScoreCard=null;
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatches", e);
@@ -143,8 +149,11 @@ public class CricBuzzService {
             else{
                 matchLeanBack = cricUtils.objectMapper().treeToValue(cricUtils.objectMapper().readTree(cricUtils.readJsonFile(matchLeanBackLocation)), MatchLeanBack.class);
             }
-            cricUtils.mapMatchStartDateinMillsToDate(matchLeanBack);
-            cricUtils.sortInnings(matchLeanBack);
+            if(matchLeanBack != null) {
+                cricUtils.mapMatchStartDateinMillsToDate(matchLeanBack);
+                cricUtils.sortInnings(matchLeanBack);
+            }
+            matchLeanBack=null;
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatches", e);
@@ -171,7 +180,10 @@ public class CricBuzzService {
             else{
                 matchCommentary = cricUtils.objectMapper().treeToValue(cricUtils.objectMapper().readTree(cricUtils.readJsonFile(matchCommentaryLocation)), MatchCommentary.class);
             }
-            cricUtils.modifyCommentryData(matchCommentary);
+            if(matchCommentary != null) {
+                cricUtils.modifyCommentryData(matchCommentary);
+            }
+            matchCommentary = null;
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatches", e);
