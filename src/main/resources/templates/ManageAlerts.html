@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=1000,user-scalable=0">
+  <title>LiveCricketScores</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <link th:href="@{/css/Header.css}" type="text/css" rel="stylesheet"/>
+  <link th:href="@{/css/Footer.css}" type="text/css" rel="stylesheet"/>
+  <link th:href="@{/css/ManageAlerts.css}" type="text/css" rel="stylesheet"/>
+
+</head>
+<body>
+<div data-th-insert="~{fragments/LoggedInHeader :: cricHeaderLoggedIn}"></div>
+
+<div class="container text-center" style="margin-top: 70px;">
+  <h3 data-th-text="${'Welcome '+userName}"></h3>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link subAlerts active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+              role="tab" aria-controls="nav-home" aria-selected="true">Subscribe Alerts</button>
+      <button class="nav-link viewAlerts inActive" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+              role="tab" aria-controls="nav-profile" aria-selected="false">View Alerts</button>
+      </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+      <div class="card" style="text-align: left;">
+        <div class="card-body">
+          <h5 class="card-title">Choose the desired alert</h5>
+          <p class="card-text">
+            <label for="matchType">Match Type: </label>
+              <select name="matchType" id="matchType">
+                <div data-th-if="${isLive}" data-th-remove="tag">
+                  <option value="live" selected>Live</option>
+                  <option value="upcoming" >Upcoming</option>
+                </div>
+                <div data-th-if="${!isLive}" data-th-remove="tag">
+                  <option value="live">Live</option>
+                  <option value="upcoming" selected>Upcoming</option>
+                </div>
+              </select>
+            <br>
+            <label for="seriesName">Series Name: </label>
+              <select name="seriesName" id="seriesName" >
+                <option value="0">None</option>
+                <div data-th-each="series : ${seriesMap}" data-th-remove="tag">
+                  <div data-th-if="${selectedSeriesId == series.key}" data-th-remove="tag">
+                    <option data-th-value="${series.key}"  selected data-th-text="${series.value}"></option>
+                  </div>
+                  <div data-th-if="${selectedSeriesId != series.key}" data-th-remove="tag">
+                    <option data-th-value="${series.key}" data-th-text="${series.value}"></option>
+                  </div>
+                </div>
+              </select>
+            <br>
+            <label for="matchName">Match Name: </label>
+              <select name="matchName" id="matchName">
+                <option>None</option>
+                <div data-th-each="match : ${matchesMap}" data-th-remove="tag">
+                  <option data-th-value="${match.key}" data-th-text="${match.value}"></option>
+                </div>
+              </select>
+            <br>
+            <label for="alertType">Alert Type: </label>
+              <select name="alertType" id="alertType">
+                <option>None</option>
+                <div data-th-each="alertType : ${alertTypeMap}" data-th-remove="tag">
+                  <div data-th-if="${alertType.key.equals('score')}" data-th-remove="tag">
+                    <option data-th-value="${alertType.key}" data-th-text="${alertType.value}" selected></option>
+                  </div>
+                  <div data-th-if="${!alertType.key.equals('score')}" data-th-remove="tag">
+                    <option data-th-value="${alertType.key}" data-th-text="${alertType.value}"></option>
+                  </div>
+                </div>
+              </select>
+            <br>
+            <label for="timePeriod">Alert Type: </label>
+            <select name="timePeriod" id="timePeriod">
+              <option>None</option>
+              <div data-th-each="timePeriod : ${timePeriodMap}" data-th-remove="tag">
+                <div data-th-if="${timePeriod.key.toString.equals('5')}" data-th-remove="tag">
+                  <option data-th-value="${timePeriod.key}" data-th-text="${timePeriod.value}" selected></option>
+                </div>
+                <div data-th-if="${!timePeriod.key.toString().equals('5')}" data-th-remove="tag">
+                  <option data-th-value="${timePeriod.key}" data-th-text="${timePeriod.value}"></option>
+                </div>
+              </div>
+            </select>
+          </p>
+          <a href="#" class="btn btn-primary">Get Alert</a>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">View Alerts</div>
+  </div>
+</div>
+
+<div data-th-insert="~{fragments/Footer :: cricFooter}"></div>
+<script th:src="@{/js/ManageAlerts.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>

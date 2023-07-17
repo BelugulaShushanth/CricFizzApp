@@ -16,17 +16,6 @@ public class CricFizzErrorController implements ErrorController {
     public ModelAndView handleError(HttpServletRequest httpServletRequest){
         Object status = httpServletRequest.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         ModelAndView mv = new ModelAndView();
-//        String errorMsg = "";
-//        if(status != null){
-//            int statusCode = Integer.parseInt(status.toString());
-//            if(statusCode == HttpStatus.NOT_FOUND.value()){
-//                errorMsg = "Page Not Found";
-//            } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-//                errorMsg = "Internal Server Error";
-//            } else if (statusCode == HttpStatus.FORBIDDEN.value()) {
-//                errorMsg = "Page is forbidden";
-//            }
-//        }
         mv.addObject("statusCode", Integer.parseInt(status.toString()));
         mv.setViewName("ErrorPage");
         return mv;

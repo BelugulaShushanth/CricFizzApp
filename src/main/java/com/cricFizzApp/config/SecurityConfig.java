@@ -23,7 +23,8 @@ public class SecurityConfig {
                 .antMatchers("/matches/**","/getMatches/**","/getMatch/**,/getMatchScoreCard/**"
                         ,"/error", "/resources/**","/static/**", "/css/**", "/js/**", "/images/**"
                         ,"/fonts/**","/vendor/**","/createAccount/**", "/verifyAccount/**"
-                        ,"/loginUser/**").permitAll()
+                        ,"/alerts/getAlertParamsData/**"
+                        ,"/loginUser/**","/loggedInUser/**").permitAll()
                 .anyRequest().authenticated()
         )
         .oauth2Login()

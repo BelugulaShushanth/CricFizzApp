@@ -20,13 +20,14 @@
     <div data-th-if="${statusCode == 404}">
         <img th:src="@{/images/404NotFound.jpg}" style="width: 100%; max-height: 650px;">
     </div>
+    <div data-th-if="${statusCode == 403 || statusCode == 401}">
+        <div class="container" style="margin-top: 60px;">
+            <div class="alert alert-warning d-flex align-items-center" role="alert" style="width: 100% !important;">
+                <span style="margin: auto;">Access denied</span>
+            </div>
+        </div>
+    </div>
 </div>
-
-<!--<div class="container" style="margin-top: 60px;">-->
-<!--    <div class="alert alert-warning d-flex align-items-center" role="alert" style="width: 100% !important;">-->
-<!--      <span data-th-text="${errorMsg}" style="margin: auto;"></span>-->
-<!--    </div>-->
-<!--</div>-->
 
 <div data-th-insert="~{fragments/Footer :: cricFooter}"></div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
