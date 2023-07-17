@@ -23,12 +23,11 @@ public class SecurityConfig {
                 .antMatchers("/matches/**","/getMatches/**","/getMatch/**,/getMatchScoreCard/**"
                         ,"/error", "/resources/**","/static/**", "/css/**", "/js/**", "/images/**"
                         ,"/fonts/**","/vendor/**","/createAccount/**", "/verifyAccount/**"
-                        ,"/alerts/getAlertParamsData/**"
-                        ,"/loginUser/**","/loggedInUser/**").permitAll()
+                        ,"/loginUser/**").permitAll()
                 .anyRequest().authenticated()
         )
         .oauth2Login()
-        .defaultSuccessUrl("/loggedInUser/oAuth2")
+        .defaultSuccessUrl("/alerts/dashboard")
         .failureUrl("/")
                 .and()
                 .logout()
@@ -38,7 +37,7 @@ public class SecurityConfig {
                 .formLogin()
                 .loginPage("/loginUser")
                 .loginProcessingUrl("/loginUser")
-                .defaultSuccessUrl("/loggedInUser/db")
+                .defaultSuccessUrl("/alerts/dashboard")
                 .failureUrl("/loginUser?error=true")
                 .and()
                 .logout()

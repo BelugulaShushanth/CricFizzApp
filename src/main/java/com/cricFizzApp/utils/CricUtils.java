@@ -17,8 +17,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -266,5 +268,21 @@ public class CricUtils {
         matchHeader.setMatchStartTimestamp(mapMillsToDateTime(match.getMatchInfo().getStartDate()));
         matchScoreCard.setMatchHeader(matchHeader);
 
+    }
+
+    public String getUserName(OAuth2User principal, HttpServletRequest httpServletRequest) {
+        String username = null;
+        if(principal != null && principal.getAttributes() != null
+                && principal.getAttributes().get("name") != null){
+
+            username =  principal.getAttributes().get("name").toString();
+
+        }
+        else{
+            if(httpServletRequest.getRemoteUser() != null){
+                username = httpServletRequest.getRemoteUser();
+            }
+        }
+        return username;
     }
 }

@@ -16,26 +16,6 @@ public class LoginController {
     @Autowired
     private AlertParamDataService alertParamDataService;
 
-    @GetMapping("/loggedInUser/oAuth2")
-    public ModelAndView oAuthauthenticatedUser(@AuthenticationPrincipal OAuth2User principal){
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("userName",principal.getAttributes().get("name"));
-        mv.setViewName("ManageAlerts");
-        return mv;
-    }
-
-    @GetMapping("/loggedInUser/db")
-    public ModelAndView dbAuthenticatedUser(HttpServletRequest httpServletRequest){
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("userName","Test User");
-        //httpServletRequest.getRemoteUser()
-        mv.addObject("seriesMap",alertParamDataService
-                                            .getSeriesData(httpServletRequest.getSession(),"live"));
-        mv.addObject("isLive",true);
-        mv.setViewName("ManageAlerts");
-        return mv;
-    }
-
     @GetMapping("/loginUser")
     public String authenticateUser(){
         return "LoginUser";
