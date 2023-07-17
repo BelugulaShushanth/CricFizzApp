@@ -29,67 +29,67 @@
       <div class="card" style="text-align: left;">
         <div class="card-body">
           <h5 class="card-title">Choose the desired alert</h5>
-          <p class="card-text">
-            <label for="matchType">Match Type: </label>
-              <select name="matchType" id="matchType">
-                <div data-th-if="${isLive}" data-th-remove="tag">
-                  <option value="live" selected>Live</option>
-                  <option value="upcoming" >Upcoming</option>
-                </div>
-                <div data-th-if="${!isLive}" data-th-remove="tag">
-                  <option value="live">Live</option>
-                  <option value="upcoming" selected>Upcoming</option>
-                </div>
-              </select>
-            <br>
-            <label for="seriesName">Series Name: </label>
-              <select name="seriesName" id="seriesName" >
-                <option value="0">None</option>
-                <div data-th-each="series : ${seriesMap}" data-th-remove="tag">
-                  <div data-th-if="${selectedSeriesId == series.key}" data-th-remove="tag">
-                    <option data-th-value="${series.key}"  selected data-th-text="${series.value}"></option>
+          <form th:action="@{/alerts/subscribeAlert}" th:object="${alertDetails}" method="post">
+              <p class="card-text">
+                <label for="matchType">Match Type: </label>
+                  <select name="matchType" id="matchType" th:field="*{matchType}">
+                    <div data-th-if="${isLive}" data-th-remove="tag">
+                      <option value="live" selected>Live</option>
+                      <option value="upcoming" >Upcoming</option>
+                    </div>
+                    <div data-th-if="${!isLive}" data-th-remove="tag">
+                      <option value="live">Live</option>
+                      <option value="upcoming" selected>Upcoming</option>
+                    </div>
+                  </select>
+                <br>
+                <label for="seriesName">Series Name: </label>
+                  <select name="seriesName" id="seriesName" th:field="*{seriesId}">
+                    <option value="-1">None</option>
+                    <div data-th-each="series : ${seriesMap}" data-th-remove="tag">
+                      <div data-th-if="${selectedSeriesId == series.key}" data-th-remove="tag">
+                        <option data-th-value="${series.key}"  selected data-th-text="${series.value}"></option>
+                      </div>
+                      <div data-th-if="${selectedSeriesId != series.key}" data-th-remove="tag">
+                        <option data-th-value="${series.key}" data-th-text="${series.value}"></option>
+                      </div>
+                    </div>
+                  </select>
+                <br>
+                <label for="matchName">Match Name: </label>
+                  <select name="matchName" id="matchName" th:field="*{matchId}">
+                    <option value="-1">None</option>
+                    <div data-th-each="match : ${matchesMap}" data-th-remove="tag">
+                      <option data-th-value="${match.key}" data-th-text="${match.value}"></option>
+                    </div>
+                  </select>
+                <br>
+                <label for="alertType">Alert Type: </label>
+                  <select name="alertType" id="alertType" th:field="*{alertType}">
+                    <div data-th-each="alertType : ${alertTypeMap}" data-th-remove="tag">
+                      <div data-th-if="${alertType.key.equals('score')}" data-th-remove="tag">
+                        <option data-th-value="${alertType.key}" data-th-text="${alertType.value}" selected></option>
+                      </div>
+                      <div data-th-if="${!alertType.key.equals('score')}" data-th-remove="tag">
+                        <option data-th-value="${alertType.key}" data-th-text="${alertType.value}"></option>
+                      </div>
+                    </div>
+                  </select>
+                <br>
+                <label for="timePeriod">Time Period: </label>
+                <select name="timePeriod" id="timePeriod" th:field="*{timePeriod}">
+                  <div data-th-each="timePeriod : ${timePeriodMap}" data-th-remove="tag">
+                    <div data-th-if="${timePeriod.key.toString.equals('5')}" data-th-remove="tag">
+                      <option data-th-value="${timePeriod.key}" data-th-text="${timePeriod.value}" selected></option>
+                    </div>
+                    <div data-th-if="${!timePeriod.key.toString().equals('5')}" data-th-remove="tag">
+                      <option data-th-value="${timePeriod.key}" data-th-text="${timePeriod.value}"></option>
+                    </div>
                   </div>
-                  <div data-th-if="${selectedSeriesId != series.key}" data-th-remove="tag">
-                    <option data-th-value="${series.key}" data-th-text="${series.value}"></option>
-                  </div>
-                </div>
-              </select>
-            <br>
-            <label for="matchName">Match Name: </label>
-              <select name="matchName" id="matchName">
-                <option>None</option>
-                <div data-th-each="match : ${matchesMap}" data-th-remove="tag">
-                  <option data-th-value="${match.key}" data-th-text="${match.value}"></option>
-                </div>
-              </select>
-            <br>
-            <label for="alertType">Alert Type: </label>
-              <select name="alertType" id="alertType">
-                <option>None</option>
-                <div data-th-each="alertType : ${alertTypeMap}" data-th-remove="tag">
-                  <div data-th-if="${alertType.key.equals('score')}" data-th-remove="tag">
-                    <option data-th-value="${alertType.key}" data-th-text="${alertType.value}" selected></option>
-                  </div>
-                  <div data-th-if="${!alertType.key.equals('score')}" data-th-remove="tag">
-                    <option data-th-value="${alertType.key}" data-th-text="${alertType.value}"></option>
-                  </div>
-                </div>
-              </select>
-            <br>
-            <label for="timePeriod">Alert Type: </label>
-            <select name="timePeriod" id="timePeriod">
-              <option>None</option>
-              <div data-th-each="timePeriod : ${timePeriodMap}" data-th-remove="tag">
-                <div data-th-if="${timePeriod.key.toString.equals('5')}" data-th-remove="tag">
-                  <option data-th-value="${timePeriod.key}" data-th-text="${timePeriod.value}" selected></option>
-                </div>
-                <div data-th-if="${!timePeriod.key.toString().equals('5')}" data-th-remove="tag">
-                  <option data-th-value="${timePeriod.key}" data-th-text="${timePeriod.value}"></option>
-                </div>
-              </div>
-            </select>
-          </p>
-          <a href="#" class="btn btn-primary">Get Alert</a>
+                </select>
+              </p>
+            <button type="submit" class="btn btn-primary" >Get Alert</button>
+          </form>
         </div>
       </div>
     </div>

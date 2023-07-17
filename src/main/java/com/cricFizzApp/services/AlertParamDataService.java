@@ -43,7 +43,7 @@ public class AlertParamDataService {
         return seriesMap;
     }
 
-    public Map<Integer,String> getMatchesData(HttpSession httpSession, String matchType, int seriesId){
+    public Map<Integer,String> getMatchesData(HttpSession httpSession, String matchType, Long seriesId){
         Matches matches = (Matches) httpSession.getAttribute(matchType);
         if(matches != null) {
             Map<Integer, String> matchesMap = new HashMap<>();
