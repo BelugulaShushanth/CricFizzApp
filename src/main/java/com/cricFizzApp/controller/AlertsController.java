@@ -79,8 +79,8 @@ public class AlertsController {
             }
 
             if(seriesId.isPresent() && seriesId.get() != -1){
-                mv.addObject("matchesMap", alertParamDataService
-                        .getMatchesData(httpServletRequest.getSession(), matchType.get() , seriesId.get()));
+                mv.addObject("matchesMap",
+                     alertParamDataService.getMatchesData(httpServletRequest.getSession(),matchType.get(),seriesId.get()));
                 mv.addObject("selectedSeriesId",seriesId.get());
                 alertDetails.setSeriesId(seriesId.get());
             }
@@ -105,7 +105,7 @@ public class AlertsController {
         mv.addObject("timePeriodMap", CricConstants.getTimePeriod());
         mv.addObject("isLive",true);
         mv.addObject("seriesMap",alertParamDataService
-                .getSeriesData(httpServletRequest.getSession(),"live"));
+                                            .getSeriesData(httpServletRequest.getSession(),"live"));
 
         alertDetails.setMatchType("live");
         alertDetails.setSeriesId((long) -1);
