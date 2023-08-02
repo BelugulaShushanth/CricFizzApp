@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
-@FeignClient("OTP-SERVICE")
+@FeignClient("api-gateway")
 public interface OTPClient {
 
-    @PostMapping("/api/otp/sendOTP")
-    OTPBean sendOTP(@RequestParam("mailId") String otp);
+    @PostMapping("/otp-service/api/otp/sendOTP")
+    OTPBean sendOTP(@RequestParam("mailId") String mailId);
 
-    @PostMapping("/api/otp/verifyOTP")
+    @PostMapping("/otp-service/api/otp/verifyOTP")
     Status verifyOTP(@RequestBody Map<String,String> otpVerify);
 
 }

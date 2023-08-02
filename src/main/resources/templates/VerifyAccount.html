@@ -45,7 +45,7 @@
                                 </span>
 
                 <div th:if="${isMailValid} == false" data-th-remove="tag">
-                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                    <div class="alert alert-warning d-flex align-items-center" role="alert" style="width: 100%">
                         <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                         <div style="margin: auto">
                             Unable to send email
@@ -65,7 +65,7 @@
                 <div th:if="${isAccountExists} == true" data-th-remove="tag">
                     <div class="alert alert-success d-flex align-items-center" role="alert" style="width: 100% !important;">
                         <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-                        <div>
+                        <div style="margin: auto">
                             Account already exists <a th:href="@{/loginUser}">Click here</a> to login
                         </div>
                     </div>
@@ -101,10 +101,13 @@
                             Verify OTP
                         </div>
                         <div th:if="${isOTPInput} == false" data-th-remove="tag">
-                            Get OTP
+                            Send OTP
                         </div>
                         <div th:if="${isAccountExists} == true" data-th-remove="tag">
-                            Get OTP
+                            Send OTP
+                        </div>
+                        <div th:if="${isMailValid} == false" data-th-remove="tag">
+                            Resend OTP
                         </div>
                     </button>
                 </div>
