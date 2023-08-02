@@ -11,7 +11,8 @@ import lombok.ToString;
 @ToString
 public class AlertDetails {
 
-    private Long alertId;
+    private String alertId;
+    private String mailId;
     private String matchType;
     private Long seriesId;
     private Long matchId;

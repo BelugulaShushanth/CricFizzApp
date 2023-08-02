@@ -1,5 +1,6 @@
 package com.cricFizzApp.utils;
 
+import com.cricFizzApp.bean.alert.AlertDetails;
 import com.cricFizzApp.bean.matchLeanBack.MatchHeader;
 import com.cricFizzApp.bean.matchLeanBack.Team1;
 import com.cricFizzApp.bean.matchLeanBack.Team2;
@@ -280,9 +281,42 @@ public class CricUtils {
         }
         else{
             if(httpServletRequest.getRemoteUser() != null){
-                username = httpServletRequest.getRemoteUser();
+                username = httpServletRequest.getRemoteUser().split(":")[1];
             }
         }
         return username;
+    }
+
+    public String getEmailId(OAuth2User principal, HttpServletRequest httpServletRequest) {
+        String emailId = null;
+        if(principal != null && principal.getAttributes() != null
+                && principal.getAttributes().get("name") != null){
+
+            emailId =  principal.getAttributes().get("email").toString();
+
+        }
+        else{
+            if(httpServletRequest.getRemoteUser() != null){
+                emailId = httpServletRequest.getRemoteUser().split(":")[0];
+            }
+        }
+        return emailId;
+    }
+
+    public AlertDetails mapAlertDetails(AlertDetails alertDetails, OAuth2User principal, HttpServletRequest httpServletRequest) {
+        AlertDetails alertDetailsPublish = new AlertDetails();
+        alertDetailsPublish.setAlertId(getUniqueId());
+        alertDetailsPublish.setMailId(getEmailId(principal,httpServletRequest));
+        alertDetailsPublish.setMatchType(alertDetails.getMatchType());
+        alertDetailsPublish.setSeriesId(alertDetails.getSeriesId());
+        alertDetailsPublish.setMatchId(alertDetails.getMatchId());
+        alertDetailsPublish.setAlertType(alertDetails.getAlertType());
+        alertDetailsPublish.setTimePeriod(alertDetails.getTimePeriod());
+        return alertDetailsPublish;
+    }
+
+    private String getUniqueId() {
+       Random r = new Random( System.currentTimeMillis() );
+       return "A"+ ((1 + r.nextInt(2)) * 100000 + r.nextInt(100000));
     }
 }

@@ -4,6 +4,7 @@ import com.cricFizzApp.bean.alert.AlertDetails;
 import com.cricFizzApp.services.AlertParamDataService;
 import com.cricFizzApp.utils.CricConstants;
 import com.cricFizzApp.utils.CricUtils;
+import com.cricFizzApp.services.KafkaAsyncProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
@@ -24,6 +24,9 @@ public class AlertsController {
 
     @Autowired
     private CricUtils cricUtils;
+
+    @Autowired
+    private KafkaAsyncProducerService kafkaProducerService;
 
     @GetMapping("/dashboard")
     private ModelAndView alertsDashboard(@AuthenticationPrincipal OAuth2User principal,
@@ -97,15 +100,15 @@ public class AlertsController {
 
     @PostMapping("/subscribeAlert")
     public ModelAndView subscribeAlert(@ModelAttribute AlertDetails alertDetails,
+                                       @AuthenticationPrincipal OAuth2User principal,
                                         HttpServletRequest httpServletRequest){
         ModelAndView mv = new ModelAndView();
 
-        System.out.println("AlertDetails: "+alertDetails);
+        kafkaProducerService.publishMessage(cricUtils.mapAlertDetails(alertDetails,principal,httpServletRequest));
         mv.addObject("alertTypeMap", CricConstants.getAlertTypes());
         mv.addObject("timePeriodMap", CricConstants.getTimePeriod());
         mv.addObject("isLive",true);
-        mv.addObject("seriesMap",alertParamDataService
-                                            .getSeriesData(httpServletRequest.getSession(),"live"));
+        mv.addObject("seriesMap",alertParamDataService.getSeriesData(httpServletRequest.getSession(),"live"));
 
         alertDetails.setMatchType("live");
         alertDetails.setSeriesId((long) -1);
