@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -312,6 +313,8 @@ public class CricUtils {
         alertDetailsPublish.setMatchId(alertDetails.getMatchId());
         alertDetailsPublish.setAlertType(alertDetails.getAlertType());
         alertDetailsPublish.setTimePeriod(alertDetails.getTimePeriod());
+        alertDetailsPublish.setIsActive(true);
+        alertDetailsPublish.setAlertReceivedDT(LocalDateTime.now());
         return alertDetailsPublish;
     }
 
