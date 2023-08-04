@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class AlertParamDataService {
@@ -31,7 +28,7 @@ public class AlertParamDataService {
         else {
             matches = (Matches) httpSession.getAttribute(matchType);
         }
-        Map<Integer,String> seriesMap = new HashMap<>();
+        Map<Integer,String> seriesMap = new LinkedHashMap<>();
         matches.getTypeMatches()
                 .stream()
                 .filter(match -> match != null && match.getSeriesMatches() != null)
@@ -50,7 +47,7 @@ public class AlertParamDataService {
     public Map<Integer,String> getMatchesData(HttpSession httpSession, String matchType, Long seriesId){
         Matches matches = (Matches) httpSession.getAttribute(matchType);
         if(matches != null) {
-            Map<Integer, String> matchesMap = new HashMap<>();
+            Map<Integer, String> matchesMap = new LinkedHashMap<>();
             matches.getTypeMatches()
                     .stream()
                     .filter(match -> match != null && match.getSeriesMatches() != null)

@@ -55,6 +55,8 @@
                       </div>
                     </div>
                   </select>
+                 &nbsp;
+                <label th:if="${isSeriesSelected == false}" style="color: red">required</label>
                 <br>
                 <label for="matchName">Match Name: </label>
                   <select name="matchName" id="matchName" th:field="*{matchId}">
@@ -63,6 +65,8 @@
                       <option data-th-value="${match.key}" data-th-text="${match.value}"></option>
                     </div>
                   </select>
+                &nbsp;
+                <label th:if="${isMatchSelected == false}" style="color: red">required</label>
                 <br>
                 <label for="alertType">Alert Type: </label>
                   <select name="alertType" id="alertType" th:field="*{alertType}">

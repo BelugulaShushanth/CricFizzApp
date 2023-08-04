@@ -102,13 +102,36 @@ public class AlertsController {
     public ModelAndView subscribeAlert(@ModelAttribute AlertDetails alertDetails,
                                        @AuthenticationPrincipal OAuth2User principal,
                                         HttpServletRequest httpServletRequest){
+
         ModelAndView mv = new ModelAndView();
 
-        kafkaProducerService.publishMessage(cricUtils.mapAlertDetails(alertDetails,principal,httpServletRequest));
         mv.addObject("alertTypeMap", CricConstants.getAlertTypes());
         mv.addObject("timePeriodMap", CricConstants.getTimePeriod());
         mv.addObject("isLive",true);
         mv.addObject("seriesMap",alertParamDataService.getSeriesData(httpServletRequest.getSession(),"live"));
+
+        if(alertDetails.getSeriesId() == -1 || alertDetails.getMatchId() == -1){
+
+            if(alertDetails.getSeriesId() == -1 && alertDetails.getMatchId() == -1){
+                mv.addObject("isSeriesSelected",false);
+                mv.addObject("isMatchSelected",false);
+            }
+            else if(alertDetails.getSeriesId() == -1){
+                mv.addObject("isSeriesSelected",false);
+            }
+            else{
+                mv.addObject("matchesMap",
+                        alertParamDataService.getMatchesData(httpServletRequest.getSession(),alertDetails.getMatchType(),alertDetails.getSeriesId()));
+                mv.addObject("isMatchSelected",false);
+            }
+
+            mv.addObject("alertDetails",alertDetails);
+            mv.setViewName("ManageAlerts");
+            return mv;
+        }
+
+        kafkaProducerService.publishMessage(cricUtils.mapAlertDetails(alertDetails,principal,httpServletRequest));
+
 
         alertDetails.setMatchType("live");
         alertDetails.setSeriesId((long) -1);
