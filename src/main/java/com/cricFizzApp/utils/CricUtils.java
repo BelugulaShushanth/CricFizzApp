@@ -75,6 +75,7 @@ public class CricUtils {
                                 .stream()
                                 .filter(match1 -> match1 != null && match1.getMatchInfo() != null && match1.getMatchInfo().getStartDate() != null)
                                 .map(match1 -> {
+                                    match1.getMatchInfo().setSeriesEndDt(match1.getMatchInfo().getStartDate());
                                     match1.getMatchInfo().setStartDate(mapMillsToDateTime(match1.getMatchInfo().getStartDate()));
                                     return match1;
                                 })
@@ -315,7 +316,30 @@ public class CricUtils {
         alertDetailsPublish.setTimePeriod(alertDetails.getTimePeriod());
         alertDetailsPublish.setIsActive(true);
         alertDetailsPublish.setAlertReceivedDT(LocalDateTime.now());
+        if(alertDetails.getMatchType().equalsIgnoreCase("upcoming")){
+            setUpcomingMatchStartDT(alertDetailsPublish,httpServletRequest);
+        }
+
         return alertDetailsPublish;
+    }
+
+    public void setUpcomingMatchStartDT(AlertDetails alertDetailsPublish, HttpServletRequest httpServletRequest){
+
+        Matches matches = (Matches)httpServletRequest.getSession().getAttribute(alertDetailsPublish.getMatchType());
+
+        matches.getTypeMatches()
+                .stream()
+                .filter(typeMatch -> typeMatch != null && typeMatch.getSeriesMatches() != null)
+                .forEach(match -> match.getSeriesMatches()
+                        .stream()
+                        .filter(seriesMatch -> seriesMatch != null && seriesMatch.getSeriesAdWrapper() != null
+                                                    && seriesMatch.getSeriesAdWrapper().getMatches() != null)
+                        .forEach(seriesMatch -> seriesMatch.getSeriesAdWrapper().getMatches()
+                                .stream()
+                                .filter(match1 -> match1.getMatchInfo().getSeriesEndDt() != null
+                                                    && match1.getMatchInfo().getMatchId() == alertDetailsPublish.getMatchId())
+                                .forEach(match1 ->  alertDetailsPublish.setMatchStartDT(Long.parseLong(match1.getMatchInfo().getSeriesEndDt())))
+                        ));
     }
 
     private String getUniqueId() {
