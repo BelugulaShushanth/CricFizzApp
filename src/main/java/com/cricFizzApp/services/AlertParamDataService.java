@@ -1,12 +1,15 @@
 package com.cricFizzApp.services;
 
+import com.cricFizzApp.bean.matchesList.Match;
 import com.cricFizzApp.bean.matchesList.Matches;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class AlertParamDataService {
@@ -34,7 +37,8 @@ public class AlertParamDataService {
                 .filter(match -> match != null && match.getSeriesMatches() != null)
                 .forEach(series -> series.getSeriesMatches()
                                     .stream()
-                                    .filter(seriesMatch -> seriesMatch != null && seriesMatch.getSeriesAdWrapper() != null)
+                                    .filter(seriesMatch -> seriesMatch != null && seriesMatch.getSeriesAdWrapper() != null
+                                                            && isLiveMatches(matchType,seriesMatch.getSeriesAdWrapper().getMatches()))
                                     .forEach(seriesMatch -> {
                                         seriesMap.put(seriesMatch.getSeriesAdWrapper().getSeriesId(),
                                                 seriesMatch.getSeriesAdWrapper().getSeriesName());
@@ -56,10 +60,12 @@ public class AlertParamDataService {
                                     && seriesMatch.getSeriesAdWrapper() != null
                                     && seriesMatch.getSeriesAdWrapper().getSeriesId() == seriesId)
                             .forEach(seriesMatch -> seriesMatch.getSeriesAdWrapper().getMatches()
-                                                    .stream()
+                                    .stream().filter(Objects::nonNull)
                                                     .filter(match -> match != null && match.getMatchInfo() != null
-                                                                    && match.getMatchInfo().getTeam1() != null
-                                                                    && match.getMatchInfo().getTeam2() != null)
+                                                            && match.getMatchInfo().getTeam1() != null
+                                                            && match.getMatchInfo().getTeam2() != null
+                                                            && matchType.equalsIgnoreCase("upcoming") ||
+                                                            match.getMatchInfo().getState().equalsIgnoreCase("In Progress"))
                                                     .forEach(match -> matchesMap.put(match.getMatchInfo().getMatchId(),
                                                                       match.getMatchInfo().getTeam1().getTeamName()
                                                                       +" Vs "+match.getMatchInfo().getTeam2().getTeamName()
@@ -69,5 +75,16 @@ public class AlertParamDataService {
         }
 
         return null;
+    }
+
+    private boolean isLiveMatches(String matchType, ArrayList<Match> matches) {
+
+        if(matchType.equalsIgnoreCase("upcoming")){
+            return true;
+        }
+
+        return matches .stream()
+                .anyMatch(match -> match.getMatchInfo().getState()
+                        .equalsIgnoreCase("In Progress"));
     }
 }
