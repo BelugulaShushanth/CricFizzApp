@@ -29,22 +29,25 @@ public class AlertParamDataService {
             matches = (Matches) httpSession.getAttribute(matchType);
         }
         Map<Integer,String> seriesMap = new LinkedHashMap<>();
-        matches.getTypeMatches()
-                .stream()
-                .filter(match -> match != null && match.getSeriesMatches() != null)
-                .forEach(series -> series.getSeriesMatches()
-                                    .stream()
-                                    .filter(seriesMatch -> seriesMatch != null && seriesMatch.getSeriesAdWrapper() != null
-                                                            && isLiveMatches(matchType,seriesMatch.getSeriesAdWrapper().getMatches()))
-                                    .forEach(seriesMatch -> {
-                                        seriesMap.put(seriesMatch.getSeriesAdWrapper().getSeriesId(),
-                                                seriesMatch.getSeriesAdWrapper().getSeriesName());
-                                    }));
+
+        if(matches != null) {
+            matches.getTypeMatches()
+                    .stream()
+                    .filter(match -> match != null && match.getSeriesMatches() != null)
+                    .forEach(series -> series.getSeriesMatches()
+                            .stream()
+                            .filter(seriesMatch -> seriesMatch != null && seriesMatch.getSeriesAdWrapper() != null
+                                    && isLiveMatches(matchType, seriesMatch.getSeriesAdWrapper().getMatches()))
+                            .forEach(seriesMatch -> {
+                                seriesMap.put(seriesMatch.getSeriesAdWrapper().getSeriesId(),
+                                        seriesMatch.getSeriesAdWrapper().getSeriesName());
+                            }));
+        }
 
         return seriesMap;
     }
 
-    public Map<Integer,String> getMatchesData(HttpSession httpSession, String matchType, Long seriesId){
+    public Map<Integer,String> getMatchesData(HttpSession httpSession, String matchType, Integer seriesId){
         Matches matches = (Matches) httpSession.getAttribute(matchType);
         if(matches != null) {
             Map<Integer, String> matchesMap = new LinkedHashMap<>();

@@ -305,7 +305,7 @@ public class CricUtils {
         return emailId;
     }
 
-    public AlertDetails mapAlertDetails(AlertDetails alertDetails, OAuth2User principal, HttpServletRequest httpServletRequest) {
+    public AlertDetails mapAlertDetails(AlertDetails alertDetails, OAuth2User principal, HttpServletRequest httpServletRequest, Map<Integer, String> seriesData, Map<Integer, String> matchesData) {
         AlertDetails alertDetailsPublish = new AlertDetails();
         alertDetailsPublish.setAlertId(getUniqueId());
         alertDetailsPublish.setMailId(getEmailId(principal,httpServletRequest));
@@ -316,10 +316,11 @@ public class CricUtils {
         alertDetailsPublish.setTimePeriod(alertDetails.getTimePeriod());
         alertDetailsPublish.setIsActive(true);
         alertDetailsPublish.setAlertReceivedDT(LocalDateTime.now());
+        alertDetailsPublish.setSeriesName(seriesData.get(alertDetails.getSeriesId()));
+        alertDetailsPublish.setMatchName(matchesData.get(alertDetails.getMatchId()));
         if(alertDetails.getMatchType().equalsIgnoreCase("upcoming")){
             setUpcomingMatchStartDT(alertDetailsPublish,httpServletRequest);
         }
-
         return alertDetailsPublish;
     }
 

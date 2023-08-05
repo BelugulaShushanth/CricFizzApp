@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -58,7 +59,7 @@ public class AlertsController {
     public ModelAndView getAlertParametersSeriesData(@AuthenticationPrincipal OAuth2User principal,
                                                      HttpServletRequest httpServletRequest,
                                                      @RequestParam("matchType") Optional<String> matchType,
-                                                     @RequestParam("seriesId") Optional<Long> seriesId){
+                                                     @RequestParam("seriesId") Optional<Integer> seriesId){
         ModelAndView mv = new ModelAndView();
 
         mv.addObject("userName",cricUtils.getUserName(principal,httpServletRequest));
@@ -130,12 +131,20 @@ public class AlertsController {
             return mv;
         }
 
-        kafkaProducerService.publishMessage(cricUtils.mapAlertDetails(alertDetails,principal,httpServletRequest));
+        Map<Integer, String> seriesData = alertParamDataService.getSeriesData(httpServletRequest.getSession(), alertDetails.getMatchType());
+        Map<Integer, String> matchesData = alertParamDataService.getMatchesData(httpServletRequest.getSession(), alertDetails.getMatchType(), alertDetails.getSeriesId());
 
+        AlertDetails alertDetailsPublish = cricUtils.mapAlertDetails(alertDetails, principal, httpServletRequest, seriesData, matchesData);
+        kafkaProducerService.publishMessage(alertDetailsPublish);
+
+        mv.addObject("isAlertScheduled",true);
+        mv.addObject("seriesName",alertDetailsPublish.getSeriesName());
+        mv.addObject("matchName",alertDetailsPublish.getMatchName());
+        mv.addObject("alertMailId",alertDetailsPublish.getMailId());
 
         alertDetails.setMatchType("live");
-        alertDetails.setSeriesId((long) -1);
-        alertDetails.setMatchId((long) -1);
+        alertDetails.setSeriesId(-1);
+        alertDetails.setMatchId(-1);
         alertDetails.setAlertType("score");
         alertDetails.setTimePeriod(5);
 

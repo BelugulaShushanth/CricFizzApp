@@ -14,6 +14,7 @@
 <body>
 <div data-th-insert="~{fragments/LoggedInHeader :: cricHeaderLoggedIn}"></div>
 
+
 <div class="container text-center" style="margin-top: 70px;">
   <h3 data-th-text="${'Welcome '+userName}"></h3>
   <nav>
@@ -98,6 +99,28 @@
       </div>
     </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">View Alerts</div>
+  </div>
+</div>
+
+<div th:if="${isAlertScheduled}" data-th-remove="tag">
+  <div aria-live="polite" aria-atomic="true" class="bg-body-secondary position-relative bd-example-toasts rounded-3" style="background-color: white!important;">
+    <div class="toast-container p-3 bottom-0 end-0" id="toastPlacement" data-original-class="toast-container p-3">
+      <div class="toast fade show" style="--bs-toast-max-width: 375px;">
+        <div class="toast-header">
+          <label class="me-auto" style="color: rgb(0, 122, 255);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+            </svg> &nbsp;
+            Alert Scheduled </label>
+            <label data-th-text="${alertMailId}"></label>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          <label style="font-weight: bold">Series: &nbsp;</label><label data-th-text="${seriesName}"></label><br>
+          <label style="font-weight: bold">Match: &nbsp;</label><label data-th-text="${matchName}"></label>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

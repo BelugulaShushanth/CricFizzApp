@@ -17,8 +17,10 @@ public class AlertDetails {
     private String alertId;
     private String mailId;
     private String matchType;
-    private Long seriesId;
-    private Long matchId;
+    private Integer seriesId;
+    private String seriesName;
+    private Integer matchId;
+    private String matchName;
     private String alertType;
     private Integer timePeriod;
     private Boolean isActive;
