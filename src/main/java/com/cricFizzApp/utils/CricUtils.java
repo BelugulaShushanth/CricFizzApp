@@ -292,7 +292,7 @@ public class CricUtils {
     public String getEmailId(OAuth2User principal, HttpServletRequest httpServletRequest) {
         String emailId = null;
         if(principal != null && principal.getAttributes() != null
-                && principal.getAttributes().get("name") != null){
+                && principal.getAttributes().get("email") != null){
 
             emailId =  principal.getAttributes().get("email").toString();
 

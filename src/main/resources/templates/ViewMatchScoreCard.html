@@ -12,7 +12,12 @@
     <link th:href="@{/css/ViewMatchScoreCard.css}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<div data-th-insert="~{fragments/Header :: cricHeader}"></div>
+<div th:if="${username == null}" data-th-remove="tag">
+    <div data-th-insert="~{fragments/Header :: cricHeader}"></div>
+</div>
+<div th:if="${username != null}" data-th-remove="tag">
+    <div data-th-insert="~{fragments/LoggedInHeader :: cricHeaderLoggedIn}"></div>
+</div>
 <div class="container matchScoreCard">
     <div class="card">
         <div class="matchSingleTitle card-header" data-th-text="${matchScoreCard.matchHeader.team1.name + '  Vs  ' + matchScoreCard.matchHeader.team2.name

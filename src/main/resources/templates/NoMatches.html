@@ -11,7 +11,12 @@
 
 </head>
 <body>
-<div data-th-insert="~{fragments/Header :: cricHeader}"></div>
+<div th:if="${username == null}" data-th-remove="tag">
+    <div data-th-insert="~{fragments/Header :: cricHeader}"></div>
+</div>
+<div th:if="${username != null}" data-th-remove="tag">
+    <div data-th-insert="~{fragments/LoggedInHeader :: cricHeaderLoggedIn}"></div>
+</div>
 
 <div class="container text-center">
     <h3 style="color: #d0021b; margin-top: 120px;" data-th-text="${matchStatus}"></h3>

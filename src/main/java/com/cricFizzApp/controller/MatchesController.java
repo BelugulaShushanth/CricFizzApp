@@ -9,12 +9,15 @@ import com.cricFizzApp.utils.CricUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -30,7 +33,9 @@ public class MatchesController {
     private CricUtils cricUtils;
 
     @GetMapping("")
-    public ModelAndView getLiveMatches(HttpSession httpSession){
+    public ModelAndView getLiveMatches(HttpSession httpSession,
+                                        @AuthenticationPrincipal OAuth2User principal,
+                                       HttpServletRequest httpServletRequest){
         ModelAndView mv = new ModelAndView();
         try {
             Matches liveMatches = cricBuzzService.getMatches("live");
@@ -46,6 +51,7 @@ public class MatchesController {
                 mv.addObject("matchStatus", "No Live Matches Found");
                 mv.setViewName("NoMatches");
             }
+            mv.addObject("username",cricUtils.getUserName(principal,httpServletRequest));
             logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(liveMatches));
         }
         catch (Exception e){
@@ -54,7 +60,9 @@ public class MatchesController {
         return mv;
     }
     @GetMapping("/getMatches/{event}")
-    public ModelAndView getMatches(@PathVariable("event") String event,HttpSession httpSession){
+    public ModelAndView getMatches(@PathVariable("event") String event,HttpSession httpSession,
+                                    @AuthenticationPrincipal OAuth2User principal,
+                                   HttpServletRequest httpServletRequest){
         logger.info("Incoming Event: {}",event);
         ModelAndView mv = new ModelAndView();
         try {
@@ -71,6 +79,7 @@ public class MatchesController {
                 mv.addObject("matchStatus", "No "+event+" Matches Found");
                 mv.setViewName("NoMatches");
             }
+            mv.addObject("username",cricUtils.getUserName(principal,httpServletRequest));
             logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(liveMatches));
         }
         catch (Exception e){
@@ -80,8 +89,10 @@ public class MatchesController {
     }
 
     @GetMapping("/getMatch/{matchId}/{matchVenue}")
-    public ModelAndView getMatch(@PathVariable("matchId") String matchId, @PathVariable("matchVenue") String matchVenue
-            ,HttpSession httpSession){
+    public ModelAndView getMatch(@PathVariable("matchId") String matchId, @PathVariable("matchVenue") String matchVenue,
+                                    HttpSession httpSession,
+                                    @AuthenticationPrincipal OAuth2User principal,
+                                    HttpServletRequest httpServletRequest){
         logger.info("Incoming MatchId: {}",matchId);
         ModelAndView mv = new ModelAndView();
         try {
@@ -94,6 +105,7 @@ public class MatchesController {
             mv.addObject("matchLeanBack", matchLeanBack);
             mv.addObject("matchVenue",matchVenue);
             mv.addObject("matchCommentary",matchCommentary);
+            mv.addObject("username",cricUtils.getUserName(principal,httpServletRequest));
             mv.setViewName("ViewMatchCommentary");
             logger.info("MatchLeanBack Data: {}", cricUtils.objectMapper().writeValueAsString(matchLeanBack));
             logger.info("MatchCommentary Data: {}", cricUtils.objectMapper().writeValueAsString(matchCommentary));
@@ -107,7 +119,9 @@ public class MatchesController {
     @GetMapping("/getMatchScoreCard/{matchId}/{matchVenue}")
     public ModelAndView getMatchScoreCard(@PathVariable("matchId") String matchId,
                                           @PathVariable("matchVenue") String matchVenue,
-                                          HttpSession httpSession){
+                                          HttpSession httpSession,
+                                          @AuthenticationPrincipal OAuth2User principal,
+                                          HttpServletRequest httpServletRequest){
         logger.info("Incoming MatchId: {}",matchId);
         ModelAndView mv = new ModelAndView();
         try {
@@ -118,6 +132,7 @@ public class MatchesController {
             }
             mv.addObject("matchScoreCard", matchScoreCard);
             mv.addObject("matchVenue",matchVenue);
+            mv.addObject("username",cricUtils.getUserName(principal,httpServletRequest));
             mv.setViewName("ViewMatchScoreCard");
             logger.info("MatchScoreCard: {}",matchScoreCard);
             logger.info("MatchScoreCard Data: {}", cricUtils.objectMapper().writeValueAsString(matchScoreCard));
