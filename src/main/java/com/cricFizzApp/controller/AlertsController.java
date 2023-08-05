@@ -106,6 +106,7 @@ public class AlertsController {
 
         ModelAndView mv = new ModelAndView();
 
+        mv.addObject("userName",cricUtils.getUserName(principal,httpServletRequest));
         mv.addObject("alertTypeMap", CricConstants.getAlertTypes());
         mv.addObject("timePeriodMap", CricConstants.getTimePeriod());
         mv.addObject("isLive",true);
