@@ -59,7 +59,8 @@ public class AlertsController {
     public ModelAndView getAlertParametersSeriesData(@AuthenticationPrincipal OAuth2User principal,
                                                      HttpServletRequest httpServletRequest,
                                                      @RequestParam("matchType") Optional<String> matchType,
-                                                     @RequestParam("seriesId") Optional<Integer> seriesId){
+                                                     @RequestParam("seriesId") Optional<Integer> seriesId,
+                                                     @RequestParam("matchId") Optional<Integer> matchId){
         ModelAndView mv = new ModelAndView();
 
         mv.addObject("userName",cricUtils.getUserName(principal,httpServletRequest));
@@ -83,10 +84,19 @@ public class AlertsController {
             }
 
             if(seriesId.isPresent() && seriesId.get() != -1){
+
                 mv.addObject("matchesMap",
                      alertParamDataService.getMatchesData(httpServletRequest.getSession(),matchType.get(),seriesId.get()));
                 mv.addObject("selectedSeriesId",seriesId.get());
                 alertDetails.setSeriesId(seriesId.get());
+
+
+                if(matchId.isPresent() && matchId.get() != -1){
+                    mv.addObject("selectedMatchId",matchId.get());
+                    alertDetails.setMatchId(matchId.get());
+                }
+
+
             }
 
         }

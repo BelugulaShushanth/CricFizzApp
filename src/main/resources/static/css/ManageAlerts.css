@@ -10,3 +10,9 @@
 .nav-link{
     width: 20%;
 }
+label.fields{
+    margin-bottom: 1.5rem;
+}
+input, optgroup, select, textarea {
+    min-width: 25%;
+}

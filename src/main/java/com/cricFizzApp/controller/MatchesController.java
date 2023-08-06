@@ -66,21 +66,22 @@ public class MatchesController {
         logger.info("Incoming Event: {}",event);
         ModelAndView mv = new ModelAndView();
         try {
-            Matches liveMatches = cricBuzzService.getMatches(event);
-            if(liveMatches != null) {
-                mv.addObject("typeMatches", liveMatches.getTypeMatches());
+            Matches matches = cricBuzzService.getMatches(event);
+            if(matches != null) {
+                mv.addObject("typeMatches", matches.getTypeMatches());
                 if (httpSession.getAttribute("typeMatches") != null){
                     httpSession.removeAttribute("typeMatches");
                 }
-                httpSession.setAttribute("typeMatches",liveMatches);
+                httpSession.setAttribute("typeMatches",matches);
                 mv.setViewName("ViewMatches");
             }
             else{
                 mv.addObject("matchStatus", "No "+event+" Matches Found");
                 mv.setViewName("NoMatches");
             }
+            mv.addObject("event",event);
             mv.addObject("username",cricUtils.getUserName(principal,httpServletRequest));
-            logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(liveMatches));
+            logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(matches));
         }
         catch (Exception e){
             logger.error("Exception in MatchesController:getMatches e:{}",e.getMessage());

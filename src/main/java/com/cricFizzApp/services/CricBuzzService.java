@@ -91,9 +91,9 @@ public class CricBuzzService {
         }
         catch (Exception e){
             if(e.getMessage().contains("429")){
-                System.out.println("Limit Exceeded");
+                logger.info("Limit Exceeded");
             }
-            logger.error("Exception in CricBuzzService:getMatches", e);
+            logger.error("Exception in CricBuzzService:getMatches() {}", e.getMessage());
         }
         return matches;
     }
@@ -124,7 +124,7 @@ public class CricBuzzService {
             }
         }
         catch (Exception e){
-            logger.error("Exception in CricBuzzService:getMatches", e);
+            logger.error("Exception in CricBuzzService:getMatchesScoreCard() {}", e.getMessage());
         }
         return matchScoreCard;
     }
@@ -154,7 +154,7 @@ public class CricBuzzService {
             }
         }
         catch (Exception e){
-            logger.error("Exception in CricBuzzService:getMatches", e);
+            logger.error("Exception in CricBuzzService:getMatchLeanBack() {}", e.getMessage());
         }
         return matchLeanBack;
     }
