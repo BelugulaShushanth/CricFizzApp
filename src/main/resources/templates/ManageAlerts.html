@@ -16,7 +16,7 @@
 
 
 <div class="container text-center" style="margin-top: 70px;">
-  <h3 data-th-text="${'Welcome '+userName}"></h3>
+  <h3 class="userName" data-th-text="${'Welcome '+userName}"></h3>
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <button class="nav-link subAlerts active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
@@ -86,7 +86,7 @@
                     </div>
                   </select>
                 <br>
-                <label for="timePeriod" class="fields">Time Period: </label>
+                <label for="timePeriod" class="fields">Time Period:   </label>
                 <select name="timePeriod" id="timePeriod" th:field="*{timePeriod}">
                   <div data-th-each="timePeriod : ${timePeriodMap}" data-th-remove="tag">
                     <div data-th-if="${timePeriod.key.toString.equals('5')}" data-th-remove="tag">

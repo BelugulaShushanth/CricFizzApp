@@ -1,11 +1,3 @@
-.mailVerified{
-    width: 100%;
-    text-align: right;
-    color: green;
-    font-weight: 500;
-    font-family: serif;
-}
-
 .login100-form-title {
     font-family: serif !important;
 }
@@ -25,7 +17,7 @@
     }
 
     .login100-form-btn {
-        font-size: 2.8rem !important;
+        font-size: 3.4rem !important;
         padding: 3.5rem !important;
         font-family: serif !important;
     }

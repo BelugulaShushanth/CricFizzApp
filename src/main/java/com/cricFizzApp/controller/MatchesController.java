@@ -51,6 +51,7 @@ public class MatchesController {
                 mv.addObject("matchStatus", "No Live Matches Found");
                 mv.setViewName("NoMatches");
             }
+            mv.addObject("event","live");
             mv.addObject("username",cricUtils.getUserName(principal,httpServletRequest));
             logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(liveMatches));
         }

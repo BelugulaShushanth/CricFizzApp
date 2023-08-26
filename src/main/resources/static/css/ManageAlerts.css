@@ -12,7 +12,58 @@
 }
 label.fields{
     margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-family: serif;
 }
 input, optgroup, select, textarea {
     min-width: 25%;
+}
+
+@media screen and (min-width: 10px) and (max-width: 1000px) {
+
+    .container{
+        margin-top: 9rem !important;
+        font-size: 2.4rem !important;
+        margin-bottom: 20rem;
+
+    }
+
+    .nav-link {
+        width: 50%;
+    }
+
+    .card-title{
+        font-size: 2.6rem;
+    }
+
+    h3.userName{
+        font-size: 3rem;
+    }
+
+    button.btn.btn-primary {
+        width: 50%;
+        font-size: 2.5rem;
+        margin-top: 2rem;
+    }
+
+    .nav-tabs{
+        margin-top: 4rem;
+    }
+
+    label.fields{
+        margin-top: 4rem;
+    }
+
+    input, optgroup, select, textarea {
+        min-width: 40%;
+        max-width: 60%;
+        padding: 5px;
+        min-height: fit-content;
+    }
+
+    .toast{
+        --bs-toast-max-width: 40rem !important;
+        font-size: 1.5rem !important;
+    }
+
 }

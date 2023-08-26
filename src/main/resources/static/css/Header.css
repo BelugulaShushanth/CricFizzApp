@@ -41,6 +41,16 @@
         height: 4.5rem;
     }
     .headerOptions{
-        font-size: 2.2rem;
+        font-size: 2.5rem;
+        margin-right: 0.5rem;
+    }
+    #headerContainer {
+       font-size: 2.5rem;
+        height: 5rem;
+    }
+    a.headerOptions.btn.btn-primary {
+        font-size: 2.5rem !important;
+        width: 10rem;
+        padding: 1px;
     }
 }
