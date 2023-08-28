@@ -1,6 +1,7 @@
 package com.cricFizzApp.controller;
 
 import com.cricFizzApp.bean.alert.AlertDetails;
+import com.cricFizzApp.repository.AlertsRepository;
 import com.cricFizzApp.services.AlertParamDataService;
 import com.cricFizzApp.utils.CricConstants;
 import com.cricFizzApp.utils.CricUtils;
@@ -29,6 +30,9 @@ public class AlertsController {
     @Autowired
     private KafkaAsyncProducerService kafkaProducerService;
 
+    @Autowired
+    private AlertsRepository alertsRepository;
+
     @GetMapping("/dashboard")
     private ModelAndView alertsDashboard(@AuthenticationPrincipal OAuth2User principal,
                                         HttpServletRequest httpServletRequest){
@@ -50,6 +54,7 @@ public class AlertsController {
         alertDetails.setAlertType("score");
         alertDetails.setTimePeriod(5);
         mv.addObject("alertDetails",alertDetails);
+        mv.addObject("isManageAlertTab",false);
 
         mv.setViewName("ManageAlerts");
         return mv;
@@ -104,6 +109,7 @@ public class AlertsController {
         alertDetails.setAlertType("score");
         alertDetails.setTimePeriod(5);
         mv.addObject("alertDetails",alertDetails);
+        mv.addObject("isManageAlertTab",false);
         mv.setViewName("ManageAlerts");
 
         return mv;
@@ -146,6 +152,7 @@ public class AlertsController {
         Map<Integer, String> matchesData = alertParamDataService.getMatchesData(httpServletRequest.getSession(), alertDetails.getMatchType(), alertDetails.getSeriesId());
 
         AlertDetails alertDetailsPublish = cricUtils.mapAlertDetails(alertDetails, principal, httpServletRequest, seriesData, matchesData);
+        alertsRepository.save(alertDetailsPublish);
         kafkaProducerService.publishMessage(alertDetailsPublish);
 
         mv.addObject("isAlertScheduled",true);
@@ -160,9 +167,49 @@ public class AlertsController {
         alertDetails.setTimePeriod(5);
 
         mv.addObject("alertDetails",alertDetails);
+        mv.addObject("isManageAlertTab",false);
 
         mv.setViewName("ManageAlerts");
 
+        return mv;
+    }
+
+    @GetMapping("/viewAlerts")
+    private ModelAndView viewAlerts(@AuthenticationPrincipal OAuth2User principal,
+                                         HttpServletRequest httpServletRequest){
+
+        ModelAndView mv = new ModelAndView();
+
+        mv.addObject("userName",cricUtils.getUserName(principal,httpServletRequest));
+
+        mv.addObject("alertList", alertsRepository.findAllByMailId(cricUtils.getEmailId(principal, httpServletRequest)));
+
+        mv.addObject("isManageAlertTab",true);
+
+        mv.setViewName("ManageAlerts");
+        return mv;
+    }
+
+    @GetMapping("/updateAlert")
+    private ModelAndView updateAlert(@RequestParam("alertId") String alertId,
+                                     @RequestParam("isActive") Boolean isActive,
+                                    @AuthenticationPrincipal OAuth2User principal,
+                                    HttpServletRequest httpServletRequest){
+
+        ModelAndView mv = new ModelAndView();
+
+        mv.addObject("userName",cricUtils.getUserName(principal,httpServletRequest));
+
+        AlertDetails alertDetails = alertsRepository.findById(alertId).get();
+        alertDetails.setIsActive(isActive);
+        alertsRepository.save(alertDetails);
+        kafkaProducerService.publishMessage(alertDetails);
+
+        mv.addObject("alertList", alertsRepository.findAllByMailId(cricUtils.getEmailId(principal, httpServletRequest)));
+
+        mv.addObject("isManageAlertTab",true);
+
+        mv.setViewName("ManageAlerts");
         return mv;
     }
 

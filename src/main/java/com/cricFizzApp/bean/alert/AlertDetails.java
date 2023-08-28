@@ -37,7 +37,7 @@ public class AlertDetails {
 
     @CassandraType(type = CassandraType.Name.INT)
     @Column("seriesId")
-    private Long seriesId;
+    private Integer seriesId;
 
     @CassandraType(type = CassandraType.Name.TEXT)
     @Column("seriesName")
@@ -45,7 +45,7 @@ public class AlertDetails {
 
     @CassandraType(type = CassandraType.Name.INT)
     @Column("matchId")
-    private Long matchId;
+    private Integer matchId;
 
     @CassandraType(type = CassandraType.Name.TEXT)
     @Column("matchName")

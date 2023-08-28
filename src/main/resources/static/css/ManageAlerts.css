@@ -18,6 +18,15 @@ label.fields{
 input, optgroup, select, textarea {
     min-width: 25%;
 }
+.bi.av{
+     width: 2rem !important;
+     height: 2rem !important;
+    vertical-align: -0.125em;
+    fill: blueviolet;
+}
+.isAlertActive:hover{
+    cursor: pointer;
+}
 
 @media screen and (min-width: 10px) and (max-width: 1000px) {
 

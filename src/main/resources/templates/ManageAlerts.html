@@ -19,13 +19,22 @@
   <h3 class="userName" data-th-text="${'Welcome '+userName}"></h3>
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link subAlerts active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
-              role="tab" aria-controls="nav-home" aria-selected="true">Subscribe Alerts</button>
-      <button class="nav-link viewAlerts inActive" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
-              role="tab" aria-controls="nav-profile" aria-selected="false">View Alerts</button>
+      <div data-th-if="${isManageAlertTab == false}" data-th-remove="tag">
+        <button class="nav-link subAlerts active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+                role="tab" aria-controls="nav-home" aria-selected="true">Subscribe Alerts</button>
+        <button class="nav-link viewAlerts inActive" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+                role="tab" aria-controls="nav-profile" aria-selected="false">Manage Alerts</button>
+      </div>
+      <div data-th-if="${isManageAlertTab == true}" data-th-remove="tag">
+        <button class="nav-link subAlerts inActive" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+                role="tab" aria-controls="nav-home" aria-selected="false">Subscribe Alerts</button>
+        <button class="nav-link viewAlerts active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+                role="tab" aria-controls="nav-profile" aria-selected="true">Manage Alerts</button>
+      </div>
       </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
+    <div data-th-if="${isManageAlertTab == false}" data-th-remove="tag">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
       <div class="card" style="text-align: left;">
         <div class="card-body">
@@ -103,7 +112,43 @@
         </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0" style="color: darkgreen">Coming Soon...</div>
+    </div>
+    <div data-th-if="${isManageAlertTab == true}" data-th-remove="tag">
+      <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0" style="display: block; transition: opacity .15s linear">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Mail Id</th>
+            <th scope="col">Series Name</th>
+            <th scope="col">Match Name</th>
+            <th scope="col">Active Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:if="${alertList.isEmpty()}" scope="row">
+            <td colspan="2"> No Alerts Subscribed </td>
+          </tr>
+          <tr th:each="alert : ${alertList}" scope="row">
+            <td><span th:text="${alert.mailId}"> Mail Id </span></td>
+            <td><span th:text="${alert.seriesName}"> Series Name </span></td>
+            <td><span th:text="${alert.matchName}"> Match Name </span></td>
+            <td>
+            <a th:if="${alert.isActive == true}" class="isAlertActive" th:href="@{/alerts/updateAlert(alertId=${alert.getAlertId()}, isActive=${!alert.getIsActive()})}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="blue" class="bi av bi-toggle-on" viewBox="0 0 16 16">
+                <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+              </svg>
+            </a>
+            <a th:if="${alert.isActive == false}" class="isAlertActive" th:href="@{/alerts/updateAlert(alertId=${alert.getAlertId()}, isActive=${!alert.getIsActive()})}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="blue" class="bi av bi-toggle-off" viewBox="0 0 16 16">
+                <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z"/>
+              </svg>
+            </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -1,6 +1,7 @@
 package com.cricFizzApp.services;
 
 import com.cricFizzApp.bean.alert.AlertDetails;
+import com.cricFizzApp.repository.AlertsRepository;
 import com.cricFizzApp.utils.CricUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
@@ -23,6 +24,9 @@ public class KafkaAsyncProducerService {
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
+
+    @Autowired
+    private AlertsRepository alertsRepository;
 
     @Autowired
     private CricUtils cricUtils;

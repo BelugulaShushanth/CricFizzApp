@@ -315,7 +315,6 @@ public class CricUtils {
         alertDetailsPublish.setAlertType(alertDetails.getAlertType());
         alertDetailsPublish.setTimePeriod(alertDetails.getTimePeriod());
         alertDetailsPublish.setIsActive(true);
-        alertDetailsPublish.setAlertReceivedDT(LocalDateTime.now());
         alertDetailsPublish.setSeriesName(seriesData.get(alertDetails.getSeriesId()));
         alertDetailsPublish.setMatchName(matchesData.get(alertDetails.getMatchId()));
         if(alertDetails.getMatchType().equalsIgnoreCase("upcoming")){
