@@ -118,10 +118,10 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th scope="col">Mail Id</th>
-            <th scope="col">Series Name</th>
+            <th scope="col" class="mail">Mail Id</th>
+            <th scope="col" class="series">Series Name</th>
             <th scope="col">Match Name</th>
-            <th scope="col">Active Status</th>
+            <th scope="col">Status</th>
           </tr>
           </thead>
           <tbody>
@@ -129,8 +129,8 @@
             <td colspan="2"> No Alerts Subscribed </td>
           </tr>
           <tr th:each="alert : ${alertList}" scope="row">
-            <td><span th:text="${alert.mailId}"> Mail Id </span></td>
-            <td><span th:text="${alert.seriesName}"> Series Name </span></td>
+            <td class="mail"><span th:text="${alert.mailId}" > Mail Id </span></td>
+            <td  class="series"><span th:text="${alert.seriesName}"> Series Name </span></td>
             <td><span th:text="${alert.matchName}"> Match Name </span></td>
             <td>
             <a th:if="${alert.isActive == true}" class="isAlertActive" th:href="@{/alerts/updateAlert(alertId=${alert.getAlertId()}, isActive=${!alert.getIsActive()})}">

@@ -75,4 +75,27 @@ input, optgroup, select, textarea {
         font-size: 1.5rem !important;
     }
 
+    .mail{
+        display: none;
+    }
+
+    .series{
+        display: none;
+    }
+
+    .bi.av{
+        width: 5rem !important;
+        height: 5rem !important;
+    }
+
+    th{
+        text-align: left !important;
+        padding: 2px !important;
+    }
+
+    td{
+        text-align: left !important;
+        padding: 2px !important;
+    }
+
 }
