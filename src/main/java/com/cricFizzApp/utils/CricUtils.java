@@ -45,11 +45,19 @@ public class CricUtils {
     @Value("${rapidapi.Key}")
     private String rapiAPIKey;
 
+    public static Boolean isKeyExpired = false;
+    public static Integer keyIndex = 0;
+
+    public static Integer maxKeys;
+
     public HttpHeaders getHeaders(){
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        httpHeaders.add("X-RapidAPI-Key", rapiAPIKey);
+        List<String> keyList = Arrays.stream(rapiAPIKey.split(",")).collect(Collectors.toList());
+        maxKeys = keyList.size();
+        logger.info("RapidAPI KEY Index: {} Key:{}", keyIndex, keyList.get(keyIndex));
+        httpHeaders.add("X-RapidAPI-Key", keyList.get(keyIndex));
         httpHeaders.add("X-RapidAPI-Host", cricbuzzHost);
         return httpHeaders;
     }

@@ -90,10 +90,10 @@ public class CricBuzzService {
             }
         }
         catch (Exception e){
-            if(e.getMessage().contains("429")){
-                logger.info("Limit Exceeded");
-            }
             logger.error("Exception in CricBuzzService:getMatches() {}", e.getMessage());
+            if(checkKeyExpired(e)) {
+                matches = getMatches(event);
+            }
         }
         return matches;
     }
@@ -125,6 +125,9 @@ public class CricBuzzService {
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatchesScoreCard() {}", e.getMessage());
+            if(checkKeyExpired(e)){
+                matchScoreCard = getMatchesScoreCard(matchId);
+            }
         }
         return matchScoreCard;
     }
@@ -155,6 +158,9 @@ public class CricBuzzService {
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatchLeanBack() {}", e.getMessage());
+            if(checkKeyExpired(e)){
+                matchLeanBack = getMatchLeanBack(matchId);
+            }
         }
         return matchLeanBack;
     }
@@ -184,9 +190,26 @@ public class CricBuzzService {
         }
         catch (Exception e){
             logger.error("Exception in CricBuzzService:getMatches", e);
+            if(checkKeyExpired(e)){
+                matchCommentary = getMatchCommentary(matchId);
+            }
         }
         return matchCommentary;
     }
 
+    private boolean checkKeyExpired(Exception e) {
+        logger.info("Limit Exceeded Trying for next keys");
+        if(e.getMessage().contains("429")){
+            if(CricUtils.keyIndex < CricUtils.maxKeys) {
+                CricUtils.keyIndex += 1;
+            }
+            else{
+                CricUtils.keyIndex=0;
+            }
+            return true;
+        }
+
+        return false;
+    }
 
 }

@@ -53,7 +53,7 @@ public class MatchesController {
             }
             mv.addObject("event","live");
             mv.addObject("username",cricUtils.getUserName(principal,httpServletRequest));
-            logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(liveMatches));
+            logger.debug("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(liveMatches));
         }
         catch (Exception e){
             logger.error("Exception in MatchesController:getMatches e:{}",e.getMessage());
@@ -82,7 +82,7 @@ public class MatchesController {
             }
             mv.addObject("event",event);
             mv.addObject("username",cricUtils.getUserName(principal,httpServletRequest));
-            logger.info("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(matches));
+            logger.debug("Matches Data: {}", cricUtils.objectMapper().writeValueAsString(matches));
         }
         catch (Exception e){
             logger.error("Exception in MatchesController:getMatches e:{}",e.getMessage());
@@ -109,8 +109,8 @@ public class MatchesController {
             mv.addObject("matchCommentary",matchCommentary);
             mv.addObject("username",cricUtils.getUserName(principal,httpServletRequest));
             mv.setViewName("ViewMatchCommentary");
-            logger.info("MatchLeanBack Data: {}", cricUtils.objectMapper().writeValueAsString(matchLeanBack));
-            logger.info("MatchCommentary Data: {}", cricUtils.objectMapper().writeValueAsString(matchCommentary));
+            logger.debug("MatchLeanBack Data: {}", cricUtils.objectMapper().writeValueAsString(matchLeanBack));
+            logger.debug("MatchCommentary Data: {}", cricUtils.objectMapper().writeValueAsString(matchCommentary));
         }
         catch (Exception e){
             logger.error("Exception in MatchesController:getMatch e:{}",e.getMessage());
@@ -136,8 +136,8 @@ public class MatchesController {
             mv.addObject("matchVenue",matchVenue);
             mv.addObject("username",cricUtils.getUserName(principal,httpServletRequest));
             mv.setViewName("ViewMatchScoreCard");
-            logger.info("MatchScoreCard: {}",matchScoreCard);
-            logger.info("MatchScoreCard Data: {}", cricUtils.objectMapper().writeValueAsString(matchScoreCard));
+            logger.debug("MatchScoreCard: {}",matchScoreCard);
+            logger.debug("MatchScoreCard Data: {}", cricUtils.objectMapper().writeValueAsString(matchScoreCard));
         }
         catch (Exception e){
             logger.error("Exception in MatchesController:getMatchScoreCard e:{}",e.getMessage());
