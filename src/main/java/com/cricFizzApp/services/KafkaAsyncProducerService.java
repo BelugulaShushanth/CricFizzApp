@@ -37,8 +37,8 @@ public class KafkaAsyncProducerService {
             String key = alertDetails.getAlertId();
             String payload = cricUtils.objectMapper().writeValueAsString(alertDetails);
             ListenableFuture<SendResult<String, String>> listenableFuture = kafkaTemplate.send(topic, key, payload);
-            logger.info("Alert Published: Done: {} AlertId: {} Committed-Offset: {}",listenableFuture.isDone(),key,
-                                            listenableFuture.get().getRecordMetadata().offset());
+            logger.info("Alert Published: Done: {} AlertId: {} Committed-Offset: {} Alert Status: {}",listenableFuture.isDone(),key,
+                                            listenableFuture.get().getRecordMetadata().offset(), alertDetails.getIsActive());
         } catch (Exception e) {
             logger.error("Exception in KafkaAsyncProducerService:publishMessage() : {}",e.getMessage());
         }

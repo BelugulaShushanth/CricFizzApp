@@ -43,7 +43,10 @@
         <div data-th-if="${matchLeanBack != null && matchLeanBack.getMiniscore() != null
                             && matchLeanBack.getMiniscore().getMatchScoreDetails() != null}" data-th-remove="tag">
         <h6 class="card-title matches" data-th-text="${matchLeanBack.matchHeader.team1.name+' Vs '+matchLeanBack.matchHeader.team2.name}">card title</h6>
+        <div data-th-if="${matchLeanBack.matchHeader != null
+                            && matchLeanBack.matchHeader.matchTeamInfo !=null && !matchLeanBack.matchHeader.matchTeamInfo.isEmpty()}" data-th-remove="tag">
         <span class="matchesTeamName" data-th-text="${matchLeanBack.matchHeader.matchTeamInfo.get(0).battingTeamShortName+'   '}"></span>
+        </div>
         <div  data-th-if="${matchLeanBack.miniscore != null && matchLeanBack.miniscore.matchScoreDetails!=null
           && !matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.isEmpty() }" data-th-remove="tag" >
           &nbsp;<span class="matchesScore" data-th-text="${matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.get(0).score + '/'
@@ -55,7 +58,10 @@
                                                                     </span>
           </div>
         </div>
-        <br><span class="matchesTeamName" data-th-text="${matchLeanBack.matchHeader.matchTeamInfo.get(0).bowlingTeamShortName+'   '}"></span>
+        <br>
+        <div data-th-if="${matchLeanBack.matchHeader != null && matchLeanBack.matchHeader.matchTeamInfo != null && !matchLeanBack.matchHeader.matchTeamInfo.isEmpty()}" data-th-remove="tag">
+          <span class="matchesTeamName" data-th-text="${matchLeanBack.matchHeader.matchTeamInfo.get(0).bowlingTeamShortName+'   '}"></span>
+        </div>
         <div data-th-if="${matchLeanBack.miniscore != null && matchLeanBack.miniscore.matchScoreDetails!=null
                             && !matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.isEmpty()
                             && matchLeanBack.miniscore.matchScoreDetails.inningsScoreList.size() > 1}" data-th-remove="tag" >
