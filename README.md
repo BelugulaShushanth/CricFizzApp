@@ -39,7 +39,8 @@
 
 
 ## Cricfizz Architecture and System Design
-![alt text](https://github.com/BelugulaShushanth/CricFizzApp/blob/master/src/main/resources/static/images/cricfizz-logo.png)
+![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/778aab9b-6257-42f6-a259-bbf87bc78bd0)
+
 
 
 ## Project Description
