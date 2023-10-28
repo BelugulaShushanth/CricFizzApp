@@ -11,7 +11,8 @@
 ## About Cricfizz
 <ol>
   <li>This is a live cricket scores application built by leveraging the <b>CricBuzz</b> API.</li>
-  <li>This is developed using the <b>Microservices Architecture</b> and implemented standard microservices patterns like <b>Config Server, Service Discovery, Load Balancing, Dynamic Scalling, API Gateway, Circuit Breaker, Resiliency</b></li>
+  <li>This is developed using the <b>Microservices Architecture</b> and implemented standard microservices patterns like <b>Config Server, Service Discovery, Load Balancing, Dynamic Scaling, API Gateway, Circuit 
+   Breaker, Resiliency</b></li>
   <li>In this app a user can check the <b>live/recent/upcoming</b> cricket match scores</li>
   <li>This application also provides a feature called <b>alerts</b> where a user can subscribe to get alerts for a particular match</li>
   <li>A user can login using <b>Google OAuth</b> or by standard login form to subscribe to alerts</li>
@@ -50,26 +51,35 @@
        b) League: This is where all the league matches like IPL, BPL, and BBL are shown<br>
        c) Domestic: This is where all the domestic matches like the Ranji Trophy, and County Championship are shown<br>
        d) Women: This is where all the matches related to women are shown<br>
+       
    By default, International matches are shown but a user can select another type of match also<br>
    By default, only 6 matches are shown a user can click on the More Matches button to see more matches
    
 ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/3aa1b371-aafe-4b10-a715-157c02368705)
 
 
-3. The Navbar contains Live, Recent, and Upcoming navigation buttons by default Live matches are shown. If a user clicks on the Recent button this is how it will look
+
+2. The Navbar contains Live, Recent, and Upcoming navigation buttons by default Live matches are shown. If a user clicks on the Recent button this is how it will look
+   
 ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/5c4e0b44-2b5a-42b9-94cc-b73d455a2c37)
 
 
-4. If a user clicks on the Upcoming Nav button this is how it will look
+
+3. If a user clicks on the Upcoming Nav button this is how it will look
+
 ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/75d192dc-014f-41ba-ad68-26102c13ebe4)
 
 
-5. A user can click on a particular match card to see more match details like commentary and scorecard
+
+4. A user can click on a particular match card to see more match details like commentary and scorecard
    When a user clicks on the match card by default the commentary is shown. This is how it looks
+
 ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/9887e8a7-7302-4640-bf41-c302aa65d346)
 
 
-6. When a user clicks on score card this is how it will looks
+
+5. When a user clicks on score card this is how it will look
+
 ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/acf16660-d386-4fa8-8b35-ae3bf949fffa)
 ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/ae058d2b-f3ee-446f-b224-33560500c936)
 
