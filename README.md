@@ -99,6 +99,7 @@
 7. A user can log in using **Google OAuth** or by using **Standard** form login<br>
     a) Login using Google OAuth Login<br>
        -> Click on login on the top right side of the page
+       -> Click on the Login with Google button.
    
       ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/01254652-6bfe-4b92-9ecf-0c73418aaedf)
 
