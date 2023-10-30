@@ -123,7 +123,7 @@
       ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/e198f82f-f655-404e-91db-43440c271a48)
    
 
-9. After a user logs in using OAuth or Standard Login a user will see the Alerts tab as below<br>
+8. After a user logs in using OAuth or Standard Login a user will see the Alerts tab as below<br>
    In the alerts page, a user can select the below fields<br>
    a) **Match Type**: A user can select live or upcoming from dropdown<br>
    b) **Series Name**: According to the Match Type selected the Series Name will be populated dynamically. A user can select a series name from dropdown<br>
@@ -134,7 +134,14 @@
    
     ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/f97a6522-a28c-42db-8dff-d197528b1e96)
 
-11. A user can click on the subscribe alert after selecting all the inputs.<br>
+9. A user can click on the subscribe alert after selecting all the inputs.<br>
     A user will get a popup in UI that the Alert is scheduled as below
     
    ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/2d461648-91dc-41e1-8b4a-87b6f96106e6)
+
+
+10. A user can **Activate/Deactivate** an alert by going to the Manage Alerts Tab
+      -> In Manage User there is a column called status and it has a toggle button for every subscribed match
+      -> A user can click on the toggle button to Activate/Deactivate an Alert
+    
+![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/053c98d0-9869-4d8e-8b22-99ab52ee41af)
