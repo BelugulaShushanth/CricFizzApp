@@ -85,10 +85,10 @@
 
 
 
-6. There is also an important feature called Alerts in Cricfizz
-     -> A user can subscribe to score alerts of a particular match
-     -> A user can also choose the time interval for a score alerts
-     -> A user needs to log in in order to subscribe to alerts
+6. There is also an important feature called Alerts in Cricfizz<br>
+     -> A user can subscribe to score alerts of a particular match<br>
+     -> A user can also choose the time interval for a score alerts<br>
+     -> A user needs to log in in order to subscribe to alerts<br>
      -> Checkout the snapshot below
    ![Screenshot 2023-10-30 161815](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/3cf27254-96af-4aa3-a274-7e8921cf276b)
 
