@@ -85,17 +85,18 @@
 
 
 
-6. There is also an important feature called Alerts in Cricfizz<br>
-     -> A user can subscribe to score alerts of a particular match<br>
-     -> A user can also choose the time interval for a score alerts <br>
+6. There is also an important feature called **Alerts** in Cricfizz<br>
+     -> A user can **subscribe** to **Score Alerts** to a particular match<br>
+     -> A user can also choose the **time interval** for a Score Alerts <br>
      -> A user needs to log in in order to subscribe to alerts<br>
-     -> Checkout the snapshot below<br>
+     -> Checkout the snapshot below
+   
    ![Screenshot 2023-10-30 161815](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/3cf27254-96af-4aa3-a274-7e8921cf276b)
 
 
 
 
-7. A user can log in using Google OAuth or by using standard form login<br>
+7. A user can log in using **Google OAuth** or by using **Standard** form login<br>
     a) Login using Google OAuth Login<br>
        -> Click on login on the top right side of the page
    
@@ -105,28 +106,34 @@
 
    b) Standard Login<br>
        -> To log in using standard login a user should have an account first<br>
-       -> To create an account a user should sign up first<br>
-       -> Go to login -> click on signup<br>
-       ->Enter the mail ID and Click on send OTP and an OTP will be sent to the given mail ID.<br>
+       -> To **create an account** a user should sign up first<br>
+       -> Go to login -> click on **signup**<br>
+       ->Enter the mail ID and Click on **send OTP** and an OTP will be sent to the given mail ID.
+   
        ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/d7f32a5b-d805-440d-8bed-812ffd2ed8fe)
 
-       -> Enter the OTP Received to your mail ID and click on verify your account<br>
+       -> Enter the **OTP** Received to the mail ID and click on **verify your account**
+   
       ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/f7a02034-9baa-4f52-824a-ed171e01418d)
 
-       -> After your Mail ID is verified you will be redirected to create Account which looks as below.<br>
-           Fill out the details and click on Create Account.<br>
+       -> After a user Mail ID is **verified** you will be redirected to **create an Account** page which looks as below.<br>
+           Fill out the details and click on Create Account.
+   
       ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/e198f82f-f655-404e-91db-43440c271a48)
    
 
-9. After you log in using OAuth or Standard Login you will see the Alerts tab as below<br>
+9. After a user logs in using OAuth or Standard Login a user will see the Alerts tab as below<br>
    In the alerts page, a user can select the below fields<br>
-   a) Match Type: A user can select live or upcoming from dropdown<br>
-   b) Series Name: A user can select a series name from dropdown<br>
-   c) Match Name: When you select the series name the matches belonging to that series will be populated. A user can select any match from the dropdown<br>
-   d) Alert Type: A user can choose an alert type like score, wicket, match-ended<br>
-   e) Time Period: A user can select a time period from the drop-down which means the user will get alerts for every time period selected<br>
+   a) **Match Type**: A user can select live or upcoming from dropdown<br>
+   b) **Series Name**: According to the Match Type selected the Series Name will be populated dynamically. A user can select a series name from dropdown<br>
+   c) **Match Name**: According to the Series Name selected the matches belonging to that series will be populated. A user can select any match from the dropdown<br>
+   d) **Alert Type**: A user can choose an alert type like score, wicket, match-ended<br>
+   e) **Time Period**: A user can select a time period from the drop-down which means the user will get alerts for every time period selected
+      check the snapshot below
+   
     ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/f97a6522-a28c-42db-8dff-d197528b1e96)
 
-10. A user can click on the subscribe alert after selecting all the inputs.<br>
-    A user will get a popup in UI that the Alert is scheduled as below<br>
+11. A user can click on the subscribe alert after selecting all the inputs.<br>
+    A user will get a popup in UI that the Alert is scheduled as below
+    
    ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/2d461648-91dc-41e1-8b4a-87b6f96106e6)
