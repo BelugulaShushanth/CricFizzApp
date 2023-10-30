@@ -140,8 +140,8 @@
    ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/2d461648-91dc-41e1-8b4a-87b6f96106e6)
 
 
-10. A user can **Activate/Deactivate** an alert by going to the Manage Alerts Tab
-      -> In Manage User there is a column called status and it has a toggle button for every subscribed match
+10. A user can **Activate/Deactivate** an alert by going to the Manage Alerts Tab<br>
+      -> In Manage User there is a column called status and it has a toggle button for every subscribed match<br>
       -> A user can click on the toggle button to Activate/Deactivate an Alert
     
 ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/053c98d0-9869-4d8e-8b22-99ab52ee41af)
