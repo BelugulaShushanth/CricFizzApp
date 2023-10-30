@@ -85,3 +85,48 @@
 
 
 
+6. There is also an important feature called Alerts in Cricfizz
+     -> A user can subscribe to score alerts of a particular match
+     -> A user can also choose the time interval for a score alerts
+     -> A user needs to log in in order to subscribe to alerts
+     -> Checkout the snapshot below
+   ![Screenshot 2023-10-30 161815](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/3cf27254-96af-4aa3-a274-7e8921cf276b)
+
+
+
+
+7. A user can log in using Google OAuth or by using standard form login
+    a) Login using Google OAuth Login
+       -> Click on login on the top right side of the page
+   
+      ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/01254652-6bfe-4b92-9ecf-0c73418aaedf)
+
+      ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/4bf9673e-12d9-4767-b11b-557a48af33b5)
+
+   b) Standard Login
+       -> To Login using standard login a user should have an account first
+       -> To create an account a user should sign up first
+       -> Go to login -> click on signup
+       ->Enter the mail ID and Click on send OTP and an OTP will be sent to the given mail ID.
+       ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/d7f32a5b-d805-440d-8bed-812ffd2ed8fe)
+
+       -> Enter the OTP Received to your mail ID and click on verify your account
+       ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/f7a02034-9baa-4f52-824a-ed171e01418d)
+
+       -> After your Mail ID is verified you will be redirected to create Account which looks as below.
+           Fill out the details and click on Create Account.
+       ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/e198f82f-f655-404e-91db-43440c271a48)
+   
+
+8. After you log in using OAuth or Standard Login you will see the Alerts tab as below
+   In the alerts page, a user can select the below fields
+   a) Match Type: A user can select live or upcoming from dropdown
+   b) Series Name: A user can select a series name from dropdown
+   c) Match Name: When you select the series name the matches belonging to that series will be populated. A user can select any match from the dropdown
+   d) Alert Type: A user can choose an alert type like score, wicket, match-ended
+   e) Time Period: A user can select a time period from the drop-down which means the user will get alerts for every time period selected
+    ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/f97a6522-a28c-42db-8dff-d197528b1e96)
+
+9. A user can click on the subscribe alert after selecting all the inputs.
+    A user will get a popup in UI that the Alert is scheduled as below
+   ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/2d461648-91dc-41e1-8b4a-87b6f96106e6)
