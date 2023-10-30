@@ -145,3 +145,9 @@
       -> A user can click on the toggle button to Activate/Deactivate an Alert
     
 ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/053c98d0-9869-4d8e-8b22-99ab52ee41af)
+
+
+11. A user can log out by clicking on logout button on top right side
+    
+    ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/9335255d-13e6-4e33-8acc-cd4fa41fe10d)
+
