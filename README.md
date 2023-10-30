@@ -111,13 +111,13 @@
        -> Go to login -> click on **signup**<br>
        ->Enter the mail ID and Click on **send OTP** and an OTP will be sent to the given mail ID.
    
-       ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/d7f32a5b-d805-440d-8bed-812ffd2ed8fe)
+   ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/d7f32a5b-d805-440d-8bed-812ffd2ed8fe)
 
        -> Enter the **OTP** Received to the mail ID and click on **verify your account**
    
       ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/f7a02034-9baa-4f52-824a-ed171e01418d)
 
-       -> After a user Mail ID is **verified** you will be redirected to **create an Account** page which looks as below.<br>
+       -> After a user Mail ID is verified you will be redirected to create an Account page which looks as below.<br>
            Fill out the details and click on Create Account.
    
       ![image](https://github.com/BelugulaShushanth/CricFizzApp/assets/66299354/e198f82f-f655-404e-91db-43440c271a48)
