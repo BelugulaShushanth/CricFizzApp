@@ -17,7 +17,7 @@
   <li>This application also provides a feature called <b>alerts</b> where a user can subscribe to get alerts for a particular match</li>
   <li>A user can login using <b>Google OAuth</b> or by standard login form to subscribe to alerts</li>
   <li>A user can schedule a <b>alert interval</b> by choosing the time period also</li>
-  <li>A user can <b>activate/deactivate</b> the alerts whenever he wants</li>
+  <li>A user can <b>activate/deactivate</b> the alerts according to the user requirements</li>
 </ol>
 
 
