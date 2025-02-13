@@ -35,7 +35,7 @@
 <li>H2 Database to store in memory data</li>
 <li>Thymleaf to render the UI</li>
 <li>Apache Kafka as a alerts streaming service</li>
-<li>Docker to containerze the micrsoservies</li>
+<li>Docker to containerize the micrsoservies</li>
 </ul>
 
 
